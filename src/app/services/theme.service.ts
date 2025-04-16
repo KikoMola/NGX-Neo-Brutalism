@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 export type ThemeColor = 'red' | 'blue' | 'green' | 'yellow' | 'purple' | 'pink' | 'indigo' | 'teal' | 'orange' | 'rose';
 export type ColorShade = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+export type BorderRadiusSize = '0' | '5' | '10' | '15';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,9 @@ export type ColorShade = '50' | '100' | '200' | '300' | '400' | '500' | '600' | 
 export class ThemeService {
   // Color principal
   private color = signal<ThemeColor>('red');
+  
+  // Border radius personalizado
+  private borderRadius = signal<BorderRadiusSize>('0');
   
   // Sombras para cada uso
   private primaryShade = signal<ColorShade>('500');
@@ -27,6 +31,21 @@ export class ThemeService {
   // Obtener el color actual
   getThemeColor(): ThemeColor {
     return this.color();
+  }
+  
+  // Cambiar el border radius
+  setBorderRadius(newRadius: BorderRadiusSize): void {
+    this.borderRadius.set(newRadius);
+  }
+  
+  // Obtener el border radius actual
+  getBorderRadius(): BorderRadiusSize {
+    return this.borderRadius();
+  }
+  
+  // Obtener la clase de border radius
+  getBorderRadiusClass(): string {
+    return `rounded-[${this.borderRadius()}px]`;
   }
   
   // Clases para elementos

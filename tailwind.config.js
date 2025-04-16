@@ -82,6 +82,9 @@ export default {
     'bg-rose-50', 'bg-rose-100', 'bg-rose-200', 'bg-rose-300', 'bg-rose-400', 'bg-rose-500', 'bg-rose-600', 'bg-rose-700', 'bg-rose-800', 'bg-rose-900',
     'text-rose-50', 'text-rose-100', 'text-rose-200', 'text-rose-300', 'text-rose-400', 'text-rose-500', 'text-rose-600', 'text-rose-700', 'text-rose-800', 'text-rose-900',
     'border-rose-50', 'border-rose-100', 'border-rose-200', 'border-rose-300', 'border-rose-400', 'border-rose-500', 'border-rose-600', 'border-rose-700', 'border-rose-800', 'border-rose-900',
+
+    // Border Radius personalizado
+    'rounded-[0px]', 'rounded-[5px]', 'rounded-[10px]', 'rounded-[15px]'
   ],
   plugins: [],
 }

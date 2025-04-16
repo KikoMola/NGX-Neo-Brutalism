@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeService, ThemeColor } from '../../services/theme.service';
+import { ThemeService, ThemeColor, BorderRadiusSize } from '../../services/theme.service';
 
 interface ColorOption {
   name: ThemeColor;
@@ -22,6 +22,9 @@ export class CustomizationDemoComponent implements OnInit {
   
   // Color actual seleccionado
   currentColor: ThemeColor = 'red';
+  
+  // Border radius actual seleccionado
+  currentBorderRadius: BorderRadiusSize = '0';
   
   // Opciones de colores organizadas por grupos
   colorGroups: { name: string, colors: ColorOption[] }[] = [
@@ -65,12 +68,20 @@ export class CustomizationDemoComponent implements OnInit {
   ngOnInit(): void {
     // Inicializar con el color actual del servicio
     this.currentColor = this.themeService.getThemeColor();
+    // Inicializar con el border radius actual del servicio
+    this.currentBorderRadius = this.themeService.getBorderRadius();
   }
 
   setColor(color: ThemeColor): void {
     this.currentColor = color;
     // Actualizar el tema en todo el sitio
     this.themeService.setThemeColor(color);
+  }
+  
+  setBorderRadius(radius: BorderRadiusSize): void {
+    this.currentBorderRadius = radius;
+    // Actualizar el border radius en todo el sitio
+    this.themeService.setBorderRadius(radius);
   }
   
   getButtonClasses(): string {
