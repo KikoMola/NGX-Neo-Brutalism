@@ -18,6 +18,9 @@ export class ThemeService {
   // Shadow horizontal personalizado
   private shadowHorizontal = signal<ShadowSize>('2');
   
+  // Shadow vertical personalizado
+  private shadowVertical = signal<ShadowSize>('2');
+  
   // Sombras para cada uso
   private primaryShade = signal<ColorShade>('500');
   private secondaryShade = signal<ColorShade>('200');
@@ -62,13 +65,21 @@ export class ThemeService {
     return this.shadowHorizontal();
   }
   
+  // Cambiar el shadow vertical
+  setShadowVertical(newShadow: ShadowSize): void {
+    this.shadowVertical.set(newShadow);
+  }
+  
+  // Obtener el shadow vertical actual
+  getShadowVertical(): ShadowSize {
+    return this.shadowVertical();
+  }
+  
   // Obtener la clase de shadow personalizado
   getShadowClass(): string {
     const h = this.shadowHorizontal();
-    if (h === '0') {
-      return '0px 2px 0px 0px rgba(0,0,0,1)';
-    }
-    return `${h}px 2px 0px 0px rgba(0,0,0,1)`;
+    const v = this.shadowVertical();
+    return `${h}px ${v}px 0px 0px rgba(0,0,0,1)`;
   }
   
   // Clases para elementos

@@ -29,6 +29,9 @@ export class CustomizationDemoComponent implements OnInit {
   // Shadow horizontal actual seleccionado
   currentShadowHorizontal: ShadowSize = '2';
   
+  // Shadow vertical actual seleccionado
+  currentShadowVertical: ShadowSize = '2';
+  
   // Opciones de colores organizadas por grupos
   colorGroups: { name: string, colors: ColorOption[] }[] = [
     {
@@ -75,6 +78,8 @@ export class CustomizationDemoComponent implements OnInit {
     this.currentBorderRadius = this.themeService.getBorderRadius();
     // Inicializar con el shadow horizontal actual del servicio
     this.currentShadowHorizontal = this.themeService.getShadowHorizontal();
+    // Inicializar con el shadow vertical actual del servicio
+    this.currentShadowVertical = this.themeService.getShadowVertical();
   }
 
   setColor(color: ThemeColor): void {
@@ -93,6 +98,12 @@ export class CustomizationDemoComponent implements OnInit {
     this.currentShadowHorizontal = shadow;
     // Actualizar el shadow horizontal en todo el sitio
     this.themeService.setShadowHorizontal(shadow);
+  }
+  
+  setShadowVertical(shadow: ShadowSize): void {
+    this.currentShadowVertical = shadow;
+    // Actualizar el shadow vertical en todo el sitio
+    this.themeService.setShadowVertical(shadow);
   }
   
   getButtonClasses(): string {
