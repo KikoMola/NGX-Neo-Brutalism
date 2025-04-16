@@ -3,7 +3,7 @@
   <div class="flex justify-start md:hidden mb-4">
     <button 
       (click)="onLinkClick()" 
-      class="p-2 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+      class="p-2 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md"
       aria-label="Close menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -12,29 +12,36 @@
     </button>
   </div>
   
+  <!-- Logo/Title -->
+  <div class="mb-8 text-center">
+    <div class="font-semibold text-xl bg-white px-3 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
+      NGX-NEO
+    </div>
+  </div>
+  
   <!-- Navigation Menu -->
-  <nav class="flex-1">
+  <nav>
     <ul class="space-y-3">
       <li>
-        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-medium transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-md">
           <span class="mr-3">📄</span>
           Docs
         </a>
       </li>
       <li>
-        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-medium transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-md">
           <span class="mr-3">🧩</span>
           Components
         </a>
       </li>
       <li>
-        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-medium transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-md">
           <span class="mr-3">🎨</span>
           Styling
         </a>
       </li>
       <li>
-        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-bold transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+        <a href="#" (click)="onLinkClick()" class="flex items-center px-4 py-3 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-medium transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-md">
           <span class="mr-3">✨</span>
           Showcase
         </a>
