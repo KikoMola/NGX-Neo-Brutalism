@@ -1,4 +1,4 @@
-<nav class="bg-pink-300 px-6 py-4">
+<nav class="bg-neo-white px-6 py-4">
   <div class="flex items-center justify-between">
     <!-- Mobile Menu Container -->
     <div class="flex items-center">
@@ -6,7 +6,8 @@
       <button 
         *ngIf="showMenuButton" 
         (click)="onMenuClick()" 
-        class="md:hidden p-2 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all ml-4 rounded-md"
+        class="md:hidden p-2 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all ml-4 rounded-neo text-white"
+        [ngClass]="themeService.getPrimaryBgClass()"
         aria-label="Toggle menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -17,16 +18,21 @@
     </div>
     
     <!-- Logo -->
-    <div class="font-semibold text-2xl tracking-tighter bg-white px-4 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
+    <div class="font-neo-heading text-2xl tracking-tighter px-4 py-2 border-neo-border border-black shadow-neo rounded-neo text-white"
+         [ngClass]="themeService.getPrimaryBgClass()">
       NGX-NEOBRUTALISM
     </div>
     
     <!-- Navigation Links (hidden on mobile) -->
     <ul class="hidden md:flex space-x-6">
-      <li><a href="#" class="font-medium hover:bg-white px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] rounded-md">Docs</a></li>
-      <li><a href="#" class="font-medium hover:bg-white px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] rounded-md">Components</a></li>
-      <li><a href="#" class="font-medium hover:bg-white px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] rounded-md">Showcase</a></li>
-      <li><a href="#" class="font-medium hover:bg-white px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] rounded-md">GitHub</a></li>
+      <li><a href="#" class="font-neo-base px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-neo rounded-neo hover:text-white"
+             [ngClass]="themeService.getHoverBgClass()">Docs</a></li>
+      <li><a href="#" class="font-neo-base px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-neo rounded-neo hover:text-white"
+             [ngClass]="themeService.getHoverBgClass()">Components</a></li>
+      <li><a href="#" class="font-neo-base px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-neo rounded-neo hover:text-white"
+             [ngClass]="themeService.getHoverBgClass()">Showcase</a></li>
+      <li><a href="#" class="font-neo-base px-3 py-2 border border-black transition-transform hover:translate-y-[-1px] hover:shadow-neo rounded-neo hover:text-white"
+             [ngClass]="themeService.getHoverBgClass()">GitHub</a></li>
     </ul>
   </div>
 </nav>
