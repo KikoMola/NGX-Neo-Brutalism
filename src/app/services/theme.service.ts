@@ -3,6 +3,7 @@ import { Injectable, signal } from '@angular/core';
 export type ThemeColor = 'red' | 'blue' | 'green' | 'yellow' | 'purple' | 'pink' | 'indigo' | 'teal' | 'orange' | 'rose';
 export type ColorShade = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 export type BorderRadiusSize = '0' | '5' | '10' | '15';
+export type ShadowSize = '-4' | '-2' | '0' | '2' | '4';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class ThemeService {
   
   // Border radius personalizado
   private borderRadius = signal<BorderRadiusSize>('0');
+  
+  // Shadow horizontal personalizado
+  private shadowHorizontal = signal<ShadowSize>('2');
   
   // Sombras para cada uso
   private primaryShade = signal<ColorShade>('500');
@@ -46,6 +50,25 @@ export class ThemeService {
   // Obtener la clase de border radius
   getBorderRadiusClass(): string {
     return `rounded-[${this.borderRadius()}px]`;
+  }
+  
+  // Cambiar el shadow horizontal
+  setShadowHorizontal(newShadow: ShadowSize): void {
+    this.shadowHorizontal.set(newShadow);
+  }
+  
+  // Obtener el shadow horizontal actual
+  getShadowHorizontal(): ShadowSize {
+    return this.shadowHorizontal();
+  }
+  
+  // Obtener la clase de shadow personalizado
+  getShadowClass(): string {
+    const h = this.shadowHorizontal();
+    if (h === '0') {
+      return '0px 2px 0px 0px rgba(0,0,0,1)';
+    }
+    return `${h}px 2px 0px 0px rgba(0,0,0,1)`;
   }
   
   // Clases para elementos

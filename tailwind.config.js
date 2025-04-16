@@ -84,7 +84,14 @@ export default {
     'border-rose-50', 'border-rose-100', 'border-rose-200', 'border-rose-300', 'border-rose-400', 'border-rose-500', 'border-rose-600', 'border-rose-700', 'border-rose-800', 'border-rose-900',
 
     // Border Radius personalizado
-    'rounded-[0px]', 'rounded-[5px]', 'rounded-[10px]', 'rounded-[15px]'
+    'rounded-[0px]', 'rounded-[5px]', 'rounded-[10px]', 'rounded-[15px]',
+    
+    // Shadow personalizado
+    'shadow-[-4px_2px_0px_0px_rgba(0,0,0,1)]',
+    'shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)]',
+    'shadow-[0px_2px_0px_0px_rgba(0,0,0,1)]',
+    'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]',
+    'shadow-[4px_2px_0px_0px_rgba(0,0,0,1)]'
   ],
   plugins: [],
 }

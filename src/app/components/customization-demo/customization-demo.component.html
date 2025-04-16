@@ -61,7 +61,7 @@
       </div>
       
       <h3 class="text-xl font-neo-heading mb-4">Border Radius</h3>
-      <div class="flex flex-wrap gap-3 justify-center">
+      <div class="flex flex-wrap gap-3 justify-center mb-6">
         <button (click)="setBorderRadius('0')" 
                 class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-none bg-white">
           <span class="text-sm">0px</span>
@@ -86,6 +86,39 @@
           <span *ngIf="currentBorderRadius === '15'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
         </button>
       </div>
+      
+      <h3 class="text-xl font-neo-heading mb-4">Sombra Horizontal</h3>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button (click)="setShadowHorizontal('-4')" 
+                class="relative w-14 h-14 border-neo-border border-black shadow-[-4px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+          <span class="text-sm">-4px</span>
+          <span *ngIf="currentShadowHorizontal === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setShadowHorizontal('-2')" 
+                class="relative w-14 h-14 border-neo-border border-black shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+          <span class="text-sm">-2px</span>
+          <span *ngIf="currentShadowHorizontal === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setShadowHorizontal('0')" 
+                class="relative w-14 h-14 border-neo-border border-black shadow-[0px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+          <span class="text-sm">0px</span>
+          <span *ngIf="currentShadowHorizontal === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setShadowHorizontal('2')" 
+                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+          <span class="text-sm">2px</span>
+          <span *ngIf="currentShadowHorizontal === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setShadowHorizontal('4')" 
+                class="relative w-14 h-14 border-neo-border border-black shadow-[4px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+          <span class="text-sm">4px</span>
+          <span *ngIf="currentShadowHorizontal === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+      </div>
     </div>
     
     <!-- Previews con proporción 40/60 -->
@@ -106,18 +139,21 @@
           <div class="p-6">
             <!-- Sample Button -->
             <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
-                    class="px-4 py-2 border-neo-border border-black mb-4 font-neo-base shadow-neo w-full hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
+                    class="px-4 py-2 border-neo-border border-black mb-4 font-neo-base w-full hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white"
+                    [ngStyle]="{'box-shadow': themeService.getShadowClass()}">
               Botón Primario
             </button>
             
             <!-- Sample Card -->
             <div [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
-                 class="border-neo-border border-black shadow-neo p-4">
+                 class="border-neo-border border-black p-4"
+                 [ngStyle]="{'box-shadow': themeService.getShadowClass()}">
               <h4 class="font-neo-heading mb-2" [ngClass]="themeService.getTextClass()">Tarjeta de Ejemplo</h4>
               <p class="text-sm mb-4">Este es un ejemplo de cómo se verán los componentes con el color seleccionado.</p>
               <div class="flex justify-end">
                 <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
-                        class="px-3 py-1 border border-black text-sm font-neo-base shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none transition-all text-white">
+                        class="px-3 py-1 border border-black text-sm font-neo-base hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none transition-all text-white"
+                        [ngStyle]="{'box-shadow': '1px 1px 0px 0px rgba(0,0,0,1)'}">
                   Acción
                 </button>
               </div>
@@ -143,7 +179,8 @@
             <div class="border border-gray-200 p-2 rounded-neo">
               <!-- Navbar -->
               <div [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-                class="p-3 text-white font-neo-base flex justify-between items-center">
+                class="p-3 text-white font-neo-base flex justify-between items-center"
+                [ngStyle]="{'box-shadow': themeService.getShadowClass()}">
                 <div>Brand</div>
                 <div class="flex space-x-2">
                   <span class="px-2 py-1 bg-white text-black rounded-sm text-xs">Opción 1</span>

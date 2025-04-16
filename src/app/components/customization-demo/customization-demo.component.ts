@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeService, ThemeColor, BorderRadiusSize } from '../../services/theme.service';
+import { ThemeService, ThemeColor, BorderRadiusSize, ShadowSize } from '../../services/theme.service';
 
 interface ColorOption {
   name: ThemeColor;
@@ -25,6 +25,9 @@ export class CustomizationDemoComponent implements OnInit {
   
   // Border radius actual seleccionado
   currentBorderRadius: BorderRadiusSize = '0';
+  
+  // Shadow horizontal actual seleccionado
+  currentShadowHorizontal: ShadowSize = '2';
   
   // Opciones de colores organizadas por grupos
   colorGroups: { name: string, colors: ColorOption[] }[] = [
@@ -70,6 +73,8 @@ export class CustomizationDemoComponent implements OnInit {
     this.currentColor = this.themeService.getThemeColor();
     // Inicializar con el border radius actual del servicio
     this.currentBorderRadius = this.themeService.getBorderRadius();
+    // Inicializar con el shadow horizontal actual del servicio
+    this.currentShadowHorizontal = this.themeService.getShadowHorizontal();
   }
 
   setColor(color: ThemeColor): void {
@@ -82,6 +87,12 @@ export class CustomizationDemoComponent implements OnInit {
     this.currentBorderRadius = radius;
     // Actualizar el border radius en todo el sitio
     this.themeService.setBorderRadius(radius);
+  }
+  
+  setShadowHorizontal(shadow: ShadowSize): void {
+    this.currentShadowHorizontal = shadow;
+    // Actualizar el shadow horizontal en todo el sitio
+    this.themeService.setShadowHorizontal(shadow);
   }
   
   getButtonClasses(): string {
