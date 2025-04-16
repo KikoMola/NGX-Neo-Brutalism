@@ -2,7 +2,9 @@
   <div class="max-w-6xl mx-auto">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
       <!-- Logo/Title -->
-      <div [ngClass]="themeService.getPrimaryBgClass()" class="font-semibold text-2xl tracking-tighter text-white px-4 py-2 mb-6 md:mb-0 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
+      <div [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="font-semibold text-2xl tracking-tighter text-white px-4 py-2 mb-6 md:mb-0 border-2 border-black">
         NGX-NEOBRUTALISM
       </div>
       
@@ -29,16 +31,20 @@
     
     <div class="border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center">
       <p class="mb-4 md:mb-0">
-        <span class="bg-white px-2 py-1 border border-black inline-block rounded-md">
+        <span [ngClass]="themeService.getBorderRadiusClass()" class="bg-white px-2 py-1 border border-black inline-block">
           ¡Hecho con ❤️ para Angular!
         </span>
       </p>
       
       <div class="flex space-x-4">
-        <a [ngClass]="themeService.getPrimaryBgClass()" href="#" class="p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white">
+        <a [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           href="#" class="p-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
           <span>GitHub</span>
         </a>
-        <a [ngClass]="themeService.getPrimaryBgClass()" href="#" class="p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white">
+        <a [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" 
+           href="#" class="p-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
           <span>Twitter</span>
         </a>
       </div>

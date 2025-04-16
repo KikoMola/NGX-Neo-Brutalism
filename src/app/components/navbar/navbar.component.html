@@ -6,8 +6,9 @@
       <button 
         *ngIf="showMenuButton" 
         (click)="onMenuClick()" 
-        class="md:hidden p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all ml-4 rounded-md text-white"
-        [ngClass]="themeService.getPrimaryBgClass()"
+        [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+        [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+        class="md:hidden p-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all ml-4 text-white"
         aria-label="Toggle menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -18,21 +19,26 @@
     </div>
     
     <!-- Logo -->
-    <div class="font-neo-heading text-2xl tracking-tighter px-4 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white"
-         [ngClass]="themeService.getPrimaryBgClass()">
+    <div [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+         [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+         class="font-neo-heading text-2xl tracking-tighter px-4 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
       NGX-NEOBRUTALISM
     </div>
     
     <!-- Navigation Links (hidden on mobile) -->
     <ul class="hidden md:flex space-x-6">
-      <li><a href="#" class="inline-block font-neo-base px-3 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-black" 
-             [ngClass]="themeService.getLightBgClass()">Docs</a></li>
-      <li><a href="#" class="inline-block font-neo-base px-3 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-black"
-             [ngClass]="themeService.getLightBgClass()">Components</a></li>
-      <li><a href="#" class="inline-block font-neo-base px-3 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-black"
-             [ngClass]="themeService.getLightBgClass()">Showcase</a></li>
-      <li><a href="#" class="inline-block font-neo-base px-3 py-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white"
-             [ngClass]="themeService.getPrimaryBgClass()">GitHub</a></li>
+      <li><a href="#" [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-black">Docs</a></li>
+      <li><a href="#" [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-black">Components</a></li>
+      <li><a href="#" [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-black">Showcase</a></li>
+      <li><a href="#" [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">GitHub</a></li>
     </ul>
   </div>
 </nav>

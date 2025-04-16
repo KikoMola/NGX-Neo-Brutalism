@@ -3,8 +3,9 @@
   <div class="flex justify-start md:hidden mb-4">
     <button 
       (click)="onLinkClick()" 
-      class="p-2 text-white border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo"
-      [ngClass]="themeService.getPrimaryBgClass()"
+      [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+      [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+      class="p-2 text-white border-neo-border border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
       aria-label="Close menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -18,32 +19,36 @@
     <ul class="space-y-3">
       <li>
         <a href="#" (click)="onLinkClick()" 
-           class="flex items-center px-4 py-3 text-white border-neo-border border-black shadow-neo font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-neo"
-           [ngClass]="themeService.getPrimaryBgClass()">
+           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
           <span class="mr-3">📄</span>
           Docs
         </a>
       </li>
       <li>
         <a href="#" (click)="onLinkClick()" 
-           class="flex items-center px-4 py-3 text-white border-neo-border border-black shadow-neo font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-neo"
-           [ngClass]="themeService.getPrimaryBgClass()">
+           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
           <span class="mr-3">🧩</span>
           Components
         </a>
       </li>
       <li>
         <a href="#" (click)="onLinkClick()" 
-           class="flex items-center px-4 py-3 text-white border-neo-border border-black shadow-neo font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-neo"
-           [ngClass]="themeService.getPrimaryBgClass()">
+           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
           <span class="mr-3">🎨</span>
           Styling
         </a>
       </li>
       <li>
         <a href="#" (click)="onLinkClick()" 
-           class="flex items-center px-4 py-3 text-white border-neo-border border-black shadow-neo font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none rounded-neo"
-           [ngClass]="themeService.getPrimaryBgClass()">
+           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
           <span class="mr-3">✨</span>
           Showcase
         </a>

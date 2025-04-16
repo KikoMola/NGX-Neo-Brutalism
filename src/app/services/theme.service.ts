@@ -10,10 +10,10 @@ export type ShadowSize = '-4' | '-2' | '0' | '2' | '4';
 })
 export class ThemeService {
   // Color principal
-  private color = signal<ThemeColor>('red');
+  private color = signal<ThemeColor>('blue');
   
   // Border radius personalizado
-  private borderRadius = signal<BorderRadiusSize>('0');
+  private borderRadius = signal<BorderRadiusSize>('5');
   
   // Shadow horizontal personalizado
   private shadowHorizontal = signal<ShadowSize>('2');
@@ -121,16 +121,29 @@ export class ThemeService {
   
   // Para botones primarios
   getPrimaryButtonClasses(): string {
-    return `${this.getPrimaryBgClass()} ${this.getHoverBgClass()} text-white border-neo-border border-black shadow-neo rounded-neo`;
+    return `${this.getPrimaryBgClass()} ${this.getHoverBgClass()} text-white border-neo-border border-black ${this.getBorderRadiusClass()}`;
   }
   
   // Para elementos secundarios
   getSecondaryElementClasses(): string {
-    return `${this.getSecondaryBgClass()} border-neo-border border-black shadow-neo rounded-neo`;
+    return `${this.getSecondaryBgClass()} border-neo-border border-black ${this.getBorderRadiusClass()}`;
   }
   
   // Para elementos light (fondos claros)
   getLightElementClasses(): string {
-    return `${this.getLightBgClass()} border-neo-border border-black shadow-neo rounded-neo`;
+    return `${this.getLightBgClass()} border-neo-border border-black ${this.getBorderRadiusClass()}`;
+  }
+  
+  // Obtener la clase shadow para aplicar globalmente
+  getShadowClassForElements(): string {
+    // Esta clase se puede usar con ngStyle para aplicar la sombra
+    const h = this.shadowHorizontal();
+    const v = this.shadowVertical();
+    return `${h}px ${v}px 0px 0px rgba(0,0,0,1)`;
+  }
+  
+  // Método helpers para compatibilidad con componentes existentes
+  getShadowNeoClass(): string {
+    return `shadow-[${this.shadowHorizontal()}px_${this.shadowVertical()}px_0px_0px_rgba(0,0,0,1)]`;
   }
 } 

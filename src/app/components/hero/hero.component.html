@@ -5,17 +5,25 @@
     <div class="flex flex-col md:flex-row items-center md:space-x-12">
       <!-- Text content -->
       <div class="md:w-1/2 mb-10 md:mb-0">
-        <h1 class="text-5xl font-bold mb-6 tracking-tight leading-none bg-white inline-block p-3 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-md">
+        <h1 [ngClass]="themeService.getBorderRadiusClass()" 
+            [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+            class="text-5xl font-bold mb-6 tracking-tight leading-none bg-white inline-block p-3 border-2 border-black">
           Componentes Neobrutalistas para Angular
         </h1>
-        <p [ngClass]="themeService.getLightBgClass()" class="text-xl mb-8 p-4 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
+        <p [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="text-xl mb-8 p-4 border-2 border-black">
           Una colección de componentes con estilo neobrutalista para tus proyectos de Angular.
         </p>
         <div class="flex space-x-6">
-          <button [ngClass]="themeService.getPrimaryBgClass()" class="px-6 py-3 border-2 border-black font-medium text-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white">
+          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+                  class="px-6 py-3 border-2 border-black font-medium text-lg hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
             Ver Documentación
           </button>
-          <button class="px-6 py-3 bg-white border-2 border-black font-medium text-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md">
+          <button [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+                  class="px-6 py-3 bg-white border-2 border-black font-medium text-lg hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all">
             Ver Componentes
           </button>
         </div>
@@ -23,8 +31,12 @@
       
       <!-- Image/Demo component -->
       <div class="md:w-1/2">
-        <div [ngClass]="themeService.getPrimaryBgClass()" class="border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] p-6 rounded-md text-white">
-          <div class="bg-white border-2 border-black p-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md text-black">
+        <div [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="border-2 border-black p-6 text-white">
+          <div [ngClass]="themeService.getBorderRadiusClass()"
+               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" 
+               class="bg-white border-2 border-black p-4 text-black">
             <div class="flex justify-between items-center mb-4">
               <div class="font-medium">Demo Component</div>
               <div class="flex space-x-2">
@@ -34,15 +46,19 @@
               </div>
             </div>
             <div class="space-y-2">
-              <div class="h-4 w-full bg-gray-200 border border-black rounded-md"></div>
-              <div class="h-4 w-3/4 bg-gray-200 border border-black rounded-md"></div>
-              <div class="h-4 w-1/2 bg-gray-200 border border-black rounded-md"></div>
+              <div [ngClass]="themeService.getBorderRadiusClass()" class="h-4 w-full bg-gray-200 border border-black"></div>
+              <div [ngClass]="themeService.getBorderRadiusClass()" class="h-4 w-3/4 bg-gray-200 border border-black"></div>
+              <div [ngClass]="themeService.getBorderRadiusClass()" class="h-4 w-1/2 bg-gray-200 border border-black"></div>
             </div>
             <div class="mt-4 flex justify-between">
-              <button [ngClass]="themeService.getSecondaryBgClass()" class="px-3 py-1 border border-black text-sm font-medium shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] rounded-md">
+              <button [ngClass]="[themeService.getSecondaryBgClass(), themeService.getBorderRadiusClass()]" 
+                      [ngStyle]="{'box-shadow': '1px 1px 0px 0px rgba(0,0,0,1)'}"
+                      class="px-3 py-1 border border-black text-sm font-medium">
                 Cancel
               </button>
-              <button [ngClass]="themeService.getPrimaryBgClass()" class="px-3 py-1 border border-black text-sm font-medium shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] rounded-md text-white">
+              <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
+                      [ngStyle]="{'box-shadow': '1px 1px 0px 0px rgba(0,0,0,1)'}"
+                      class="px-3 py-1 border border-black text-sm font-medium text-white">
                 Save
               </button>
             </div>

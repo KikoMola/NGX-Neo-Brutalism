@@ -1,31 +1,45 @@
 <section [ngClass]="themeService.getLightBgClass()" class="py-16">
   <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-10 bg-white inline-block p-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
+    <h2 [ngClass]="themeService.getBorderRadiusClass()" 
+        [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+        class="text-3xl font-bold mb-10 bg-white inline-block p-3 border-2 border-black">
       Preguntas Frecuentes
     </h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- FAQ Item 1 -->
-      <div class="bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform rounded-md">
-        <h3 class="text-xl font-medium mb-4 inline-block border border-black rounded-md px-3 py-1" [ngClass]="themeService.getLightBgClass()">¿Son accesibles estos componentes?</h3>
+      <div [ngClass]="themeService.getBorderRadiusClass()" 
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="bg-white border-2 border-black p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform">
+        <h3 [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
+            class="text-xl font-medium mb-4 inline-block border border-black px-3 py-1">¿Son accesibles estos componentes?</h3>
         <p class="mb-0">Sí, estos componentes están diseñados siguiendo las mejores prácticas de accesibilidad, aunque siempre deberás revisar el contraste de colores en tu implementación final.</p>
       </div>
       
       <!-- FAQ Item 2 -->
-      <div class="bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform rounded-md">
-        <h3 class="text-xl font-medium mb-4 inline-block border border-black rounded-md px-3 py-1" [ngClass]="themeService.getLightBgClass()">¿Por qué no un paquete NPM?</h3>
+      <div [ngClass]="themeService.getBorderRadiusClass()" 
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="bg-white border-2 border-black p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform">
+        <h3 [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
+            class="text-xl font-medium mb-4 inline-block border border-black px-3 py-1">¿Por qué no un paquete NPM?</h3>
         <p class="mb-0">Preferimos el enfoque de copiar y pegar para que tengas control total sobre el código y puedas personalizarlo sin restricciones según tus necesidades.</p>
       </div>
       
       <!-- FAQ Item 3 -->
-      <div class="bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform rounded-md">
-        <h3 class="text-xl font-medium mb-4 inline-block border border-black rounded-md px-3 py-1" [ngClass]="themeService.getLightBgClass()">¿Cómo puedo contribuir?</h3>
+      <div [ngClass]="themeService.getBorderRadiusClass()" 
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="bg-white border-2 border-black p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform">
+        <h3 [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
+            class="text-xl font-medium mb-4 inline-block border border-black px-3 py-1">¿Cómo puedo contribuir?</h3>
         <p class="mb-0">Puedes contribuir a este proyecto a través de GitHub mediante pull requests. Todas las ideas y mejoras son bienvenidas para hacer crecer esta biblioteca.</p>
       </div>
       
       <!-- FAQ Item 4 -->
-      <div class="bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform rounded-md">
-        <h3 class="text-xl font-medium mb-4 inline-block border border-black rounded-md px-3 py-1" [ngClass]="themeService.getLightBgClass()">¿Funciona con Angular Material?</h3>
+      <div [ngClass]="themeService.getBorderRadiusClass()" 
+           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+           class="bg-white border-2 border-black p-6 hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-transform">
+        <h3 [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
+            class="text-xl font-medium mb-4 inline-block border border-black px-3 py-1">¿Funciona con Angular Material?</h3>
         <p class="mb-0">Esta biblioteca está pensada para ser independiente, pero puedes integrarla con Angular Material. Sin embargo, ten en cuenta que el estilo neobrutalista puede entrar en conflicto con el diseño Material.</p>
       </div>
     </div>

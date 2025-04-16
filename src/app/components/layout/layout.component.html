@@ -1,11 +1,15 @@
 <div [class]="'flex flex-col h-screen overflow-hidden ' + mainBgClass">
   <!-- Navbar fijo en la parte superior -->
-  <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" class="border-b-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10 rounded-b-md"></app-navbar>
+  <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" 
+              [ngClass]="themeService.getBorderRadiusClass()" 
+              class="border-b-2 border-black z-10"></app-navbar>
   
   <!-- Contenedor principal que ocupa el resto de la pantalla -->
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar desktop fijo a la izquierda -->
-    <div [class]="'hidden md:block w-64 shrink-0 border-r-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10 rounded-br-md ' + sidebarBgClass">
+    <div [class]="'hidden md:block w-64 shrink-0 border-r-2 border-black z-10 ' + sidebarBgClass" 
+         [ngClass]="themeService.getBorderRadiusClass()"
+         [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
       <app-sidebar></app-sidebar>
     </div>
     
@@ -27,8 +31,9 @@
   
   <!-- Sidebar móvil desde la derecha -->
   <div 
-    [class]="'fixed md:hidden top-0 right-0 h-full z-30 w-64 border-l-2 border-black shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)] transform transition-transform duration-300 ease-in-out rounded-l-md ' + sidebarBgClass + (isSidebarOpen ? ' translate-x-0' : ' translate-x-full')"
-    >
+    [class]="'fixed md:hidden top-0 right-0 h-full z-30 w-64 border-l-2 border-black transform transition-transform duration-300 ease-in-out ' + sidebarBgClass + (isSidebarOpen ? ' translate-x-0' : ' translate-x-full')"
+    [ngClass]="themeService.getBorderRadiusClass()"
+    [ngStyle]="{'box-shadow': '-2px 2px 0px 0px rgba(0,0,0,1)'}">
     <app-sidebar (linkClick)="isSidebarOpen = false"></app-sidebar>
   </div>
 </div>
