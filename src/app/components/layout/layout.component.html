@@ -1,37 +1,37 @@
-<div class="min-h-screen bg-yellow-50">
-  <!-- Contenedor principal con flexbox -->
-  <div class="flex h-full">
-    <!-- Sidebar desktop (dentro del flujo normal) -->
-    <div class="hidden md:block w-64 shrink-0 bg-green-300 border-r-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex flex-col h-screen overflow-hidden bg-yellow-50">
+  <!-- Navbar fijo en la parte superior -->
+  <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" class="border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10"></app-navbar>
+  
+  <!-- Contenedor principal que ocupa el resto de la pantalla -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar desktop fijo a la izquierda -->
+    <div class="hidden md:block w-64 shrink-0 bg-green-300 border-r-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10">
       <app-sidebar></app-sidebar>
     </div>
     
-    <!-- Contenido principal -->
-    <div class="flex-1 flex flex-col w-full">
-      <!-- Navbar -->
-      <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" class="border-b-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></app-navbar>
-      
-      <!-- Contenido -->
-      <main class="flex-1 p-6">
+    <!-- Contenedor del main y footer con scroll -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Main con scroll -->
+      <main class="flex-1 p-6 overflow-y-auto">
         <ng-content></ng-content>
       </main>
       
-      <!-- Footer -->
+      <!-- Footer fijo en la parte inferior del contenedor -->
       <app-footer class="border-t-4 border-black shadow-[0px_-4px_0px_0px_rgba(0,0,0,1)]"></app-footer>
     </div>
-    
-    <!-- Overlay con efecto blur para el sidebar móvil -->
-    <div 
-      *ngIf="isSidebarOpen" 
-      (click)="isSidebarOpen = false"
-      class="fixed inset-0 backdrop-blur-sm bg-white/30 z-20 md:hidden transition-all duration-300">
-    </div>
-    
-    <!-- Sidebar móvil (fuera del flujo normal, ahora desde la derecha) -->
-    <div 
-      class="fixed md:hidden top-0 right-0 h-full z-30 w-64 bg-green-300 border-l-4 border-black shadow-[-4px_4px_0px_0px_rgba(0,0,0,1)] transform transition-transform duration-300 ease-in-out"
-      [ngClass]="{'translate-x-0': isSidebarOpen, 'translate-x-full': !isSidebarOpen}">
-      <app-sidebar (linkClick)="isSidebarOpen = false"></app-sidebar>
-    </div>
+  </div>
+  
+  <!-- Overlay con blur para sidebar móvil -->
+  <div 
+    *ngIf="isSidebarOpen" 
+    (click)="isSidebarOpen = false"
+    class="fixed inset-0 backdrop-blur-sm bg-white/30 z-20 md:hidden transition-all duration-300">
+  </div>
+  
+  <!-- Sidebar móvil desde la derecha -->
+  <div 
+    class="fixed md:hidden top-0 right-0 h-full z-30 w-64 bg-green-300 border-l-4 border-black shadow-[-4px_4px_0px_0px_rgba(0,0,0,1)] transform transition-transform duration-300 ease-in-out"
+    [ngClass]="{'translate-x-0': isSidebarOpen, 'translate-x-full': !isSidebarOpen}">
+    <app-sidebar (linkClick)="isSidebarOpen = false"></app-sidebar>
   </div>
 </div>
