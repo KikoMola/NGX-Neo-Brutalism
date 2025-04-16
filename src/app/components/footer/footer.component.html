@@ -1,8 +1,8 @@
-<footer class="bg-blue-300 py-8 px-6">
+<footer [ngClass]="themeService.getLightBgClass()" class="py-8 px-6">
   <div class="max-w-6xl mx-auto">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
       <!-- Logo/Title -->
-      <div class="font-semibold text-2xl tracking-tighter bg-white px-4 py-2 mb-6 md:mb-0 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
+      <div [ngClass]="themeService.getPrimaryBgClass()" class="font-semibold text-2xl tracking-tighter text-white px-4 py-2 mb-6 md:mb-0 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-md">
         NGX-NEOBRUTALISM
       </div>
       
@@ -35,10 +35,10 @@
       </p>
       
       <div class="flex space-x-4">
-        <a href="#" class="bg-white p-2 border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none transition-all rounded-md">
+        <a [ngClass]="themeService.getPrimaryBgClass()" href="#" class="p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white">
           <span>GitHub</span>
         </a>
-        <a href="#" class="bg-white p-2 border border-black shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none transition-all rounded-md">
+        <a [ngClass]="themeService.getPrimaryBgClass()" href="#" class="p-2 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-md text-white">
           <span>Twitter</span>
         </a>
       </div>

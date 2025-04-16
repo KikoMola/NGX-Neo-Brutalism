@@ -1,11 +1,11 @@
-<div class="flex flex-col h-screen overflow-hidden bg-yellow-50">
+<div [class]="'flex flex-col h-screen overflow-hidden ' + mainBgClass">
   <!-- Navbar fijo en la parte superior -->
   <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" class="border-b-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10 rounded-b-md"></app-navbar>
   
   <!-- Contenedor principal que ocupa el resto de la pantalla -->
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar desktop fijo a la izquierda -->
-    <div class="hidden md:block w-64 shrink-0 bg-green-300 border-r-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10 rounded-br-md">
+    <div [class]="'hidden md:block w-64 shrink-0 border-r-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10 rounded-br-md ' + sidebarBgClass">
       <app-sidebar></app-sidebar>
     </div>
     
@@ -27,8 +27,8 @@
   
   <!-- Sidebar móvil desde la derecha -->
   <div 
-    class="fixed md:hidden top-0 right-0 h-full z-30 w-64 bg-green-300 border-l-2 border-black shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)] transform transition-transform duration-300 ease-in-out rounded-l-md"
-    [ngClass]="{'translate-x-0': isSidebarOpen, 'translate-x-full': !isSidebarOpen}">
+    [class]="'fixed md:hidden top-0 right-0 h-full z-30 w-64 border-l-2 border-black shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)] transform transition-transform duration-300 ease-in-out rounded-l-md ' + sidebarBgClass + (isSidebarOpen ? ' translate-x-0' : ' translate-x-full')"
+    >
     <app-sidebar (linkClick)="isSidebarOpen = false"></app-sidebar>
   </div>
 </div>
