@@ -60,97 +60,109 @@
         </button>
       </div>
       
-      <h3 class="text-xl font-neo-heading mb-4">Border Radius</h3>
-      <div class="flex flex-wrap gap-3 justify-center mb-6">
-        <button (click)="setBorderRadius('0')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-none bg-white">
-          <span class="text-sm">0px</span>
-          <span *ngIf="currentBorderRadius === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
+      <!-- Grid para Border Radius y Sombras alineadas horizontalmente -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+        <!-- Border Radius -->
+        <div>
+          <h3 class="text-xl font-neo-heading mb-4">Border Radius</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <button (click)="setBorderRadius('0')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-none bg-white">
+              <span class="text-sm">0px</span>
+              <span *ngIf="currentBorderRadius === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setBorderRadius('5')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-[5px] bg-white">
+              <span class="text-sm">5px</span>
+              <span *ngIf="currentBorderRadius === '5'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setBorderRadius('10')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-[10px] bg-white">
+              <span class="text-sm">10px</span>
+              <span *ngIf="currentBorderRadius === '10'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setBorderRadius('15')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-[15px] bg-white">
+              <span class="text-sm">15px</span>
+              <span *ngIf="currentBorderRadius === '15'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+          </div>
+        </div>
         
-        <button (click)="setBorderRadius('5')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-[5px] bg-white">
-          <span class="text-sm">5px</span>
-          <span *ngIf="currentBorderRadius === '5'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
+        <!-- Sombra Horizontal -->
+        <div>
+          <h3 class="text-xl font-neo-heading mb-4">Sombra Horizontal</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <button (click)="setShadowHorizontal('-4')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[-4px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">-4px</span>
+              <span *ngIf="currentShadowHorizontal === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowHorizontal('-2')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">-2px</span>
+              <span *ngIf="currentShadowHorizontal === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowHorizontal('0')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[0px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">0px</span>
+              <span *ngIf="currentShadowHorizontal === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowHorizontal('2')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">2px</span>
+              <span *ngIf="currentShadowHorizontal === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowHorizontal('4')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[4px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">4px</span>
+              <span *ngIf="currentShadowHorizontal === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+          </div>
+        </div>
         
-        <button (click)="setBorderRadius('10')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-[10px] bg-white">
-          <span class="text-sm">10px</span>
-          <span *ngIf="currentBorderRadius === '10'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setBorderRadius('15')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-[15px] bg-white">
-          <span class="text-sm">15px</span>
-          <span *ngIf="currentBorderRadius === '15'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-      </div>
-      
-      <h3 class="text-xl font-neo-heading mb-4">Sombra Horizontal</h3>
-      <div class="flex flex-wrap gap-3 justify-center mb-6">
-        <button (click)="setShadowHorizontal('-4')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[-4px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">-4px</span>
-          <span *ngIf="currentShadowHorizontal === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowHorizontal('-2')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[-2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">-2px</span>
-          <span *ngIf="currentShadowHorizontal === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowHorizontal('0')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[0px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">0px</span>
-          <span *ngIf="currentShadowHorizontal === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowHorizontal('2')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">2px</span>
-          <span *ngIf="currentShadowHorizontal === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowHorizontal('4')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[4px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">4px</span>
-          <span *ngIf="currentShadowHorizontal === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-      </div>
-      
-      <h3 class="text-xl font-neo-heading mb-4">Sombra Vertical</h3>
-      <div class="flex flex-wrap gap-3 justify-center">
-        <button (click)="setShadowVertical('-4')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_-4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">-4px</span>
-          <span *ngIf="currentShadowVertical === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowVertical('-2')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_-2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">-2px</span>
-          <span *ngIf="currentShadowVertical === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowVertical('0')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_0px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">0px</span>
-          <span *ngIf="currentShadowVertical === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowVertical('2')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">2px</span>
-          <span *ngIf="currentShadowVertical === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
-        
-        <button (click)="setShadowVertical('4')" 
-                class="relative w-14 h-14 border-neo-border border-black shadow-[2px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
-          <span class="text-sm">4px</span>
-          <span *ngIf="currentShadowVertical === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-        </button>
+        <!-- Sombra Vertical -->
+        <div>
+          <h3 class="text-xl font-neo-heading mb-4">Sombra Vertical</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <button (click)="setShadowVertical('-4')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[2px_-4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">-4px</span>
+              <span *ngIf="currentShadowVertical === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowVertical('-2')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[2px_-2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">-2px</span>
+              <span *ngIf="currentShadowVertical === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowVertical('0')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[2px_0px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">0px</span>
+              <span *ngIf="currentShadowVertical === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowVertical('2')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">2px</span>
+              <span *ngIf="currentShadowVertical === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+            
+            <button (click)="setShadowVertical('4')" 
+                    class="relative w-14 h-14 border-neo-border border-black shadow-[2px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo bg-white">
+              <span class="text-sm">4px</span>
+              <span *ngIf="currentShadowVertical === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     
