@@ -4,105 +4,144 @@
       class="text-3xl font-bold mb-10 bg-neo-white inline-block p-3 border-neo-border border-black shadow-neo rounded-neo">
       Personaliza la Aplicación
     </h2>
-
+    
     <!-- Card de selección de colores a ancho completo -->
     <div class="bg-neo-white border-neo-border border-black shadow-neo p-6 rounded-neo mb-10">
-      <h3 class="text-xl font-neo-heading mb-6">Selecciona un Color Principal</h3>
-
-      <div class="grid gap-8">
-        <!-- Color Group -->
-        <div *ngFor="let group of colorGroups" class="mb-4">
-          <h4 class="text-md font-neo-base mb-2">{{ group.name }}</h4>
-          <div class="flex flex-wrap gap-4">
-            <button *ngFor="let color of group.colors" (click)="setColor(color.name)"
-              class="w-20 h-20 hover:scale-105 transition-transform border-neo-border border-black shadow-neo hover:shadow-none rounded-neo flex flex-col items-center justify-center relative"
-              [ngStyle]="{'background-color': color.value}">
-              <span class="text-white text-xs mt-1 font-neo-base">{{ color.displayName }}</span>
-              <span *ngIf="currentColor === color.name"
-                class="absolute -top-1 -right-1 bg-black text-white w-6 h-6 flex items-center justify-center rounded-full">
-                ✓
-              </span>
+      <h3 class="text-xl font-neo-heading mb-4">Colores</h3>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button (click)="setColor('red')" 
+                class="w-14 h-14 bg-red-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'red'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('blue')" 
+                class="w-14 h-14 bg-blue-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'blue'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('green')" 
+                class="w-14 h-14 bg-green-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'green'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('yellow')" 
+                class="w-14 h-14 bg-yellow-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'yellow'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('purple')" 
+                class="w-14 h-14 bg-purple-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'purple'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('pink')" 
+                class="w-14 h-14 bg-pink-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'pink'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('indigo')" 
+                class="w-14 h-14 bg-indigo-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'indigo'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('teal')" 
+                class="w-14 h-14 bg-teal-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'teal'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('orange')" 
+                class="w-14 h-14 bg-orange-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'orange'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        
+        <button (click)="setColor('rose')" 
+                class="w-14 h-14 bg-rose-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
+          <span *ngIf="currentColor === 'rose'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Previews con proporción 40/60 -->
+    <div class="flex flex-col md:flex-row gap-10">
+      <!-- Preview Components (40%) -->
+      <div class="md:w-2/5">
+        <div class="bg-neo-white border-neo-border border-black shadow-neo overflow-hidden rounded-neo h-full">
+          <div class="bg-gray-100 px-4 py-2 border-b-neo-border border-black flex justify-between items-center">
+            <div class="font-neo-base">Vista Previa</div>
+            <div class="flex space-x-2">
+              <span class="w-3 h-3 block bg-red-500 rounded-full border border-black"></span>
+              <span class="w-3 h-3 block bg-yellow-500 rounded-full border border-black"></span>
+              <span class="w-3 h-3 block bg-green-500 rounded-full border border-black"></span>
+            </div>
+          </div>
+          
+          <!-- Preview content -->
+          <div class="p-6">
+            <!-- Sample Button -->
+            <button [ngClass]="themeService.getPrimaryBgClass()" 
+                    class="px-4 py-2 border-neo-border border-black mb-4 font-neo-base shadow-neo w-full hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo text-white">
+              Botón Primario
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Preview -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <div class="bg-neo-white border-neo-border border-black shadow-neo overflow-hidden rounded-neo">
-        <div class="bg-gray-100 px-4 py-2 border-b-neo-border border-black flex justify-between items-center">
-          <div class="font-neo-base">Vista Previa de Componentes</div>
-          <div class="flex space-x-2">
-            <span class="w-3 h-3 block bg-red-500 rounded-full border border-black"></span>
-            <span class="w-3 h-3 block bg-yellow-500 rounded-full border border-black"></span>
-            <span class="w-3 h-3 block bg-green-500 rounded-full border border-black"></span>
-          </div>
-        </div>
-
-        <!-- Preview content -->
-        <div class="p-6">
-          <!-- Sample Button -->
-          <button [ngClass]="themeService.getPrimaryBgClass()"
-            class="px-4 py-2 border-neo-border border-black mb-4 font-neo-base shadow-neo w-full hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo text-white">
-            Botón Primario
-          </button>
-
-          <!-- Sample Card -->
-          <div [ngClass]="themeService.getLightBgClass()"
-            class="border-neo-border border-black shadow-neo p-4 rounded-neo">
-            <h4 class="font-neo-heading mb-2" [ngClass]="themeService.getTextClass()">Tarjeta de Ejemplo</h4>
-            <p class="text-sm mb-4">Este es un ejemplo de cómo se verán los componentes con el color seleccionado.</p>
-            <div class="flex justify-end">
-              <button [ngClass]="themeService.getPrimaryBgClass()"
-                class="px-3 py-1 border border-black text-sm font-neo-base shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none transition-all rounded-neo text-white">
-                Acción
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-neo-white border-neo-border border-black shadow-neo overflow-hidden rounded-neo">
-        <div class="bg-gray-100 px-4 py-2 border-b-neo-border border-black flex justify-between items-center">
-          <div class="font-neo-base">Vista Previa de Navegación</div>
-          <div class="flex space-x-2">
-            <span class="w-3 h-3 block bg-red-500 rounded-full border border-black"></span>
-            <span class="w-3 h-3 block bg-yellow-500 rounded-full border border-black"></span>
-            <span class="w-3 h-3 block bg-green-500 rounded-full border border-black"></span>
-          </div>
-        </div>
-
-        <!-- Navigation preview -->
-        <div class="p-6">
-          <div class="mb-6 border border-gray-200 p-2 rounded-neo">
-            <!-- Navbar -->
-            <div [ngClass]="themeService.getPrimaryBgClass()"
-              class="p-3 text-white font-neo-base rounded-t-sm flex justify-between items-center">
-              <div>Brand</div>
-              <div class="flex space-x-2">
-                <span class="px-2 py-1 bg-white text-black rounded-sm text-xs">Opción 1</span>
-                <span class="px-2 py-1 bg-white text-black rounded-sm text-xs">Opción 2</span>
+            
+            <!-- Sample Card -->
+            <div [ngClass]="themeService.getLightBgClass()" 
+                 class="border-neo-border border-black shadow-neo p-4 rounded-neo">
+              <h4 class="font-neo-heading mb-2" [ngClass]="themeService.getTextClass()">Tarjeta de Ejemplo</h4>
+              <p class="text-sm mb-4">Este es un ejemplo de cómo se verán los componentes con el color seleccionado.</p>
+              <div class="flex justify-end">
+                <button [ngClass]="themeService.getPrimaryBgClass()" 
+                        class="px-3 py-1 border border-black text-sm font-neo-base shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none transition-all rounded-neo text-white">
+                  Acción
+                </button>
               </div>
             </div>
-
-            <!-- Sidebar and content -->
-            <div class="flex border-t border-black mt-1">
-              <div [ngClass]="themeService.getLightBgClass()" class="w-1/4 p-3 border-r border-black">
-                <div class="space-y-2">
-                  <div [ngClass]="themeService.getPrimaryBgClass()"
-                    class="p-1 rounded-sm text-white text-xs text-center">Menú 1</div>
-                  <div [ngClass]="themeService.getSecondaryBgClass()"
-                    class="p-1 rounded-sm text-black text-xs text-center">Menú 2</div>
-                  <div [ngClass]="themeService.getSecondaryBgClass()"
-                    class="p-1 rounded-sm text-black text-xs text-center">Menú 3</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Navigation Preview (60%) -->
+      <div class="md:w-3/5">
+        <div class="bg-neo-white border-neo-border border-black shadow-neo overflow-hidden rounded-neo h-full">
+          <div class="bg-gray-100 px-4 py-2 border-b-neo-border border-black flex justify-between items-center">
+            <div class="font-neo-base">Vista Previa de Navegación</div>
+            <div class="flex space-x-2">
+              <span class="w-3 h-3 block bg-red-500 rounded-full border border-black"></span>
+              <span class="w-3 h-3 block bg-yellow-500 rounded-full border border-black"></span>
+              <span class="w-3 h-3 block bg-green-500 rounded-full border border-black"></span>
+            </div>
+          </div>
+          
+          <!-- Navigation preview -->
+          <div class="p-6">
+            <div class="border border-gray-200 p-2 rounded-neo">
+              <!-- Navbar -->
+              <div [ngClass]="themeService.getPrimaryBgClass()"
+                class="p-3 text-white font-neo-base rounded-t-sm flex justify-between items-center">
+                <div>Brand</div>
+                <div class="flex space-x-2">
+                  <span class="px-2 py-1 bg-white text-black rounded-sm text-xs">Opción 1</span>
+                  <span class="px-2 py-1 bg-white text-black rounded-sm text-xs">Opción 2</span>
                 </div>
               </div>
-              <div class="w-3/4 p-3">
-                <div class="space-y-2">
-                  <div class="h-2 w-full bg-gray-200 rounded"></div>
-                  <div class="h-2 w-3/4 bg-gray-200 rounded"></div>
-                  <div class="h-2 w-1/2 bg-gray-200 rounded"></div>
+              
+              <!-- Sidebar and content -->
+              <div class="flex border-t border-black mt-1">
+                <div [ngClass]="themeService.getLightBgClass()" class="w-1/4 p-3 border-r border-black">
+                  <div class="space-y-2">
+                    <div [ngClass]="themeService.getPrimaryBgClass()"
+                      class="p-1 rounded-sm text-white text-xs text-center">Menú 1</div>
+                    <div [ngClass]="themeService.getSecondaryBgClass()"
+                      class="p-1 rounded-sm text-black text-xs text-center">Menú 2</div>
+                    <div [ngClass]="themeService.getSecondaryBgClass()"
+                      class="p-1 rounded-sm text-black text-xs text-center">Menú 3</div>
+                  </div>
+                </div>
+                <div class="w-3/4 p-3">
+                  <div class="space-y-2">
+                    <div class="h-2 w-full bg-gray-200 rounded"></div>
+                    <div class="h-2 w-3/4 bg-gray-200 rounded"></div>
+                    <div class="h-2 w-1/2 bg-gray-200 rounded"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,7 +149,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- Code Sample -->
     <div class="mt-12 bg-gray-800 text-white p-6 border-neo-border border-black shadow-neo rounded-neo">
       <div class="flex justify-between items-center mb-4">
@@ -118,7 +157,7 @@
         <button class="px-2 py-1 bg-gray-700 border border-gray-600 text-xs rounded-neo">Copiar</button>
       </div>
       <pre class="text-green-400 overflow-x-auto"><code>
-
+// Usa el servicio ThemeService para aplicar el tema a tus componentes
       </code></pre>
     </div>
   </div>
