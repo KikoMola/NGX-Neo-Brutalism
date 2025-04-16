@@ -1,18 +1,5 @@
 <nav class="bg-pink-300 px-6 py-4">
   <div class="flex items-center justify-between">
-    <!-- Hamburger Menu Button (visible only on mobile) -->
-    <button 
-      *ngIf="showMenuButton" 
-      (click)="onMenuClick()" 
-      class="md:hidden p-2 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
-      aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
-    
     <!-- Logo -->
     <div class="font-extrabold text-2xl tracking-tighter bg-white px-4 py-2 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
       NGX-NEOBRUTALISM
@@ -26,10 +13,26 @@
       <li><a href="#" class="font-bold hover:bg-white px-3 py-2 border-2 border-black transition-transform hover:translate-y-[-2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">GitHub</a></li>
     </ul>
     
-    <!-- Search (hidden on mobile) -->
-    <div class="hidden md:flex bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] items-center px-3 py-2">
-      <input type="text" placeholder="Search..." class="bg-transparent outline-none">
-      <button class="ml-2">🔍</button>
+    <!-- Mobile Menu Container -->
+    <div class="flex items-center">
+      <!-- Search (hidden on mobile) -->
+      <div class="hidden md:flex bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] items-center px-3 py-2">
+        <input type="text" placeholder="Search..." class="bg-transparent outline-none">
+        <button class="ml-2">🔍</button>
+      </div>
+      
+      <!-- Hamburger Menu Button (visible only on mobile, ahora a la derecha) -->
+      <button 
+        *ngIf="showMenuButton" 
+        (click)="onMenuClick()" 
+        class="md:hidden p-2 bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all ml-4"
+        aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </div>
 </nav>
