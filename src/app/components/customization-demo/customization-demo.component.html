@@ -8,7 +8,7 @@
     <!-- Card de selección de colores a ancho completo -->
     <div class="bg-neo-white border-neo-border border-black shadow-neo p-6 rounded-neo mb-10">
       <h3 class="text-xl font-neo-heading mb-4">Colores</h3>
-      <div class="flex flex-wrap gap-3 justify-center">
+      <div class="flex flex-wrap gap-3 justify-center mb-6">
         <button (click)="setColor('red')" 
                 class="w-14 h-14 bg-red-500 border-neo-border border-black shadow-neo hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all rounded-neo relative">
           <span *ngIf="currentColor === 'red'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
@@ -59,10 +59,7 @@
           <span *ngIf="currentColor === 'rose'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
         </button>
       </div>
-    </div>
-    
-    <!-- Card de selección de border-radius a ancho completo -->
-    <div class="bg-neo-white border-neo-border border-black shadow-neo p-6 rounded-neo mb-10">
+      
       <h3 class="text-xl font-neo-heading mb-4">Border Radius</h3>
       <div class="flex flex-wrap gap-3 justify-center">
         <button (click)="setBorderRadius('0')" 
