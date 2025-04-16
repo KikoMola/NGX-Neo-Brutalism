@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styles: [],
-  imports: [CommonModule, NavbarComponent, SidebarComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, SidebarComponent],
   standalone: true
 })
 export class LayoutComponent {

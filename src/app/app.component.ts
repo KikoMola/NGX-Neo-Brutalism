@@ -8,8 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet, 
+  imports: [ 
     LayoutComponent, 
     HeroComponent, 
     CustomizationDemoComponent, 
