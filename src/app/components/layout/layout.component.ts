@@ -4,12 +4,15 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
+import { HeroComponent } from '../hero/hero.component';
+import { CustomizationDemoComponent } from '../customization-demo/customization-demo.component';
+import { FaqComponent } from '../faq/faq.component';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styles: [],
-  imports: [CommonModule, NavbarComponent, SidebarComponent],
+  imports: [CommonModule, NavbarComponent, SidebarComponent, HeroComponent, CustomizationDemoComponent, FaqComponent, FooterComponent],
   standalone: true
 })
 export class LayoutComponent {

@@ -1,39 +1,38 @@
 <div [class]="'flex flex-col h-screen overflow-hidden ' + mainBgClass">
   <!-- Navbar fijo en la parte superior -->
-  <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" 
-              [ngClass]="themeService.getBorderRadiusClass()" 
-              class="border-b-2 border-black z-10"></app-navbar>
-  
+  <app-navbar (menuClick)="toggleSidebar()" [showMenuButton]="true" [ngClass]="themeService.getBorderRadiusClass()"
+    class="border-b-2 border-black z-10"></app-navbar>
+
   <!-- Contenedor principal que ocupa el resto de la pantalla -->
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar desktop fijo a la izquierda -->
-    <div [class]="'hidden md:block w-64 shrink-0 border-r-2 border-black z-10 ' + sidebarBgClass" 
-         [ngClass]="themeService.getBorderRadiusClass()"
-         [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+    <div [class]="'hidden md:block w-64 shrink-0 border-r-2 border-black z-10 ' + sidebarBgClass"
+      [ngClass]="themeService.getBorderRadiusClass()"
+      [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
       <app-sidebar></app-sidebar>
     </div>
-    
+
     <!-- Contenedor del main con scroll -->
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Main con scroll -->
       <main class="flex-1 overflow-y-auto">
-        <ng-content></ng-content>
+        <app-hero class="p-6"></app-hero>
+        <app-customization-demo></app-customization-demo>
+        <app-faq></app-faq>
+        <app-footer class="border-t-4 border-black mt-8"></app-footer>
       </main>
     </div>
   </div>
-  
+
   <!-- Overlay con blur para sidebar móvil -->
-  <div 
-    *ngIf="isSidebarOpen" 
-    (click)="isSidebarOpen = false"
+  <div *ngIf="isSidebarOpen" (click)="isSidebarOpen = false"
     class="fixed inset-0 backdrop-blur-sm bg-white/30 z-20 md:hidden transition-all duration-300">
   </div>
-  
+
   <!-- Sidebar móvil desde la derecha -->
-  <div 
+  <div
     [class]="'fixed md:hidden top-0 right-0 h-full z-30 w-64 border-l-2 border-black transform transition-transform duration-300 ease-in-out ' + sidebarBgClass + (isSidebarOpen ? ' translate-x-0' : ' translate-x-full')"
-    [ngClass]="themeService.getBorderRadiusClass()"
-    [ngStyle]="{'box-shadow': '-2px 2px 0px 0px rgba(0,0,0,1)'}">
+    [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': '-2px 2px 0px 0px rgba(0,0,0,1)'}">
     <app-sidebar (linkClick)="isSidebarOpen = false"></app-sidebar>
   </div>
 </div>
