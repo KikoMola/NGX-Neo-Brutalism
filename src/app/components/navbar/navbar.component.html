@@ -13,8 +13,8 @@
         <!-- Button Content Layer (Moving) -->
         <button 
           (click)="onMenuClick()" 
-          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-          class="relative p-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 transition-transform text-white"
+          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+          class="relative p-2 border-2 border-black transition-transform text-white"
           aria-label="Toggle menu">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -35,7 +35,7 @@
         </div>
         <!-- Logo Content Layer (Moving) -->
         <div [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-             class="relative font-neo-heading text-2xl tracking-tighter px-4 py-2 border-2 border-black text-white hover:translate-y-1 hover:translate-x-1 transition-transform">
+             class="relative font-neo-heading text-2xl tracking-tighter px-4 py-2 border-2 border-black transition-transform text-white">
             NGX-NEOBRUTALISM
         </div>
     </div>
@@ -51,8 +51,8 @@
         </div>
         <!-- Link Content Layer (Moving) -->
         <a routerLink="/" 
-           [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
-           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 transition-transform text-black">
+           [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black transition-transform text-black">
            Inicio
         </a>
       </li>
@@ -65,8 +65,8 @@
         </div>
         <!-- Link Content Layer (Moving) -->
         <a routerLink="/components" 
-           [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
-           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 transition-transform text-black">
+           [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black transition-transform text-black">
            Componentes
         </a>
       </li>
@@ -79,8 +79,8 @@
         </div>
         <!-- Link Content Layer (Moving) -->
         <a href="#" 
-           [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
-           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 transition-transform text-black">
+           [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black transition-transform text-black">
            Showcase
         </a>
       </li>
@@ -94,8 +94,8 @@
         <!-- Link Content Layer (Moving) -->
         <a href="https://github.com/yourusername/ngx-neobrutalism" 
            target="_blank" 
-           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 transition-transform text-white">
+           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+           class="relative inline-block font-neo-base px-3 py-2 border-2 border-black transition-transform text-white">
            GitHub
         </a>
       </li>

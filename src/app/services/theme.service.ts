@@ -82,6 +82,28 @@ export class ThemeService {
     return `${h}px ${v}px 0px 0px rgba(0,0,0,1)`;
   }
   
+  // Obtener la clase de traslación X para hover
+  getHoverTranslateXClass(): string {
+    const h = this.shadowHorizontal();
+    if (h === '0') {
+      return 'hover:translate-x-0';
+    }
+    const value = h.startsWith('-') ? h.substring(1) : h;
+    const sign = h.startsWith('-') ? '-' : '';
+    return `hover:${sign}translate-x-[${value}px]`;
+  }
+  
+  // Obtener la clase de traslación Y para hover
+  getHoverTranslateYClass(): string {
+    const v = this.shadowVertical();
+    if (v === '0') {
+      return 'hover:translate-y-0';
+    }
+    const value = v.startsWith('-') ? v.substring(1) : v;
+    const sign = v.startsWith('-') ? '-' : '';
+    return `hover:${sign}translate-y-[${value}px]`;
+  }
+  
   // Clases para elementos
   getPrimaryBgClass(): string {
     return `bg-${this.color()}-${this.primaryShade()}`;

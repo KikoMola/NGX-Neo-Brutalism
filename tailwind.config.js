@@ -112,7 +112,19 @@ export default {
     'shadow-[4px_-4px_0px_0px_rgba(0,0,0,1)]',
     'shadow-[4px_-2px_0px_0px_rgba(0,0,0,1)]',
     'shadow-[4px_0px_0px_0px_rgba(0,0,0,1)]',
-    'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
+    'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]',
+
+    // Clases de traslación dinámica en hover
+    'hover:translate-x-[2px]',
+    'hover:translate-y-[2px]',
+    'hover:translate-x-[4px]',
+    'hover:translate-y-[4px]',
+    'hover:-translate-x-[2px]',
+    'hover:-translate-y-[2px]',
+    'hover:-translate-x-[4px]',
+    'hover:-translate-y-[4px]',
+    'hover:translate-x-0',
+    'hover:translate-y-0'
   ],
   plugins: [],
 }
