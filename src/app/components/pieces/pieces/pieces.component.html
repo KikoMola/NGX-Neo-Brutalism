@@ -1,10 +1,8 @@
-<div class="container mx-auto p-6">
+<div class="container mx-auto py-6 px-6 md:px-64">
 
   <!-- Contenido principal - se cargará aquí el componente correspondiente -->
   <div class="md:col-span-3">
-    <div [ngClass]="themeService.getBorderRadiusClass()"
-      [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
-      class="bg-neo-white border-neo-border border-black p-6">
+    <div>
       <router-outlet></router-outlet>
     </div>
   </div>
