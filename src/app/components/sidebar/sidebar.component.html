@@ -1,21 +1,24 @@
 <div class="flex flex-col h-full bg-neo-white p-4">
-  <!-- Close Button (visible only on mobile) -->
-  <div class="flex justify-start md:hidden mb-4 relative">
-    <!-- Shadow Layer -->
-    <div class="absolute inset-0" 
-         [ngClass]="themeService.getBorderRadiusClass()"
-         [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-    <!-- Button Content -->
-    <button 
-      (click)="onLinkClick()" 
-      [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-      class="relative p-2 text-white border-neo-border border-black transition-transform"
-      aria-label="Close menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
+  <!-- Container for layout (margin, responsive hiding) -->
+  <div class="md:hidden mb-4">
+    <!-- Wrapper to contain button and shadow, sized by button content -->
+    <div class="relative inline-block">
+        <!-- Shadow Layer -->
+        <div class="absolute inset-0"
+             [ngClass]="themeService.getBorderRadiusClass()"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+        <!-- Button Content -->
+        <button
+          (click)="onLinkClick()"
+          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+          class="relative p-2 text-white border-neo-border border-black transition-transform"
+          aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+    </div>
   </div>
   
   <!-- Navigation Menu -->
