@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { PiecesComponent } from './components/pieces/pieces/pieces.component';
 import { LayoutComponent } from './components/layout/layout.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -9,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'components',
-    component: PiecesComponent,
+    loadChildren: () => import('./components/pieces/pieces.routes').then(m => m.PIECES_ROUTES)
   },
   {
     path: '**',

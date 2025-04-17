@@ -27,7 +27,7 @@
         </a>
       </li>
       <li>
-        <a href="#" (click)="onLinkClick()" 
+        <a routerLink="/components" (click)="onLinkClick()" 
            [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
            [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
            class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
