@@ -1,36 +1,11 @@
 <div class="container mx-auto p-6">
-  <h1 [ngClass]="themeService.getBorderRadiusClass()"
+
+  <!-- Contenido principal - se cargará aquí el componente correspondiente -->
+  <div class="md:col-span-3">
+    <div [ngClass]="themeService.getBorderRadiusClass()"
       [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
-      class="text-3xl font-bold mb-8 bg-neo-white inline-block p-3 border-neo-border border-black">
-    Componentes Neobrutalistas
-  </h1>
-  
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-    <!-- Sidebar de navegación -->
-    <div class="md:col-span-1">
-      <div [ngClass]="themeService.getBorderRadiusClass()"
-           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
-           class="bg-neo-white border-neo-border border-black p-4">
-        <h2 class="text-xl font-bold mb-4">Componentes</h2>
-        <nav class="space-y-2">
-          <a routerLink="button" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Button</a>
-          <a routerLink="breadcrumb" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Breadcrumb</a>
-          <a routerLink="badge" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Badge</a>
-          <a routerLink="avatar" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Avatar</a>
-          <a routerLink="alert" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Alert</a>
-          <a routerLink="accordion" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Accordion</a>
-          <a routerLink="alert-dialog" routerLinkActive="bg-gray-100" class="block px-3 py-2 rounded hover:bg-gray-100 transition-colors">Alert Dialog</a>
-        </nav>
-      </div>
-    </div>
-    
-    <!-- Contenido principal - se cargará aquí el componente correspondiente -->
-    <div class="md:col-span-3">
-      <div [ngClass]="themeService.getBorderRadiusClass()"
-           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
-           class="bg-neo-white border-neo-border border-black p-6">
-        <router-outlet></router-outlet>
-      </div>
+      class="bg-neo-white border-neo-border border-black p-6">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
