@@ -7,12 +7,12 @@ import { ThemeService } from '../../services/theme.service';
 import { HeroComponent } from '../hero/hero.component';
 import { CustomizationDemoComponent } from '../customization-demo/customization-demo.component';
 import { FaqComponent } from '../faq/faq.component';
-
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styles: [],
-  imports: [CommonModule, NavbarComponent, SidebarComponent, HeroComponent, CustomizationDemoComponent, FaqComponent, FooterComponent],
+  imports: [CommonModule, NavbarComponent, SidebarComponent, RouterOutlet],
   standalone: true
 })
 export class LayoutComponent {
