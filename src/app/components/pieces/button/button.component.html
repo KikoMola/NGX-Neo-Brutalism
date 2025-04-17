@@ -12,61 +12,74 @@
     <h3 class="text-xl font-semibold border-b border-black pb-2">Botones Primarios</h3>
     <div class="grid grid-cols-1 gap-8">
       
-      <!-- Botón Primario Normal -->
-      <div class="space-y-4">
-        <div class="relative inline-block">
-          <!-- Shadow Layer -->
-          <div class="absolute inset-0" 
-               [ngClass]="themeService.getBorderRadiusClass()"
-               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <!-- Button -->
+      <!-- Botón Primario Normal (con Pestañas Simplificadas y Componentes Reutilizables) -->
+      <div> 
+        <!-- Pestañas -->
+        <div class="flex border-b-2 border-black mb-0"> 
           <button 
-            [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-            class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-            Botón Primario
+            (click)="setPrimaryButtonTab('preview')" 
+            [ngClass]="primaryButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+            >
+            Preview
+          </button>
+          <button 
+            (click)="setPrimaryButtonTab('code')" 
+            [ngClass]="primaryButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+            >
+            Code
           </button>
         </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="primaryButtonExample">
-        </pre>
+
+        <!-- Contenido de las Pestañas usando Componentes Reutilizables -->
+        <div>
+          <!-- Contenido Preview -->
+          <app-component-preview *ngIf="primaryButtonActiveTab === 'preview'">
+            <div class="relative inline-block"> 
+              <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                      class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
+                Botón Primario
+              </button>
+            </div>
+          </app-component-preview>
+
+          <!-- Contenido Code -->
+          <app-code-snippet-preview *ngIf="primaryButtonActiveTab === 'code'" [code]="primaryButtonExample"></app-code-snippet-preview>
+        </div>
       </div>
 
       <!-- Botón Primario con Icono -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex items-center px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-            </svg>
-            Con Icono
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="primaryIconExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative flex items-center px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Con Icono
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="primaryIconExample"></app-code-snippet-preview>
       </div>
 
       <!-- Botón Primario Deshabilitado -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
-                  disabled 
-                  class="relative flex px-4 py-2 border-neo-border border-black font-medium text-white opacity-50 cursor-not-allowed">
-            Deshabilitado
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="primaryDisabledExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]" 
+                    disabled 
+                    class="relative flex px-4 py-2 border-neo-border border-black font-medium text-white opacity-50 cursor-not-allowed">
+              Deshabilitado
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="primaryDisabledExample"></app-code-snippet-preview>
       </div>
 
     </div>
@@ -79,54 +92,48 @@
       
       <!-- Botón Secundario Normal -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
-            Botón Secundario
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="secondaryButtonExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
+              Botón Secundario
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="secondaryButtonExample"></app-code-snippet-preview>
       </div>
 
       <!-- Botón Secundario con Icono -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex items-center px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            Cancelar
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="secondaryIconExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative flex items-center px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Cancelar
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="secondaryIconExample"></app-code-snippet-preview>
       </div>
 
       <!-- Botón Secundario Deshabilitado -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="themeService.getBorderRadiusClass()" 
-                  disabled 
-                  class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium opacity-50 cursor-not-allowed">
-            Deshabilitado
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="secondaryDisabledExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="themeService.getBorderRadiusClass()" 
+                    disabled 
+                    class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium opacity-50 cursor-not-allowed">
+              Deshabilitado
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="secondaryDisabledExample"></app-code-snippet-preview>
       </div>
 
     </div>
@@ -139,82 +146,72 @@
       
       <!-- Botón Pequeño -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-2 py-1 text-sm border-neo-border border-black font-medium transition-transform text-white">
-            Pequeño
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="smallButtonExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative flex px-2 py-1 text-sm border-neo-border border-black font-medium transition-transform text-white">
+              Pequeño
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="smallButtonExample"></app-code-snippet-preview>
       </div>
 
       <!-- Botón Ancho Automático (antes Normal) -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-            Ancho Automático
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="primaryButtonExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
+              Ancho Automático
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="primaryButtonExample"></app-code-snippet-preview>
       </div>
 
       <!-- Botón Grande -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-6 py-3 text-lg border-neo-border border-black font-medium transition-transform text-white">
-            Grande
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="largeButtonExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative flex px-6 py-3 text-lg border-neo-border border-black font-medium transition-transform text-white">
+              Grande
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="largeButtonExample"></app-code-snippet-preview>
       </div>
 
       <!-- NUEVO: Botón Ancho Completo -->
       <div class="space-y-4">
-        <div class="relative">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-full justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-            Ancho Completo
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="fullWidthButtonExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative w-full justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
+              Ancho Completo
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="fullWidthButtonExample"></app-code-snippet-preview>
       </div>
 
       <!-- NUEVO: Botón Ancho Fijo -->
       <div class="space-y-4">
-        <div class="relative inline-block">
-          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-48 justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-            Ancho Fijo (w-48)
-          </button>
-        </div>
-        <pre 
-          [ngClass]="themeService.getBorderRadiusClass()" 
-          class="bg-gray-900 text-gray-300 font-mono p-4 overflow-x-auto border border-gray-700 text-sm"
-          [innerHTML]="fixedWidthButtonExample">
-        </pre>
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                    class="relative w-48 justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
+              Ancho Fijo (w-48)
+            </button>
+          </div>
+        </app-component-preview>
+        <app-code-snippet-preview [code]="fixedWidthButtonExample"></app-code-snippet-preview>
       </div>
 
     </div>

@@ -1,15 +1,20 @@
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../../services/theme.service';
+import { ComponentPreviewComponent } from '../../component-preview/component-preview.component';
+import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-snippet-preview.component';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ComponentPreviewComponent, CodeSnippetPreviewComponent],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnInit {
+
+  // Estado para controlar la pestaña activa del primer ejemplo
+  primaryButtonActiveTab: 'preview' | 'code' = 'preview';
 
   // Código de ejemplo para cada botón (ya escapado)
   primaryButtonExample = `&lt;button 
@@ -95,4 +100,9 @@ export class ButtonComponent implements OnInit {
   constructor(public themeService: ThemeService) {}
 
   ngOnInit(): void { }
+
+  // Método para cambiar la pestaña activa
+  setPrimaryButtonTab(tab: 'preview' | 'code'): void {
+    this.primaryButtonActiveTab = tab;
+  }
 }
