@@ -26,15 +26,102 @@
           Docs
         </a>
       </li>
-      <li>
-        <a routerLink="/components" (click)="onLinkClick()" 
-           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
-           class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-          <span class="mr-3">🧩</span>
-          Components
-        </a>
+      
+      <!-- Acordeón de Componentes -->
+      <li class="space-y-2">
+        <!-- Cabecera del acordeón -->
+        <button (click)="toggleComponentsAccordion()" 
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+                [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+                class="flex items-center justify-between w-full px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+          <div class="flex items-center">
+            <span class="mr-3">🧩</span>
+            <span>Componentes</span>
+          </div>
+          <!-- Icono de flecha que rota según el estado -->
+          <svg 
+            [ngClass]="{'transform rotate-180': isComponentsExpanded}"
+            class="w-4 h-4 transition-transform duration-200" 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        
+        <!-- Contenido del acordeón (submenu) -->
+        <div *ngIf="isComponentsExpanded" 
+             class="transition-all duration-300 ease-in-out space-y-2 mt-2">
+          
+          <a routerLink="/components/button" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">🔘</span>
+            Botones
+          </a>
+          
+          <a routerLink="/components/badge" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">🏷️</span>
+            Badges
+          </a>
+          
+          <a routerLink="/components/alert" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">⚠️</span>
+            Alertas
+          </a>
+          
+          <a routerLink="/components/avatar" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">👤</span>
+            Avatares
+          </a>
+          
+          <a routerLink="/components/breadcrumb" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">🧭</span>
+            Breadcrumbs
+          </a>
+          
+          <a routerLink="/components/accordion" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+              class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">🔽</span>
+            Acordeones
+          </a>
+          
+          <a routerLink="/components/alert-dialog" 
+             (click)="onLinkClick()"
+             [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
+             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+             class="flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none w-full">
+            <span class="mr-2">💬</span>
+            Diálogos
+          </a>
+        </div>
       </li>
+      
       <li>
         <a href="#" (click)="onLinkClick()" 
            [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"

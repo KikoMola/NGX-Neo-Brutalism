@@ -15,7 +15,14 @@ export class SidebarComponent {
   
   @Output() linkClick = new EventEmitter<void>();
   
+  // Controla si el acordeón de componentes está expandido o no
+  isComponentsExpanded: boolean = false;
+  
   onLinkClick(): void {
     this.linkClick.emit();
+  }
+  
+  toggleComponentsAccordion(): void {
+    this.isComponentsExpanded = !this.isComponentsExpanded;
   }
 }
