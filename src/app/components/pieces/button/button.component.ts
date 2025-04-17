@@ -15,6 +15,16 @@ export class ButtonComponent implements OnInit {
 
   // Estado para controlar la pestaña activa del primer ejemplo
   primaryButtonActiveTab: 'preview' | 'code' = 'preview';
+  primaryIconActiveTab: 'preview' | 'code' = 'preview';
+  primaryDisabledActiveTab: 'preview' | 'code' = 'preview';
+  secondaryButtonActiveTab: 'preview' | 'code' = 'preview';
+  secondaryIconActiveTab: 'preview' | 'code' = 'preview';
+  secondaryDisabledActiveTab: 'preview' | 'code' = 'preview';
+  smallButtonActiveTab: 'preview' | 'code' = 'preview';
+  autoWidthButtonActiveTab: 'preview' | 'code' = 'preview'; // Renombrado para claridad
+  largeButtonActiveTab: 'preview' | 'code' = 'preview';
+  fullWidthButtonActiveTab: 'preview' | 'code' = 'preview';
+  fixedWidthButtonActiveTab: 'preview' | 'code' = 'preview';
 
   // Código de ejemplo para cada botón (ya escapado)
   primaryButtonExample = `&lt;button 
@@ -104,5 +114,45 @@ export class ButtonComponent implements OnInit {
   // Método para cambiar la pestaña activa
   setPrimaryButtonTab(tab: 'preview' | 'code'): void {
     this.primaryButtonActiveTab = tab;
+  }
+
+  setPrimaryIconTab(tab: 'preview' | 'code'): void {
+    this.primaryIconActiveTab = tab;
+  }
+
+  setPrimaryDisabledTab(tab: 'preview' | 'code'): void {
+    this.primaryDisabledActiveTab = tab;
+  }
+
+  setSecondaryButtonTab(tab: 'preview' | 'code'): void {
+    this.secondaryButtonActiveTab = tab;
+  }
+
+  setSecondaryIconTab(tab: 'preview' | 'code'): void {
+    this.secondaryIconActiveTab = tab;
+  }
+
+  setSecondaryDisabledTab(tab: 'preview' | 'code'): void {
+    this.secondaryDisabledActiveTab = tab;
+  }
+
+  setSmallButtonTab(tab: 'preview' | 'code'): void {
+    this.smallButtonActiveTab = tab;
+  }
+
+  setAutoWidthButtonTab(tab: 'preview' | 'code'): void {
+    this.autoWidthButtonActiveTab = tab;
+  }
+
+  setLargeButtonTab(tab: 'preview' | 'code'): void {
+    this.largeButtonActiveTab = tab;
+  }
+
+  setFullWidthButtonTab(tab: 'preview' | 'code'): void {
+    this.fullWidthButtonActiveTab = tab;
+  }
+
+  setFixedWidthButtonTab(tab: 'preview' | 'code'): void {
+    this.fixedWidthButtonActiveTab = tab;
   }
 }
