@@ -37,16 +37,26 @@
       </p>
       
       <div class="flex space-x-4">
-        <a [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
-           href="#" class="p-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
-          <span>GitHub</span>
-        </a>
-        <a [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" 
-           href="#" class="p-2 border-2 border-black hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all text-white">
-          <span>Twitter</span>
-        </a>
+         <!-- Link GitHub -->
+         <div class="relative">
+           <div class="absolute inset-0" 
+                [ngClass]="themeService.getBorderRadiusClass()"
+                [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+           <a [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+              href="#" class="relative p-2 border-2 border-black transition-transform text-white">
+             <span>GitHub</span>
+           </a>
+         </div>
+        <!-- Link Twitter -->
+        <div class="relative">
+          <div class="absolute inset-0" 
+               [ngClass]="themeService.getBorderRadiusClass()"
+               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+          <a [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+             href="#" class="relative p-2 border-2 border-black transition-transform text-white">
+            <span>Twitter</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
