@@ -8,101 +8,61 @@
     </h2>
     
     <!-- Card de selección de colores a ancho completo -->
-    <div [ngClass]="themeService.getBorderRadiusClass()"
+    <div [ngClass]="themeService.getBorderRadiusClass()" 
          [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" 
          class="bg-neo-white border-neo-border border-black p-6 mb-10">
       <h3 class="text-xl font-neo-heading mb-4">Colores</h3>
       <div class="flex flex-wrap gap-3 justify-center mb-6">
-        <!-- Botón Rojo -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('red')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-red-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'red'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
-        <!-- Botón Azul -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('blue')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-blue-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'blue'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
-         <!-- Botón Verde -->
-         <div class="relative">
-            <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <button (click)="setColor('green')" 
-                    [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                    class="relative w-14 h-14 bg-green-500 border-neo-border border-black transition-transform rounded-neo">
-              <span *ngIf="currentColor === 'green'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-            </button>
-          </div>
-        <!-- Botón Amarillo -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('yellow')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-yellow-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'yellow'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
-        <!-- Botón Morado -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('purple')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-purple-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'purple'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
-         <!-- Botón Rosa -->
-         <div class="relative">
-            <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <button (click)="setColor('pink')" 
-                    [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                    class="relative w-14 h-14 bg-pink-500 border-neo-border border-black transition-transform rounded-neo">
-              <span *ngIf="currentColor === 'pink'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-            </button>
-          </div>
-         <!-- Botón Índigo -->
-         <div class="relative">
-            <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <button (click)="setColor('indigo')" 
-                    [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                    class="relative w-14 h-14 bg-indigo-500 border-neo-border border-black transition-transform rounded-neo">
-              <span *ngIf="currentColor === 'indigo'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-            </button>
-          </div>
-        <!-- Botón Turquesa -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('teal')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-teal-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'teal'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
-        <!-- Botón Naranja -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('orange')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-orange-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'orange'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
-        <!-- Botón Rosa Oscuro -->
-        <div class="relative">
-          <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-          <button (click)="setColor('rose')" 
-                  [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-14 h-14 bg-rose-500 border-neo-border border-black transition-transform rounded-neo">
-            <span *ngIf="currentColor === 'rose'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-          </button>
-        </div>
+         <!-- Botón Rojo (Estático) -->
+        <button (click)="setColor('red')" 
+                class="w-14 h-14 bg-red-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'red'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        <!-- Botón Azul (Estático) -->
+        <button (click)="setColor('blue')" 
+                class="w-14 h-14 bg-blue-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'blue'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+         <!-- Botón Verde (Estático) -->
+        <button (click)="setColor('green')" 
+                class="w-14 h-14 bg-green-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'green'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        <!-- Botón Amarillo (Estático) -->
+        <button (click)="setColor('yellow')" 
+                class="w-14 h-14 bg-yellow-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'yellow'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        <!-- Botón Morado (Estático) -->
+        <button (click)="setColor('purple')" 
+                class="w-14 h-14 bg-purple-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'purple'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+         <!-- Botón Rosa (Estático) -->
+        <button (click)="setColor('pink')" 
+                class="w-14 h-14 bg-pink-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'pink'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+         <!-- Botón Índigo (Estático) -->
+        <button (click)="setColor('indigo')" 
+                class="w-14 h-14 bg-indigo-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'indigo'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        <!-- Botón Turquesa (Estático) -->
+        <button (click)="setColor('teal')" 
+                class="w-14 h-14 bg-teal-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'teal'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        <!-- Botón Naranja (Estático) -->
+        <button (click)="setColor('orange')" 
+                class="w-14 h-14 bg-orange-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'orange'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
+        <!-- Botón Rosa Oscuro (Estático) -->
+        <button (click)="setColor('rose')" 
+                class="w-14 h-14 bg-rose-500 border-neo-border border-black rounded-neo relative">
+          <span *ngIf="currentColor === 'rose'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        </button>
       </div>
       
       <!-- Grid para Border Radius y Sombras -->
