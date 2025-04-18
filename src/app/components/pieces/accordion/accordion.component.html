@@ -38,8 +38,7 @@
                                 <div class="relative">
                                     <!-- Capa de sombra -->
                                     <div class="absolute inset-0"
-                                         [ngClass]="themeService.getBorderRadiusClass()"
-                                         [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                                         [ngClass]="themeService.getBorderRadiusClass()"></div>
                                     <!-- Contenido del botón -->
                                     <button 
                                         (click)="toggleItem(accordionItems[0].id)" 
