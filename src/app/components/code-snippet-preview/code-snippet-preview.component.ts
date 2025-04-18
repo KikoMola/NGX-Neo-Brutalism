@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-code-snippet-preview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './code-snippet-preview.component.html',
   styles: [`
     /* Aplicar estilos solo al elemento <pre> dentro de este componente */

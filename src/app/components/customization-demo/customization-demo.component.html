@@ -6,65 +6,85 @@
       class="text-3xl font-bold mb-10 bg-neo-white inline-block p-3 border-neo-border border-black">
       Personaliza la Aplicación
     </h2>
-    
+
     <!-- Card de selección de colores a ancho completo -->
-    <div [ngClass]="themeService.getBorderRadiusClass()" 
-         [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" 
-         class="bg-neo-white border-neo-border border-black p-6 mb-10">
+    <div [ngClass]="themeService.getBorderRadiusClass()"
+      [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+      class="bg-neo-white border-neo-border border-black p-6 mb-10">
       <h3 class="text-xl font-neo-heading mb-4">Colores</h3>
       <div class="flex flex-wrap gap-3 justify-center mb-6">
-         <!-- Botón Rojo (Estático) -->
-        <button (click)="setColor('red')" 
-                class="w-14 h-14 bg-red-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'red'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <!-- Botón Rojo (Estático) -->
+        <button (click)="setColor('red')"
+          class="w-14 h-14 bg-red-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'red') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
         <!-- Botón Azul (Estático) -->
-        <button (click)="setColor('blue')" 
-                class="w-14 h-14 bg-blue-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'blue'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <button (click)="setColor('blue')"
+          class="w-14 h-14 bg-blue-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'blue') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
-         <!-- Botón Verde (Estático) -->
-        <button (click)="setColor('green')" 
-                class="w-14 h-14 bg-green-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'green'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <!-- Botón Verde (Estático) -->
+        <button (click)="setColor('green')"
+          class="w-14 h-14 bg-green-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'green') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
         <!-- Botón Amarillo (Estático) -->
-        <button (click)="setColor('yellow')" 
-                class="w-14 h-14 bg-yellow-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'yellow'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <button (click)="setColor('yellow')"
+          class="w-14 h-14 bg-yellow-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'yellow') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
         <!-- Botón Morado (Estático) -->
-        <button (click)="setColor('purple')" 
-                class="w-14 h-14 bg-purple-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'purple'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <button (click)="setColor('purple')"
+          class="w-14 h-14 bg-purple-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'purple') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
-         <!-- Botón Rosa (Estático) -->
-        <button (click)="setColor('pink')" 
-                class="w-14 h-14 bg-pink-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'pink'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <!-- Botón Rosa (Estático) -->
+        <button (click)="setColor('pink')"
+          class="w-14 h-14 bg-pink-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'pink') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
-         <!-- Botón Índigo (Estático) -->
-        <button (click)="setColor('indigo')" 
-                class="w-14 h-14 bg-indigo-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'indigo'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <!-- Botón Índigo (Estático) -->
+        <button (click)="setColor('indigo')"
+          class="w-14 h-14 bg-indigo-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'indigo') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
         <!-- Botón Turquesa (Estático) -->
-        <button (click)="setColor('teal')" 
-                class="w-14 h-14 bg-teal-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'teal'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <button (click)="setColor('teal')"
+          class="w-14 h-14 bg-teal-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'teal') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
         <!-- Botón Naranja (Estático) -->
-        <button (click)="setColor('orange')" 
-                class="w-14 h-14 bg-orange-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'orange'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <button (click)="setColor('orange')"
+          class="w-14 h-14 bg-orange-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'orange') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
         <!-- Botón Rosa Oscuro (Estático) -->
-        <button (click)="setColor('rose')" 
-                class="w-14 h-14 bg-rose-500 border-neo-border border-black rounded-neo relative">
-          <span *ngIf="currentColor === 'rose'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+        <button (click)="setColor('rose')"
+          class="w-14 h-14 bg-rose-500 border-neo-border border-black rounded-neo relative">
+          @if (currentColor === 'rose') {
+            <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+          }
         </button>
       </div>
-      
+
       <!-- Grid para Border Radius y Sombras -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
         <!-- Border Radius -->
@@ -74,103 +94,121 @@
             <!-- Botón Radius 0px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-none" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-              <button (click)="setBorderRadius('0')" 
-                      [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-none bg-white">
+              <button (click)="setBorderRadius('0')"
+                [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-none bg-white">
                 <span class="text-sm">0px</span>
-                <span *ngIf="currentBorderRadius === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentBorderRadius === '0') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
             <!-- Botón Radius 5px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-[5px]" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-              <button (click)="setBorderRadius('5')" 
-                      [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-[5px] bg-white">
+              <button (click)="setBorderRadius('5')"
+                [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-[5px] bg-white">
                 <span class="text-sm">5px</span>
-                <span *ngIf="currentBorderRadius === '5'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentBorderRadius === '5') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
-             <!-- Botón Radius 10px -->
-             <div class="relative">
+            <!-- Botón Radius 10px -->
+            <div class="relative">
               <div class="absolute inset-0 rounded-[10px]" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-              <button (click)="setBorderRadius('10')" 
-                      [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-[10px] bg-white">
+              <button (click)="setBorderRadius('10')"
+                [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-[10px] bg-white">
                 <span class="text-sm">10px</span>
-                <span *ngIf="currentBorderRadius === '10'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentBorderRadius === '10') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
             <!-- Botón Radius 15px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-[15px]" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-              <button (click)="setBorderRadius('15')" 
-                      [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-[15px] bg-white">
+              <button (click)="setBorderRadius('15')"
+                [ngClass]="[themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-[15px] bg-white">
                 <span class="text-sm">15px</span>
-                <span *ngIf="currentBorderRadius === '15'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentBorderRadius === '15') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
           </div>
         </div>
-        
+
         <!-- Sombra Horizontal -->
         <div>
           <h3 class="text-xl font-neo-heading mb-4">Sombra Horizontal</h3>
           <div class="flex flex-wrap gap-3 justify-center">
-             <!-- Botón Shadow H -4px -->
-             <div class="relative">
-               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '-4px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
-               <button (click)="setShadowHorizontal('-4')" 
-                       [ngClass]="['hover:-translate-x-[4px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']" 
-                       class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
-                 <span class="text-sm">-4px</span>
-                 <span *ngIf="currentShadowHorizontal === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
-               </button>
-             </div>
-              <!-- Botón Shadow H -2px -->
-             <div class="relative">
-              <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '-2px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowHorizontal('-2')" 
-                      [ngClass]="['hover:-translate-x-[2px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
-                <span class="text-sm">-2px</span>
-                <span *ngIf="currentShadowHorizontal === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+            <!-- Botón Shadow H -4px -->
+            <div class="relative">
+              <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '-4px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
+              <button (click)="setShadowHorizontal('-4')"
+                [ngClass]="['hover:-translate-x-[4px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+                <span class="text-sm">-4px</span>
+                @if (currentShadowHorizontal === '-4') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
-             <!-- Botón Shadow H 0px -->
+            <!-- Botón Shadow H -2px -->
+            <div class="relative">
+              <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '-2px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
+              <button (click)="setShadowHorizontal('-2')"
+                [ngClass]="['hover:-translate-x-[2px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+                <span class="text-sm">-2px</span>
+                @if (currentShadowHorizontal === '-2') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
+              </button>
+            </div>
+            <!-- Botón Shadow H 0px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '0px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowHorizontal('0')" 
-                      [ngClass]="['hover:translate-x-0', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowHorizontal('0')"
+                [ngClass]="['hover:translate-x-0', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">0px</span>
-                <span *ngIf="currentShadowHorizontal === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowHorizontal === '0') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
             <!-- Botón Shadow H 2px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '2px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowHorizontal('2')" 
-                      [ngClass]="['hover:translate-x-[2px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowHorizontal('2')"
+                [ngClass]="['hover:translate-x-[2px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">2px</span>
-                <span *ngIf="currentShadowHorizontal === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowHorizontal === '2') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
             <!-- Botón Shadow H 4px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': '4px ' + themeService.getShadowVertical() + 'px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowHorizontal('4')" 
-                      [ngClass]="['hover:translate-x-[4px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowHorizontal('4')"
+                [ngClass]="['hover:translate-x-[4px]', 'hover:translate-y-[' + themeService.getShadowVertical() + 'px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">4px</span>
-                <span *ngIf="currentShadowHorizontal === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowHorizontal === '4') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
           </div>
         </div>
-        
+
         <!-- Sombra Vertical -->
         <div>
           <h3 class="text-xl font-neo-heading mb-4">Sombra Vertical</h3>
@@ -178,58 +216,68 @@
             <!-- Botón Shadow V -4px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowHorizontal() + 'px -4px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowVertical('-4')" 
-                      [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:-translate-y-[4px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowVertical('-4')"
+                [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:-translate-y-[4px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">-4px</span>
-                <span *ngIf="currentShadowVertical === '-4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowVertical === '-4') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
             <!-- Botón Shadow V -2px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowHorizontal() + 'px -2px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowVertical('-2')" 
-                      [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:-translate-y-[2px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowVertical('-2')"
+                [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:-translate-y-[2px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">-2px</span>
-                <span *ngIf="currentShadowVertical === '-2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowVertical === '-2') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
-             <!-- Botón Shadow V 0px -->
-             <div class="relative">
+            <!-- Botón Shadow V 0px -->
+            <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowHorizontal() + 'px 0px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowVertical('0')" 
-                      [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:translate-y-0']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowVertical('0')"
+                [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:translate-y-0']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">0px</span>
-                <span *ngIf="currentShadowVertical === '0'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowVertical === '0') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
-             <!-- Botón Shadow V 2px -->
-             <div class="relative">
+            <!-- Botón Shadow V 2px -->
+            <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowHorizontal() + 'px 2px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowVertical('2')" 
-                      [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:translate-y-[2px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowVertical('2')"
+                [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:translate-y-[2px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">2px</span>
-                <span *ngIf="currentShadowVertical === '2'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowVertical === '2') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
             <!-- Botón Shadow V 4px -->
             <div class="relative">
               <div class="absolute inset-0 rounded-neo" [ngStyle]="{'box-shadow': themeService.getShadowHorizontal() + 'px 4px 0px 0px rgba(0,0,0,1)'}"></div>
-              <button (click)="setShadowVertical('4')" 
-                      [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:translate-y-[4px]']" 
-                      class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
+              <button (click)="setShadowVertical('4')"
+                [ngClass]="['hover:translate-x-[' + themeService.getShadowHorizontal() + 'px]', 'hover:translate-y-[4px]']"
+                class="relative w-14 h-14 border-neo-border border-black transition-transform rounded-neo bg-white">
                 <span class="text-sm">4px</span>
-                <span *ngIf="currentShadowVertical === '4'" class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                @if (currentShadowVertical === '4') {
+                  <span class="absolute -top-1 -right-1 bg-black text-white w-5 h-5 flex items-center justify-center rounded-full text-xs">✓</span>
+                }
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- Previews -->
     <div class="flex flex-col md:flex-row gap-10">
       <!-- Preview Components -->
@@ -243,43 +291,43 @@
               <span class="w-3 h-3 block bg-green-500 rounded-full border border-black"></span>
             </div>
           </div>
-          
+
           <!-- Preview content -->
           <div class="p-6">
             <!-- Sample Button -->
             <div class="relative mb-4">
-              <div class="absolute inset-0" 
-                   [ngClass]="themeService.getBorderRadiusClass()"
-                   [ngStyle]="{'box-shadow': themeService.getShadowClass()}"></div>
-              <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]" 
-                      class="relative px-4 py-2 border-neo-border border-black font-neo-base w-full transition-transform text-white">
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClass()}"></div>
+              <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative px-4 py-2 border-neo-border border-black font-neo-base w-full transition-transform text-white">
                 Botón Primario
               </button>
             </div>
-            
+
             <!-- Sample Card -->
-            <div [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]" 
-                 class="border-neo-border border-black p-4"
-                 [ngStyle]="{'box-shadow': themeService.getShadowClass()}">
+            <div [ngClass]="[themeService.getLightBgClass(), themeService.getBorderRadiusClass()]"
+              class="border-neo-border border-black p-4"
+              [ngStyle]="{'box-shadow': themeService.getShadowClass()}">
               <h4 class="font-neo-heading mb-2" [ngClass]="themeService.getTextClass()">Tarjeta de Ejemplo</h4>
               <p class="text-sm mb-4">Este es un ejemplo de cómo se verán los componentes con el color seleccionado.</p>
               <div class="flex justify-end">
-                 <!-- Small Action Button inside Card (con sombra fija, usar translate fijo) -->
-                 <div class="relative">
-                  <div class="absolute inset-0" 
-                       [ngClass]="themeService.getBorderRadiusClass()"
-                       [ngStyle]="{'box-shadow': '1px 1px 0px 0px rgba(0,0,0,1)'}"></div>
-                   <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), 'hover:translate-x-[1px]', 'hover:translate-y-[1px]']" 
-                           class="relative px-3 py-1 border border-black text-sm font-neo-base transition-transform text-white">
-                     Acción
-                   </button>
-                 </div>
+                <!-- Small Action Button inside Card (con sombra fija, usar translate fijo) -->
+                <div class="relative">
+                  <div class="absolute inset-0"
+                    [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': '1px 1px 0px 0px rgba(0,0,0,1)'}"></div>
+                  <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), 'hover:translate-x-[1px]', 'hover:translate-y-[1px]']"
+                    class="relative px-3 py-1 border border-black text-sm font-neo-base transition-transform text-white">
+                    Acción
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Navigation Preview -->
       <div class="md:w-3/5">
         <div class="bg-neo-white border-neo-border border-black shadow-neo overflow-hidden rounded-neo h-full">
@@ -291,7 +339,7 @@
               <span class="w-3 h-3 block bg-green-500 rounded-full border border-black"></span>
             </div>
           </div>
-          
+
           <!-- Navigation preview -->
           <div class="p-6">
             <div class="border border-gray-200 p-2 rounded-neo">
@@ -305,17 +353,17 @@
                   <span class="px-2 py-1 bg-white text-black rounded-sm text-xs">Opción 2</span>
                 </div>
               </div>
-              
+
               <!-- Sidebar and content -->
               <div class="flex border-t border-black mt-1">
                 <div [ngClass]="themeService.getLightBgClass()" class="w-1/4 p-3 border-r border-black">
                   <div class="space-y-2">
                     <div [ngClass]="themeService.getPrimaryBgClass()"
-                      class="p-1 rounded-sm text-white text-xs text-center">Menú 1</div>
+                    class="p-1 rounded-sm text-white text-xs text-center">Menú 1</div>
                     <div [ngClass]="themeService.getSecondaryBgClass()"
-                      class="p-1 rounded-sm text-black text-xs text-center">Menú 2</div>
+                    class="p-1 rounded-sm text-black text-xs text-center">Menú 2</div>
                     <div [ngClass]="themeService.getSecondaryBgClass()"
-                      class="p-1 rounded-sm text-black text-xs text-center">Menú 3</div>
+                    class="p-1 rounded-sm text-black text-xs text-center">Menú 3</div>
                   </div>
                 </div>
                 <div class="w-3/4 p-3">

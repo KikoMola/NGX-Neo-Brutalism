@@ -1,1 +1,87 @@
-<p>accordion works!</p>,
+<div class="space-y-12">
+  <section class="space-y-6">
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Ejemplo Básico</h3>
+    <div class="grid grid-cols-1 gap-8">
+      <!-- Pestañas y contenedor -->
+      <div>
+        <!-- Pestañas -->
+        <div class="flex border-b-2 border-black mb-0">
+          <button
+            (click)="setActiveTab('preview')"
+            [ngClass]="accordionActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+            >
+            Preview
+          </button>
+          <button
+            (click)="setActiveTab('code')"
+            [ngClass]="accordionActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+            >
+            Code
+          </button>
+        </div>
+
+        <!-- Contenido de las Pestañas - Restaurar altura fija y overflow -->
+        <div class=" overflow-y-auto border-neo-border border-black border-t-0">
+          <!-- Contenido Preview -->
+          @if (accordionActiveTab === 'preview') {
+            <app-component-preview>
+              <!-- Contenedor del acordeón con ancho máximo y espaciado -->
+              <div class="w-full max-w-xl mx-auto space-y-2 p-4">
+                <!-- Iterar sobre los items del acordeón -->
+                @for (item of accordionItems; track item) {
+                  <div
+                    class="border-neo-border border-black overflow-hidden"
+                    [ngClass]="themeService.getBorderRadiusClass()"
+                    [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+                    <!-- Trigger (Botón de cabecera) con estructura de dos capas -->
+                    <div class="relative">
+                      <!-- Capa de sombra -->
+                      <div class="absolute inset-0"
+                      [ngClass]="themeService.getBorderRadiusClass()"></div>
+                      <!-- Contenido del botón -->
+                      <button
+                        (click)="toggleItem(item.id)"
+                        [ngClass]="[themeService.getPrimaryBgClass()]"
+                        class="relative flex justify-between items-center w-full px-4 py-3 font-medium transition-transform text-left text-white">
+                        <span>{{ item.title }}</span>
+                        <!-- Icono de flecha -->
+                        <svg
+                          [ngClass]="{'transform rotate-180': openItemId === item.id}"
+                          class="w-5 h-5 transition-transform duration-500 shrink-0"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                    <!-- Panel de Contenido (se muestra si está abierto) -->
+                    @if (openItemId === item.id) {
+                      <div>
+                        <!-- Inner div for padding -->
+                        <div class="p-4 bg-white">
+                          <p>{{ item.content }}</p>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </app-component-preview>
+          }
+
+          <!-- Contenido Code -->
+          @if (accordionActiveTab === 'code') {
+            <app-code-snippet-preview [code]="accordionExampleCode"></app-code-snippet-preview>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

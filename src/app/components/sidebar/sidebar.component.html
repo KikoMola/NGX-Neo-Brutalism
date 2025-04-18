@@ -3,206 +3,208 @@
   <div class="md:hidden mb-4">
     <!-- Wrapper to contain button and shadow, sized by button content -->
     <div class="relative inline-block">
-        <!-- Shadow Layer -->
-        <div class="absolute inset-0"
-             [ngClass]="themeService.getBorderRadiusClass()"
-             [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-        <!-- Button Content -->
-        <button
-          (click)="onLinkClick()"
-          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-          class="relative p-2 text-white border-neo-border border-black transition-transform"
-          aria-label="Close menu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+      <!-- Shadow Layer -->
+      <div class="absolute inset-0"
+        [ngClass]="themeService.getBorderRadiusClass()"
+      [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+      <!-- Button Content -->
+      <button
+        (click)="onLinkClick()"
+        [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+        class="relative p-2 text-white border-neo-border border-black transition-transform"
+        aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </div>
-  
+
   <!-- Navigation Menu -->
   <nav>
     <ul class="space-y-3">
       <li class="relative">
-         <!-- Shadow Layer -->
-         <div class="absolute inset-0" 
-              [ngClass]="themeService.getBorderRadiusClass()"
-              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-         <!-- Link Content -->
-        <a href="#" (click)="onLinkClick()" 
-           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-           class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
+        <!-- Shadow Layer -->
+        <div class="absolute inset-0"
+          [ngClass]="themeService.getBorderRadiusClass()"
+        [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+        <!-- Link Content -->
+        <a href="#" (click)="onLinkClick()"
+          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+          class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
           <span class="mr-3">📄</span>
           Docs
         </a>
       </li>
-      
+
       <!-- Acordeón de Componentes -->
       <li class="space-y-2">
         <!-- Cabecera del acordeón -->
         <div class="relative">
-           <!-- Shadow Layer -->
-          <div class="absolute inset-0" 
-               [ngClass]="themeService.getBorderRadiusClass()"
-               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+          <!-- Shadow Layer -->
+          <div class="absolute inset-0"
+            [ngClass]="themeService.getBorderRadiusClass()"
+          [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
           <!-- Button Content -->
-          <button (click)="toggleComponentsAccordion()" 
-                  [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex items-center justify-between w-full px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
+          <button (click)="toggleComponentsAccordion()"
+            [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+            class="relative flex items-center justify-between w-full px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
             <div class="flex items-center">
               <span class="mr-3">🧩</span>
               <span>Componentes</span>
             </div>
             <!-- Icono de flecha que rota según el estado -->
-            <svg 
+            <svg
               [ngClass]="{'transform rotate-180': isComponentsExpanded}"
-              class="w-4 h-4 transition-transform duration-200" 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              stroke-width="2" 
-              stroke-linecap="round" 
+              class="w-4 h-4 transition-transform duration-200"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
         </div>
-        
+
         <!-- Contenido del acordeón (submenu) -->
-        <div *ngIf="isComponentsExpanded" 
-             class="transition-all duration-300 ease-in-out space-y-2 mt-2 pl-2">
-          <!-- Submenu Item Button -->
-          <div class="relative">
-             <!-- Shadow Layer -->
-             <div class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()"
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-             <!-- Link Content -->
-            <a routerLink="/components/button" 
-               (click)="onLinkClick()"
-               [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-               class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-              <span class="mr-2">🔘</span>
-              Botones
-            </a>
-          </div>
-           <!-- Submenu Item Badge -->
-           <div class="relative">
-            <!-- Shadow Layer -->
-            <div class="absolute inset-0" 
-                 [ngClass]="themeService.getBorderRadiusClass()"
-                 [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <!-- Link Content -->
-           <a routerLink="/components/badge" 
-              (click)="onLinkClick()"
-              [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-              class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-             <span class="mr-2">🏷️</span>
-             Badges
-           </a>
-         </div>
-           <!-- Submenu Item Alert -->
-           <div class="relative">
-            <!-- Shadow Layer -->
-            <div class="absolute inset-0" 
-                 [ngClass]="themeService.getBorderRadiusClass()"
-                 [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <!-- Link Content -->
-           <a routerLink="/components/alert" 
-              (click)="onLinkClick()"
-              [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-              class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-             <span class="mr-2">⚠️</span>
-             Alertas
-           </a>
-         </div>
-          <!-- Submenu Item Avatar -->
-          <div class="relative">
-             <!-- Shadow Layer -->
-             <div class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()"
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-             <!-- Link Content -->
-            <a routerLink="/components/avatar" 
-               (click)="onLinkClick()"
-               [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-               class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-              <span class="mr-2">👤</span>
-              Avatares
-            </a>
-          </div>
-          <!-- Submenu Item Breadcrumb -->
-          <div class="relative">
-            <!-- Shadow Layer -->
-            <div class="absolute inset-0" 
-                 [ngClass]="themeService.getBorderRadiusClass()"
-                 [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <!-- Link Content -->
-           <a routerLink="/components/breadcrumb" 
-              (click)="onLinkClick()"
-              [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-              class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-             <span class="mr-2">🧭</span>
-             Breadcrumbs
-           </a>
-         </div>
-           <!-- Submenu Item Accordion -->
-           <div class="relative">
-             <!-- Shadow Layer -->
-             <div class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()"
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+        @if (isComponentsExpanded) {
+          <div
+            class="transition-all duration-300 ease-in-out space-y-2 mt-2 pl-2">
+            <!-- Submenu Item Button -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
               <!-- Link Content -->
-             <a routerLink="/components/accordion" 
+              <a routerLink="/components/button"
                 (click)="onLinkClick()"
                 [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                 class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-               <span class="mr-2">🔽</span>
-               Acordeones
-             </a>
-           </div>
-          <!-- Submenu Item Dialog -->
-          <div class="relative">
-            <!-- Shadow Layer -->
-            <div class="absolute inset-0" 
-                 [ngClass]="themeService.getBorderRadiusClass()"
-                 [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-            <!-- Link Content -->
-           <a routerLink="/components/alert-dialog" 
-              (click)="onLinkClick()"
-              [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-              class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
-             <span class="mr-2">💬</span>
-             Diálogos
-           </a>
-         </div>
-        </div>
-      </li>
-      
-      <li class="relative">
-         <!-- Shadow Layer -->
-         <div class="absolute inset-0" 
-              [ngClass]="themeService.getBorderRadiusClass()"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">🔘</span>
+                Botones
+              </a>
+            </div>
+            <!-- Submenu Item Badge -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-         <!-- Link Content -->
-        <a href="#" (click)="onLinkClick()" 
-           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-           class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
+              <!-- Link Content -->
+              <a routerLink="/components/badge"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">🏷️</span>
+                Badges
+              </a>
+            </div>
+            <!-- Submenu Item Alert -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <!-- Link Content -->
+              <a routerLink="/components/alert"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">⚠️</span>
+                Alertas
+              </a>
+            </div>
+            <!-- Submenu Item Avatar -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <!-- Link Content -->
+              <a routerLink="/components/avatar"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">👤</span>
+                Avatares
+              </a>
+            </div>
+            <!-- Submenu Item Breadcrumb -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <!-- Link Content -->
+              <a routerLink="/components/breadcrumb"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">🧭</span>
+                Breadcrumbs
+              </a>
+            </div>
+            <!-- Submenu Item Accordion -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <!-- Link Content -->
+              <a routerLink="/components/accordion"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">🔽</span>
+                Acordeones
+              </a>
+            </div>
+            <!-- Submenu Item Dialog -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <!-- Link Content -->
+              <a routerLink="/components/alert-dialog"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">💬</span>
+                Diálogos
+              </a>
+            </div>
+          </div>
+        }
+      </li>
+
+      <li class="relative">
+        <!-- Shadow Layer -->
+        <div class="absolute inset-0"
+          [ngClass]="themeService.getBorderRadiusClass()"
+        [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+        <!-- Link Content -->
+        <a href="#" (click)="onLinkClick()"
+          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+          class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
           <span class="mr-3">🎨</span>
           Styling
         </a>
       </li>
       <li class="relative">
-         <!-- Shadow Layer -->
-         <div class="absolute inset-0" 
-              [ngClass]="themeService.getBorderRadiusClass()"
-              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+        <!-- Shadow Layer -->
+        <div class="absolute inset-0"
+          [ngClass]="themeService.getBorderRadiusClass()"
+        [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
         <!-- Link Content -->
-        <a href="#" (click)="onLinkClick()" 
-           [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-           class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
+        <a href="#" (click)="onLinkClick()"
+          [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+          class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform">
           <span class="mr-3">✨</span>
           Showcase
         </a>
