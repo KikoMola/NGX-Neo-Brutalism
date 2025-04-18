@@ -1,35 +1,97 @@
 <div class="space-y-12">
+  <!-- Non-Striped Table Example -->
   <section class="space-y-6">
-    <h3 class="text-xl font-semibold border-b border-black pb-2">Ejemplo Básico de Tabla</h3>
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Tabla Básica (Non-Striped)</h3>
     <div class="grid grid-cols-1 gap-8">
-      <!-- Pestañas y contenedor -->
       <div> 
-        <!-- Pestañas -->
+        <!-- Tabs -->
         <div class="flex border-b-2 border-black mb-0">
           <button 
-            (click)="setActiveTab('preview')" 
-            [ngClass]="tableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            (click)="setNonStripedActiveTab('preview')" 
+            [ngClass]="nonStripedTableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
             class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
           >
             Preview
           </button>
           <button 
-            (click)="setActiveTab('code')" 
-            [ngClass]="tableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            (click)="setNonStripedActiveTab('code')" 
+            [ngClass]="nonStripedTableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
             class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
           >
             Code
           </button>
         </div>
 
-        <!-- Contenido de las Pestañas -->
+        <!-- Tab Content -->
         <div class="overflow-y-auto border-neo-border border-black border-t-0">
-          <!-- Contenido Preview -->
-          @if (tableActiveTab === 'preview') {
+          @if (nonStripedTableActiveTab === 'preview') {
             <app-component-preview>
-              <!-- Contenedor del ejemplo con padding -->
               <div class="p-4">
-                <!-- Ejemplo de Tabla -->
+                <div 
+                  class="overflow-x-auto border-neo-border border-black"
+                  [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+                  <table class="min-w-full bg-white">
+                    <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium">
+                      <tr>
+                        <th class="py-3 px-4 text-left">ID</th>
+                        <th class="py-3 px-4 text-left">Nombre</th>
+                        <th class="py-3 px-4 text-left">Puesto</th>
+                        <th class="py-3 px-4 text-left">Color Favorito</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (row of tableData; track row.id) {
+                        <!-- No alternating background class here -->
+                        <tr class="border-b border-black">
+                          <td class="py-3 px-4">{{ row.id }}</td>
+                          <td class="py-3 px-4">{{ row.name }}</td>
+                          <td class="py-3 px-4">{{ row.job }}</td>
+                          <td class="py-3 px-4">{{ row.color }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </app-component-preview>
+          }
+          @if (nonStripedTableActiveTab === 'code') {
+            <app-code-snippet-preview [code]="nonStripedTableExampleCode"></app-code-snippet-preview>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Striped Table Example -->
+  <section class="space-y-6">
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Tabla con Filas Alternas (Striped)</h3>
+    <div class="grid grid-cols-1 gap-8">
+      <div> 
+        <!-- Tabs -->
+        <div class="flex border-b-2 border-black mb-0">
+          <button 
+            (click)="setStripedActiveTab('preview')" 
+            [ngClass]="stripedTableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+          >
+            Preview
+          </button>
+          <button 
+            (click)="setStripedActiveTab('code')" 
+            [ngClass]="stripedTableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+          >
+            Code
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="overflow-y-auto border-neo-border border-black border-t-0">
+          @if (stripedTableActiveTab === 'preview') {
+            <app-component-preview>
+              <div class="p-4">
                 <div 
                   class="overflow-x-auto border-neo-border border-black"
                   [ngClass]="themeService.getBorderRadiusClass()"
@@ -45,6 +107,7 @@
                     </thead>
                     <tbody>
                       @for (row of tableData; track row.id; let isEven = $even) {
+                         <!-- Apply alternating background -->
                         <tr class="border-b border-black" [ngClass]="isEven ? themeService.getLightBgClass() : ''">
                           <td class="py-3 px-4">{{ row.id }}</td>
                           <td class="py-3 px-4">{{ row.name }}</td>
@@ -58,10 +121,8 @@
               </div>
             </app-component-preview>
           }
-
-          <!-- Contenido Code -->
-          @if (tableActiveTab === 'code') {
-            <app-code-snippet-preview [code]="tableExampleCode"></app-code-snippet-preview>
+          @if (stripedTableActiveTab === 'code') {
+            <app-code-snippet-preview [code]="stripedTableExampleCode"></app-code-snippet-preview>
           }
         </div>
       </div>
