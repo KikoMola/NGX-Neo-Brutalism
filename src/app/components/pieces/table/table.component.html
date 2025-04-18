@@ -529,7 +529,7 @@
                         <th class="py-3 px-4 text-left">Color Favorito</th>
                       </tr>
                        <!-- Filter Row -->
-                      <tr class="bg-white">
+                      <tr [ngClass]="themeService.getPrimaryBgClass()">
                         <th class="p-2"> <!-- Input for ID filter -->
                            <div class="relative">
                             <div 
@@ -771,7 +771,7 @@
                         <th class="py-3 px-4 text-left">Nombre</th>
                         <th class="py-3 px-4 text-left">Puesto</th>
                         <th class="py-3 px-4 text-left">Color Favorito</th>
-                        <th class="py-3 px-4 text-center w-20">Opciones</th> <!-- Options Header -->
+                        <th class="py-3 px-4 text-center w-20 align-middle">Opciones</th> <!-- Options Header -->
                       </tr>
                     </thead>
                     <tbody>
@@ -786,9 +786,7 @@
                             <div class="relative inline-block text-left">
                               <!-- Button Container -->
                               <div class="relative">
-                                <div class="absolute inset-0" 
-                                     [ngClass]="themeService.getBorderRadiusClass()" 
-                                     [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
                                 <button 
                                   (click)="toggleOptions(row.id)" 
                                   type="button" 
@@ -863,13 +861,13 @@
                   class="overflow-x-auto border-neo-border border-black"
                   [ngClass]="themeService.getBorderRadiusClass()"
                   [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
-                  <table class="min-w-full bg-white">
+                  <table class="min-w-full bg-white table-fixed">
                     <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium align-middle">
-                      <!-- Header Row 1: Selection, Sortable Titles, Column Toggle -->
-                      <tr>
+                      <!-- Header Row 1: Remove background from TR, add to TH -->
+                      <tr> 
                         <!-- Select All Checkbox -->
-                        <th class="py-3 px-4 text-left w-12 align-middle">
-                          <!-- Simplified Neo Checkbox "Select All" -->
+                        <th class="py-3 px-4 text-left w-12 align-middle" [ngClass]="themeService.getPrimaryBgClass()">
+                           <!-- Simplified Neo Checkbox "Select All" -->
                           <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
                             <!-- Shadow Layer -->
                             <div 
@@ -897,7 +895,7 @@
                         
                         <!-- Sortable ID Header -->
                         @if (isColumnVisible('id')) {
-                          <th class="py-3 px-4 text-left align-middle">
+                          <th class="py-3 px-4 text-left align-middle" [ngClass]="themeService.getPrimaryBgClass()">
                             <button (click)="sortTable('id')" class="flex items-center space-x-1 hover:opacity-80">
                               <span>ID</span>
                               @if (sortColumnKey === 'id') {
@@ -910,7 +908,7 @@
                         
                         <!-- Sortable Name Header -->
                         @if (isColumnVisible('name')) {
-                          <th class="py-3 px-4 text-left align-middle">
+                          <th class="py-3 px-4 text-left align-middle" [ngClass]="themeService.getPrimaryBgClass()">
                             <button (click)="sortTable('name')" class="flex items-center space-x-1 hover:opacity-80">
                               <span>Nombre</span>
                               @if (sortColumnKey === 'name') {
@@ -923,7 +921,7 @@
                         
                         <!-- Sortable Job Header -->
                         @if (isColumnVisible('job')) {
-                          <th class="py-3 px-4 text-left align-middle">
+                          <th class="py-3 px-4 text-left align-middle" [ngClass]="themeService.getPrimaryBgClass()">
                             <button (click)="sortTable('job')" class="flex items-center space-x-1 hover:opacity-80">
                               <span>Puesto</span>
                                @if (sortColumnKey === 'job') {
@@ -936,7 +934,7 @@
                         
                         <!-- Sortable Color Header -->
                         @if (isColumnVisible('color')) {
-                          <th class="py-3 px-4 text-left align-middle">
+                          <th class="py-3 px-4 text-left align-middle" [ngClass]="themeService.getPrimaryBgClass()">
                             <button (click)="sortTable('color')" class="flex items-center space-x-1 hover:opacity-80">
                               <span>Color Favorito</span>
                                @if (sortColumnKey === 'color') {
@@ -947,8 +945,11 @@
                           </th>
                         }
                         
+                        <!-- Options Header -->
+                        <th class="py-3 px-4 text-center w-20 align-middle" [ngClass]="themeService.getPrimaryBgClass()"></th>
+
                         <!-- Column Toggle Button Header -->
-                        <th class="py-2 px-4 text-right align-middle">
+                        <th class="py-2 px-4 text-right align-middle" [ngClass]="themeService.getPrimaryBgClass()">
                            <div class="relative inline-block text-left">
                              <!-- Neobrutalist Button Structure -->
                             <div class="relative">
@@ -995,9 +996,9 @@
                         </th>
                       </tr>
                       
-                      <!-- Header Row 2: Filter Inputs -->
+                      <!-- Header Row 2: Restore bg-white, adjust first TH -->
                       <tr class="bg-white">
-                        <th class="p-2"></th> <!-- Empty cell for checkbox column -->
+                        <th class="px-4 py-3 w-12"></th> <!-- Adjusted padding and width -->
                         
                         <!-- ID Filter Input -->
                         @if (isColumnVisible('id')) {
@@ -1039,6 +1040,7 @@
                           </th>
                         }
                         
+                        <th class="p-2"></th> <!-- Empty cell for options column -->
                         <th class="p-2"></th> <!-- Empty cell for toggle column -->
                       </tr>
                     </thead>
