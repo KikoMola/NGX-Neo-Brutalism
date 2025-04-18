@@ -337,4 +337,118 @@
       </div>
     </div>
   </section>
+  
+  <!-- Toggle Columns Table Example -->
+  <section class="space-y-6">
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Tabla con Columnas Ocultables (Striped)</h3>
+    <div class="grid grid-cols-1 gap-8">
+       <div> 
+        <!-- Tabs -->
+        <div class="flex border-b-2 border-black mb-0">
+          <button 
+            (click)="setToggleColumnsActiveTab('preview')" 
+            [ngClass]="toggleColumnsTableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+          >
+            Preview
+          </button>
+          <button 
+            (click)="setToggleColumnsActiveTab('code')" 
+            [ngClass]="toggleColumnsTableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+          >
+            Code
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="overflow-y-auto border-neo-border border-black border-t-0">
+          @if (toggleColumnsTableActiveTab === 'preview') {
+            <app-component-preview>
+              <div class="p-4">
+                <!-- Tabla -->
+                <div 
+                  class="overflow-x-auto border-neo-border border-black"
+                  [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+                  <table class="min-w-full bg-white">
+                    <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium">
+                       <tr>
+                        <th class="py-3 px-4 text-left">Nombre</th>
+                        @if (isColumnVisible('id')) { <th class="py-3 px-4 text-left">ID</th> }
+                        @if (isColumnVisible('job')) { <th class="py-3 px-4 text-left">Puesto</th> }
+                        @if (isColumnVisible('color')) { <th class="py-3 px-4 text-left">Color Favorito</th> }
+                        <!-- New Header Cell for Toggle Button -->
+                        <th class="py-2 px-4 text-right">
+                           <div class="relative inline-block text-left">
+                             <!-- Neobrutalist Button Structure -->
+                            <div class="relative">
+                               <!-- Shadow Layer -->
+                               <div class="absolute inset-0" 
+                                    [ngClass]="themeService.getBorderRadiusClass()" 
+                                    [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                               <!-- Button Content -->
+                               <button 
+                                  (click)="toggleColumnSelector()" 
+                                  type="button" 
+                                  class="relative inline-flex justify-center items-center border-neo-border border-black px-2 py-1 bg-white text-sm font-medium text-gray-700 transition-transform"
+                                  [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                                  aria-haspopup="true" 
+                                  [attr.aria-expanded]="isColumnSelectorOpen">
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                   <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                 </svg>
+                               </button>
+                             </div>
+
+                            <!-- Dropdown Panel -->
+                            @if (isColumnSelectorOpen) {
+                              <div 
+                                class="origin-top-right absolute right-0 mt-2 w-48 border-neo-border border-black bg-white focus:outline-none z-10"
+                                [ngClass]="themeService.getBorderRadiusClass()"
+                                [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('id')" [checked]="isColumnVisible('id')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500">
+                                    <span>ID</span>
+                                  </label>
+                                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('job')" [checked]="isColumnVisible('job')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500">
+                                    <span>Puesto</span>
+                                  </label>
+                                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('color')" [checked]="isColumnVisible('color')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500">
+                                    <span>Color Favorito</span>
+                                  </label>
+                                </div>
+                              </div>
+                            }
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (row of tableData; track row.id; let isEven = $even) {
+                        <tr class="border-b border-black" [ngClass]="isEven ? themeService.getLightBgClass() : ''"> 
+                          <td class="py-3 px-4">{{ row.name }}</td>
+                           @if (isColumnVisible('id')) { <td class="py-3 px-4">{{ row.id }}</td> }
+                           @if (isColumnVisible('job')) { <td class="py-3 px-4">{{ row.job }}</td> }
+                           @if (isColumnVisible('color')) { <td class="py-3 px-4">{{ row.color }}</td> }
+                           <td></td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </app-component-preview>
+          }
+          @if (toggleColumnsTableActiveTab === 'code') {
+            <app-code-snippet-preview [code]="toggleColumnsTableExampleCode"></app-code-snippet-preview>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
