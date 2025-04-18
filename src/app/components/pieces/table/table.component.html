@@ -1010,13 +1010,33 @@
                           @if (isColumnVisible('job')) { <td class="py-3 px-4 align-middle">{{ row.job }}</td> }
                           @if (isColumnVisible('color')) { <td class="py-3 px-4 align-middle">{{ row.color }}</td> }
                           
-                          <td class="align-middle"></td> <!-- Empty cell for toggle column -->
+                          <!-- Options Cell -->
+                          <td class="py-3 px-4 text-center align-middle">
+                            <div class="relative inline-block text-left">
+                              <div class="relative">
+                                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                                <button (click)="toggleOptions(row.id)" type="button" class="relative inline-flex justify-center items-center border-neo-border border-black px-2 py-1 bg-white text-sm font-medium text-gray-700 transition-transform" [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>
+                                </button>
+                              </div>
+                              @if (openOptionsRowId === row.id) {
+                                <div class="origin-top-right absolute right-0 mt-2 w-32 border-neo-border border-black bg-white focus:outline-none z-10" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" role="menu" aria-orientation="vertical">
+                                  <div class="py-1" role="none">
+                                    <button (click)="handleOptionClick('Editar', row.id)" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Editar</button>
+                                    <button (click)="handleOptionClick('Eliminar', row.id)" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50" role="menuitem">Eliminar</button>
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                          </td>
+                          
+                          <td class="align-middle"></td> <!-- Empty cell for toggle column placeholder -->
                         </tr>
                       }
                       <!-- No Results Row -->
                       @if (filteredAndSortedTableData.length === 0) {
                         <tr>
-                           <td [attr.colspan]="visibleColumnCount + 1" class="text-center py-4 text-gray-500">No se encontraron resultados.</td>
+                           <td [attr.colspan]="visibleColumnCount" class="text-center py-4 text-gray-500">No se encontraron resultados.</td>
                         </tr>
                       }
                     </tbody>

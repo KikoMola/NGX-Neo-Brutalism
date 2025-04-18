@@ -198,8 +198,8 @@ export class TableComponent implements OnInit {
   
   // --- Colspan Getter ---
   get visibleColumnCount(): number {
-    // +1 for the selection checkbox column, +1 for the toggle column placeholder
-    return this.visibleColumns.size + 2; 
+    // +1 for the selection checkbox column, +1 for the toggle column placeholder, +1 for options
+    return this.visibleColumns.size + 3; 
   }
 
   // --- Options Menu State ---
@@ -834,8 +834,9 @@ export class TableComponent implements OnInit {
     // Define SVGs for sorting
     const ascSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>`;
     const descSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>`;
+    const ellipsisSvg = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>`;
 
-    // Comprehensive TS logic comment
+    // Comprehensive TS logic comment including Options
     const tsLogicComment = `
   import { FormsModule } from '@angular/forms'; // Required for filtering
 
@@ -846,6 +847,9 @@ export class TableComponent implements OnInit {
     
     // Selection state
     selectedRowIds = new Set<number>();
+    
+    // Options Menu state
+    openOptionsRowId: number | null = null; 
     
     // Visibility state
     visibleColumns = new Set<string>(['id', 'name', 'job', 'color']);
@@ -862,25 +866,21 @@ export class TableComponent implements OnInit {
     sortDirection: 'asc' | 'desc' | null = null;
     
     // Combined Data Getter
-    get filteredAndSortedTableData(): TableRow[] {
-      // 1. Filter logic based on filter properties
-      let filteredData = this.tableData.filter(/* ... */);
-      // 2. Sort logic based on sortColumnKey and sortDirection
-      if (this.sortColumnKey && this.sortDirection) { /* ... sort filteredData ... */ }
-      return filteredData; 
-    }
+    get filteredAndSortedTableData(): TableRow[] { /* ... */ }
     
     // Colspan Getter
-    get visibleColumnCount(): number {
-      return this.visibleColumns.size + 2; // +1 checkbox, +1 toggle placeholder
-    }
+    get visibleColumnCount(): number { return this.visibleColumns.size + 3; } // +1 checkbox, +1 toggle, +1 options
     
     // Selection Methods
     toggleRowSelection(id: number): void { /* ... */ }
-    toggleSelectAll(): void { /* Select/deselect based on filteredAndSortedTableData */ }
+    toggleSelectAll(): void { /* ... */ }
     isRowSelected(id: number): boolean { /* ... */ }
-    areAllSelected(): boolean { /* Check against filteredAndSortedTableData */ }
-    isAnySelected(): boolean { /* Check against filteredAndSortedTableData */ }
+    areAllSelected(): boolean { /* ... */ }
+    isAnySelected(): boolean { /* ... */ }
+    
+    // Options Menu Methods
+    toggleOptions(rowId: number): void { /* ... */ }
+    handleOptionClick(option: string, rowId: number): void { /* ... */ }
     
     // Visibility Methods
     toggleColumnVisibility(columnKey: string): void { /* ... */ }
@@ -896,7 +896,7 @@ export class TableComponent implements OnInit {
 <div class="overflow-x-auto border-neo-border border-black ${borderRadiusClass}" style="box-shadow: ${shadowStyle};">
   <table class="min-w-full bg-white">
     <thead class="${primaryBgClass} text-white font-medium align-middle">
-      <!-- Header Row 1: Selection, Sortable Titles, Column Toggle -->
+      <!-- Header Row 1: Selection, Sortable Titles, Column Toggle, Options -->
       <tr>
         <!-- Select All Checkbox -->
         <th class="py-3 px-4 text-left w-12 align-middle">
@@ -957,32 +957,25 @@ export class TableComponent implements OnInit {
           </th>
         }
         
+        <!-- Options Header -->
+        <th class="py-3 px-4 text-center w-20 align-middle">Opciones</th>
+        
         <!-- Column Toggle Button Header -->
         <th class="py-2 px-4 text-right align-middle">
           <div class="relative inline-block text-left">
-            <!-- Neobrutalist Button Structure -->
             <div class="relative">
                <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
                <button (click)="toggleColumnSelector()" type="button" class="relative inline-flex justify-center items-center border-neo-border border-black px-2 py-1 bg-white text-sm font-medium text-gray-700 transition-transform ${borderRadiusClass} ${hoverXClass} ${hoverYClass}" aria-haspopup="true" [attr.aria-expanded]="isColumnSelectorOpen">
                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>
                </button>
              </div>
-            <!-- Dropdown Panel -->
             @if (isColumnSelectorOpen) {
               <div class="origin-top-right absolute right-0 mt-2 w-48 border-neo-border border-black bg-white focus:outline-none z-10 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};" role="menu" aria-orientation="vertical">
                 <div class="py-1" role="none">
-                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
-                    <input type="checkbox" (change)="toggleColumnVisibility('id')" [checked]="isColumnVisible('id')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> ID
-                  </label>
-                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
-                    <input type="checkbox" (change)="toggleColumnVisibility('name')" [checked]="isColumnVisible('name')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Nombre
-                  </label>
-                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
-                    <input type="checkbox" (change)="toggleColumnVisibility('job')" [checked]="isColumnVisible('job')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Puesto
-                  </label>
-                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
-                    <input type="checkbox" (change)="toggleColumnVisibility('color')" [checked]="isColumnVisible('color')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Color Favorito
-                  </label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"><input type="checkbox" (change)="toggleColumnVisibility('id')" [checked]="isColumnVisible('id')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> ID</label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"><input type="checkbox" (change)="toggleColumnVisibility('name')" [checked]="isColumnVisible('name')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Nombre</label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"><input type="checkbox" (change)="toggleColumnVisibility('job')" [checked]="isColumnVisible('job')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Puesto</label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"><input type="checkbox" (change)="toggleColumnVisibility('color')" [checked]="isColumnVisible('color')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Color Favorito</label>
                 </div>
               </div>
             }
@@ -993,68 +986,42 @@ export class TableComponent implements OnInit {
       <!-- Header Row 2: Filter Inputs -->
       <tr class="bg-white">
         <th class="p-2"></th> <!-- Empty cell for checkbox column -->
-        
-        <!-- ID Filter Input -->
-        @if (isColumnVisible('id')) {
-          <th class="p-2">
-            <div class="relative">
-             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-             <input type="text" [(ngModel)]="filterId" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-           </div>
-          </th>
-        }
-        
-        <!-- Name Filter Input -->
-        @if (isColumnVisible('name')) {
-          <th class="p-2">
-           <div class="relative">
-             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-             <input type="text" [(ngModel)]="filterName" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-           </div>
-          </th>
-        }
-        
-        <!-- Job Filter Input -->
-        @if (isColumnVisible('job')) {
-          <th class="p-2">
-            <div class="relative">
-             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-             <input type="text" [(ngModel)]="filterJob" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-           </div>
-          </th>
-        }
-        
-        <!-- Color Filter Input -->
-        @if (isColumnVisible('color')) {
-          <th class="p-2">
-            <div class="relative">
-             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-             <input type="text" [(ngModel)]="filterColor" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
-           </div>
-          </th>
-        }
-        
+        @if (isColumnVisible('id')) { <th class="p-2"><div class="relative"><div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div><input type="text" [(ngModel)]="filterId" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"></div></th> }
+        @if (isColumnVisible('name')) { <th class="p-2"><div class="relative"><div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div><input type="text" [(ngModel)]="filterName" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"></div></th> }
+        @if (isColumnVisible('job')) { <th class="p-2"><div class="relative"><div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div><input type="text" [(ngModel)]="filterJob" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"></div></th> }
+        @if (isColumnVisible('color')) { <th class="p-2"><div class="relative"><div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div><input type="text" [(ngModel)]="filterColor" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"></div></th> }
+        <th class="p-2"></th> <!-- Empty cell for options column -->
         <th class="p-2"></th> <!-- Empty cell for toggle column -->
       </tr>
     </thead>
     <tbody>
        @for (row of filteredAndSortedTableData; track row.id; let isEven = $even) {
         <tr class="border-b border-black" [ngClass]="isEven ? '${lightBgClass}' : ''">
-          <!-- Row Selection Checkbox -->
-          <td class="py-3 px-4 align-middle">
-            <input type="checkbox" (change)="toggleRowSelection(row.id)" [checked]="isRowSelected(row.id)" class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500">
-          </td>
-          
-          <!-- Data Cells (Conditional) -->
+          <td class="py-3 px-4 align-middle"><input type="checkbox" (change)="toggleRowSelection(row.id)" [checked]="isRowSelected(row.id)" class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"></td>
           @if (isColumnVisible('id')) { <td class="py-3 px-4 align-middle">{{ row.id }}</td> }
           @if (isColumnVisible('name')) { <td class="py-3 px-4 align-middle">{{ row.name }}</td> }
           @if (isColumnVisible('job')) { <td class="py-3 px-4 align-middle">{{ row.job }}</td> }
           @if (isColumnVisible('color')) { <td class="py-3 px-4 align-middle">{{ row.color }}</td> }
-          
-          <td class="align-middle"></td> <!-- Empty cell for toggle column -->
+          <!-- Options Cell -->
+          <td class="py-3 px-4 text-center align-middle">
+            <div class="relative inline-block text-left">
+              <div class="relative">
+                <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
+                <button (click)="toggleOptions(row.id)" type="button" class="relative inline-flex justify-center items-center border-neo-border border-black px-2 py-1 bg-white text-sm font-medium text-gray-700 transition-transform ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">${ellipsisSvg}</button>
+              </div>
+              @if (openOptionsRowId === row.id) {
+                <div class="origin-top-right absolute right-0 mt-2 w-32 border-neo-border border-black bg-white focus:outline-none z-10 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};" role="menu" aria-orientation="vertical">
+                  <div class="py-1" role="none">
+                    <button (click)="handleOptionClick('Editar', row.id)" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Editar</button>
+                    <button (click)="handleOptionClick('Eliminar', row.id)" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50" role="menuitem">Eliminar</button>
+                  </div>
+                </div>
+              }
+            </div>
+          </td>
+          <td class="align-middle"></td> <!-- Empty cell for toggle column placeholder -->
         </tr>
        }
-       <!-- No Results Row -->
        @if (filteredAndSortedTableData.length === 0) {
          <tr>
            <td [attr.colspan]="visibleColumnCount" class="text-center py-4 text-gray-500">No se encontraron resultados.</td>
@@ -1064,7 +1031,6 @@ export class TableComponent implements OnInit {
   </table>
 </div>`;
 
-    // Combine TS comment and table HTML
     return this.escapeHtml(tsLogicComment + tableHtml.trim());
   }
 
