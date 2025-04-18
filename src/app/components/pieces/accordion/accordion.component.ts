@@ -47,54 +47,65 @@ export class AccordionComponent implements OnInit {
     this.openItemId = this.openItemId === itemId ? null : itemId;
   }
 
-  // Getter para generar el código del acordeón (con transiciones Tailwind)
+  // Getter para generar el código del acordeón (con transiciones Tailwind y *ngFor)
   get accordionExampleCode(): string {
     const borderRadiusClass = this.themeService.getBorderRadiusClass();
     const shadowStyle = this.themeService.getShadowClassForElements();
     const primaryBgClass = this.themeService.getPrimaryBgClass();
 
-    const item = this.accordionItems[0];
-    const itemHtml = `
-    <!-- Item 1 -->
-    <div class="border-neo-border border-black overflow-hidden ${borderRadiusClass}" style="box-shadow: ${shadowStyle};">
-      <!-- Trigger (Botón con border-radius condicional) -->
-      <button
-        (click)="toggleItem('${item.id}')"
-        [ngClass]="[
-          '${primaryBgClass}',
-          openItemId === '${item.id}' ? 'rounded-bl-none rounded-br-none' : '${borderRadiusClass}'
-        ]"
-        class="relative flex justify-between items-center w-full px-4 py-3 font-medium text-left text-white">
-        <span>${item.title}</span>
-        <svg
-          [ngClass]="{'transform rotate-180': openItemId === '${item.id}'}"
-          class="w-5 h-5 transition-transform duration-200 shrink-0"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </button>
-      <!-- Content (con transición de max-height) -->
-      <div 
-        [ngClass]="openItemId === '${item.id}' ? 'max-h-96' : 'max-h-0'" 
-        class="p-4 bg-white overflow-hidden transition-[max-height] duration-300 ease-in-out">
-        <p>${item.content}</p>
+    // Generar HTML para un item genérico dentro del bucle
+    const itemTemplateHtml = `
+      <!-- Item Structure (inside *ngFor="let item of accordionItems") -->
+      <div class="border-neo-border border-black overflow-hidden ${borderRadiusClass}" style="box-shadow: ${shadowStyle};">
+        <!-- Trigger -->
+        <button
+          (click)="toggleItem(item.id)" 
+          [ngClass]="[
+            '${primaryBgClass}',
+            openItemId === item.id ? 'rounded-bl-none rounded-br-none' : '${borderRadiusClass}'
+          ]"
+          class="relative flex justify-between items-center w-full px-4 py-3 font-medium text-left text-white">
+          <span>{{ item.title }}</span>
+          <svg
+            [ngClass]="{'transform rotate-180': openItemId === item.id}"
+            class="w-5 h-5 transition-transform duration-500 shrink-0"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <!-- Content -->
+        <div 
+          [ngClass]="openItemId === item.id ? 'max-h-96' : 'max-h-0'" 
+          class="overflow-hidden transition-[max-height] duration-500 ease-in-out">
+          <div class="p-4 bg-white">
+            <p>{{ item.content }}</p>
+          </div>
+        </div>
       </div>
-    </div>`;
+    `;
 
     const tsLogicComment = `
 <!--
   Lógica TS necesaria (incluir en tu componente):
   export class YourComponent {
-    accordionItems: { id: string, title: string, content: string }[] = [...];
-    openItemId: string | null = null;
+    // Array de items con la estructura { id: string, title: string, content: string }
+    accordionItems: { id: string, title: string, content: string }[] = [
+      { id: 'item-1', title: 'Título 1', content: 'Contenido 1...' },
+      { id: 'item-2', title: 'Título 2', content: 'Contenido 2...' },
+      // ... más items
+    ];
+    openItemId: string | null = null; // Solo un item abierto a la vez
     toggleItem(itemId: string): void { this.openItemId = this.openItemId === itemId ? null : itemId; }
   }
 -->`;
 
     const rawHtml = `
 ${tsLogicComment}
-<div class="w-full max-w-xl space-y-2"> ${itemHtml}
+<div class="w-full max-w-xl space-y-2">
+  <!-- Bucle *ngFor para mostrar cada item -->
+  <div *ngFor="let item of accordionItems"> ${itemTemplateHtml.trim()} 
+  </div>
 </div>`;
 
     return this.escapeHtml(rawHtml.trim());
