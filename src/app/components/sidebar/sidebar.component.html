@@ -119,6 +119,21 @@
                 Tabla
               </a>
             </div>
+            <!-- Submenu Item Input -->
+            <div class="relative">
+              <!-- Shadow Layer -->
+              <div class="absolute inset-0"
+                [ngClass]="themeService.getBorderRadiusClass()"
+              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+              <!-- Link Content -->
+              <a routerLink="/components/input"
+                (click)="onLinkClick()"
+                [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                class="relative flex items-center px-4 py-3 text-white border-neo-border border-black font-neo-base transition-transform w-full">
+                <span class="mr-2">🔽</span>
+                Input
+              </a>
+            </div>
           </div>
         }
       </li>

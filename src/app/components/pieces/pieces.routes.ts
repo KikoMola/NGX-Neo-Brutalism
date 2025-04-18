@@ -14,6 +14,7 @@ export const PIECES_ROUTES: Routes = [
       { path: 'accordion', loadComponent: () => import('./accordion/accordion.component').then(m => m.AccordionComponent) },
       { path: 'alert-dialog', loadComponent: () => import('./alert-dialog/alert-dialog.component').then(m => m.AlertDialogComponent) },
       { path: 'table', loadComponent: () => import('./table/table.component').then(m => m.TableComponent) },
+      { path: 'input', loadComponent: () => import('./input/input.component').then(m => m.InputComponent) },
       { path: '', redirectTo: 'button', pathMatch: 'full' }
     ]
   }
