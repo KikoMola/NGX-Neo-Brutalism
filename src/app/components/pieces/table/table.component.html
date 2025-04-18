@@ -696,4 +696,241 @@
       </div>
     </div>
   </section>
+
+  <!-- ALL FEATURES Table Example -->
+  <section class="space-y-6">
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Tabla con Todas las Funcionalidades (Striped)</h3>
+    <div class="grid grid-cols-1 gap-8">
+       <div> 
+        <!-- Tabs -->
+        <div class="flex border-b-2 border-black mb-0">
+          <button 
+            (click)="setAllFeaturesTableActiveTab('preview')" 
+            [ngClass]="allFeaturesTableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+          >
+            Preview
+          </button>
+          <button 
+            (click)="setAllFeaturesTableActiveTab('code')" 
+            [ngClass]="allFeaturesTableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+          >
+            Code
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="overflow-y-auto border-neo-border border-black border-t-0">
+          @if (allFeaturesTableActiveTab === 'preview') {
+            <app-component-preview>
+              <div class="p-4">
+                 <!-- All Features Table -->
+                <div 
+                  class="overflow-x-auto border-neo-border border-black"
+                  [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+                  <table class="min-w-full bg-white">
+                    <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium align-middle">
+                      <!-- Header Row 1: Selection, Sortable Titles, Column Toggle -->
+                      <tr>
+                        <!-- Select All Checkbox -->
+                        <th class="py-3 px-4 text-left w-12 align-middle">
+                          <input 
+                            type="checkbox"
+                            (change)="toggleSelectAll()"
+                            [checked]="areAllSelected()"
+                            [indeterminate]="isAnySelected()"
+                            class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
+                          >
+                        </th>
+                        
+                        <!-- Sortable ID Header -->
+                        @if (isColumnVisible('id')) {
+                          <th class="py-3 px-4 text-left align-middle">
+                            <button (click)="sortTable('id')" class="flex items-center space-x-1 hover:opacity-80">
+                              <span>ID</span>
+                              @if (sortColumnKey === 'id') {
+                                @if (sortDirection === 'asc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                                @else if (sortDirection === 'desc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                              }
+                            </button>
+                          </th>
+                        }
+                        
+                        <!-- Sortable Name Header -->
+                        @if (isColumnVisible('name')) {
+                          <th class="py-3 px-4 text-left align-middle">
+                            <button (click)="sortTable('name')" class="flex items-center space-x-1 hover:opacity-80">
+                              <span>Nombre</span>
+                              @if (sortColumnKey === 'name') {
+                                @if (sortDirection === 'asc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                                @else if (sortDirection === 'desc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                              }
+                            </button>
+                          </th>
+                        }
+                        
+                        <!-- Sortable Job Header -->
+                        @if (isColumnVisible('job')) {
+                          <th class="py-3 px-4 text-left align-middle">
+                            <button (click)="sortTable('job')" class="flex items-center space-x-1 hover:opacity-80">
+                              <span>Puesto</span>
+                               @if (sortColumnKey === 'job') {
+                                @if (sortDirection === 'asc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                                @else if (sortDirection === 'desc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                              }
+                            </button>
+                          </th>
+                        }
+                        
+                        <!-- Sortable Color Header -->
+                        @if (isColumnVisible('color')) {
+                          <th class="py-3 px-4 text-left align-middle">
+                            <button (click)="sortTable('color')" class="flex items-center space-x-1 hover:opacity-80">
+                              <span>Color Favorito</span>
+                               @if (sortColumnKey === 'color') {
+                                @if (sortDirection === 'asc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                                @else if (sortDirection === 'desc') { <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg> }
+                              }
+                            </button>
+                          </th>
+                        }
+                        
+                        <!-- Column Toggle Button Header -->
+                        <th class="py-2 px-4 text-right align-middle">
+                           <div class="relative inline-block text-left">
+                             <!-- Neobrutalist Button Structure -->
+                            <div class="relative">
+                               <!-- Shadow Layer -->
+                               <div class="absolute inset-0" 
+                                    [ngClass]="themeService.getBorderRadiusClass()" 
+                                    [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                               <!-- Button Content -->
+                               <button 
+                                  (click)="toggleColumnSelector()" 
+                                  type="button" 
+                                  class="relative inline-flex justify-center items-center border-neo-border border-black px-2 py-1 bg-white text-sm font-medium text-gray-700 transition-transform"
+                                  [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+                                  aria-haspopup="true" 
+                                  [attr.aria-expanded]="isColumnSelectorOpen">
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>
+                               </button>
+                             </div>
+
+                            <!-- Dropdown Panel -->
+                            @if (isColumnSelectorOpen) {
+                              <div 
+                                class="origin-top-right absolute right-0 mt-2 w-48 border-neo-border border-black bg-white focus:outline-none z-10"
+                                [ngClass]="themeService.getBorderRadiusClass()"
+                                [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('id')" [checked]="isColumnVisible('id')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> ID
+                                  </label>
+                                   <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('name')" [checked]="isColumnVisible('name')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Nombre
+                                  </label>
+                                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('job')" [checked]="isColumnVisible('job')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Puesto
+                                  </label>
+                                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                                    <input type="checkbox" (change)="toggleColumnVisibility('color')" [checked]="isColumnVisible('color')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Color Favorito
+                                  </label>
+                                </div>
+                              </div>
+                            }
+                          </div>
+                        </th>
+                      </tr>
+                      
+                      <!-- Header Row 2: Filter Inputs -->
+                      <tr class="bg-white">
+                        <th class="p-2"></th> <!-- Empty cell for checkbox column -->
+                        
+                        <!-- ID Filter Input -->
+                        @if (isColumnVisible('id')) {
+                          <th class="p-2">
+                            <div class="relative">
+                             <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                             <input type="text" [(ngModel)]="filterId" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" [ngClass]="themeService.getBorderRadiusClass()">
+                           </div>
+                          </th>
+                        }
+                        
+                        <!-- Name Filter Input -->
+                        @if (isColumnVisible('name')) {
+                          <th class="p-2">
+                           <div class="relative">
+                             <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                             <input type="text" [(ngModel)]="filterName" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" [ngClass]="themeService.getBorderRadiusClass()">
+                           </div>
+                          </th>
+                        }
+                        
+                        <!-- Job Filter Input -->
+                        @if (isColumnVisible('job')) {
+                          <th class="p-2">
+                            <div class="relative">
+                             <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                             <input type="text" [(ngModel)]="filterJob" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" [ngClass]="themeService.getBorderRadiusClass()">
+                           </div>
+                          </th>
+                        }
+                        
+                        <!-- Color Filter Input -->
+                        @if (isColumnVisible('color')) {
+                          <th class="p-2">
+                            <div class="relative">
+                             <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                             <input type="text" [(ngModel)]="filterColor" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" [ngClass]="themeService.getBorderRadiusClass()">
+                           </div>
+                          </th>
+                        }
+                        
+                        <th class="p-2"></th> <!-- Empty cell for toggle column -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (row of filteredAndSortedTableData; track row.id; let isEven = $even) {
+                        <tr class="border-b border-black" [ngClass]="isEven ? themeService.getLightBgClass() : ''">
+                          <!-- Row Selection Checkbox -->
+                          <td class="py-3 px-4 align-middle">
+                            <input 
+                              type="checkbox" 
+                              (change)="toggleRowSelection(row.id)"
+                              [checked]="isRowSelected(row.id)"
+                              class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
+                            >
+                          </td>
+                          
+                          <!-- Data Cells (Conditional) -->
+                          @if (isColumnVisible('id')) { <td class="py-3 px-4 align-middle">{{ row.id }}</td> }
+                          @if (isColumnVisible('name')) { <td class="py-3 px-4 align-middle">{{ row.name }}</td> }
+                          @if (isColumnVisible('job')) { <td class="py-3 px-4 align-middle">{{ row.job }}</td> }
+                          @if (isColumnVisible('color')) { <td class="py-3 px-4 align-middle">{{ row.color }}</td> }
+                          
+                          <td class="align-middle"></td> <!-- Empty cell for toggle column -->
+                        </tr>
+                      }
+                      <!-- No Results Row -->
+                      @if (filteredAndSortedTableData.length === 0) {
+                        <tr>
+                           <td [attr.colspan]="visibleColumnCount + 1" class="text-center py-4 text-gray-500">No se encontraron resultados.</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </app-component-preview>
+          }
+          @if (allFeaturesTableActiveTab === 'code') {
+            <app-code-snippet-preview [code]="allFeaturesTableExampleCode"></app-code-snippet-preview>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

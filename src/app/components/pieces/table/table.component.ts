@@ -83,12 +83,21 @@ export class TableComponent implements OnInit {
   setSortableTableActiveTab(tab: 'preview' | 'code'): void {
     this.sortableTableActiveTab = tab;
   }
+  
+  // Tab state management for ALL FEATURES example
+  allFeaturesTableActiveTab: 'preview' | 'code' = 'preview';
+
+  setAllFeaturesTableActiveTab(tab: 'preview' | 'code'): void {
+    this.allFeaturesTableActiveTab = tab;
+  }
 
   // Example data for the table (used by all)
   tableData: TableRow[] = [
     { id: 1, name: 'Cy Ganderton', job: 'Quality Control Specialist', color: 'Blue' },
     { id: 2, name: 'Hart Hagerty', job: 'Desktop Support Technician', color: 'Purple' },
     { id: 3, name: 'Brice Swyre', job: 'Tax Accountant', color: 'Red' },
+    { id: 4, name: 'Marjy Ferencz', job: 'Office Assistant I', color: 'Crimson' },
+    { id: 5, name: 'Yancy Tear', job: 'Community Outreach Specialist', color: 'Indigo' },
   ];
 
   // Selection state
@@ -146,17 +155,55 @@ export class TableComponent implements OnInit {
     return dataToSort;
   }
 
+  // --- Combined Filtered and Sorted Data Getter ---
+  get filteredAndSortedTableData(): TableRow[] {
+    // 1. Apply Filters
+    let filteredData = this.tableData.filter(row => 
+      (this.filterId === '' || row.id.toString().includes(this.filterId)) &&
+      (row.name.toLowerCase().includes(this.filterName.toLowerCase())) &&
+      (row.job.toLowerCase().includes(this.filterJob.toLowerCase())) &&
+      (row.color.toLowerCase().includes(this.filterColor.toLowerCase()))
+    );
+
+    // 2. Apply Sorting
+    if (this.sortColumnKey && this.sortDirection) {
+      // Create a copy to avoid modifying the filtered array directly during sort
+      const dataToSort = [...filteredData]; 
+      dataToSort.sort((a, b) => {
+        const aValue = a[this.sortColumnKey!];
+        const bValue = b[this.sortColumnKey!];
+
+        let comparison = 0;
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+          comparison = aValue - bValue;
+        } else if (typeof aValue === 'string' && typeof bValue === 'string') {
+          comparison = aValue.localeCompare(bValue);
+        } else {
+          comparison = String(aValue).localeCompare(String(bValue));
+        }
+        return this.sortDirection === 'asc' ? comparison : -comparison;
+      });
+      filteredData = dataToSort; // Assign the sorted array back
+    }
+
+    return filteredData;
+  }
+  
+  // --- Colspan Getter ---
+  get visibleColumnCount(): number {
+    // +1 for the selection checkbox column, +1 for the toggle column placeholder
+    return this.visibleColumns.size + 2; 
+  }
+
   ngOnInit(): void {
-    // Reset selection and visibility on init if needed, or load from a service/storage
+    // Reset ALL states on init
     this.selectedRowIds.clear();
     this.visibleColumns = new Set<string>(['id', 'name', 'job', 'color']);
-    this.isColumnSelectorOpen = false; // Ensure dropdown is closed on init
-    // Reset filters on init
-    this.filterId = '';
+    this.isColumnSelectorOpen = false; 
+    this.filterId = ''; 
     this.filterName = '';
     this.filterJob = '';
     this.filterColor = '';
-    // Reset sort on init
     this.sortColumnKey = null;
     this.sortDirection = null;
   }
@@ -169,45 +216,47 @@ export class TableComponent implements OnInit {
       this.selectedRowIds.add(id);
     }
   }
-
+  
   toggleSelectAll(): void {
+    const currentDataIds = this.filteredAndSortedTableData.map(row => row.id);
     if (this.areAllSelected()) {
-      this.selectedRowIds.clear();
+       // Deselect only the currently visible/filtered items
+       currentDataIds.forEach(id => this.selectedRowIds.delete(id));
     } else {
-      this.tableData.forEach(row => this.selectedRowIds.add(row.id));
+       // Select only the currently visible/filtered items
+       currentDataIds.forEach(id => this.selectedRowIds.add(id));
     }
   }
-
-  isRowSelected(id: number): boolean {
-    return this.selectedRowIds.has(id);
+  
+  isRowSelected(id: number): boolean { return this.selectedRowIds.has(id); }
+  
+  areAllSelected(): boolean { 
+      const currentData = this.filteredAndSortedTableData; // Use current data for select all logic
+      if (currentData.length === 0) return false; 
+      // Check if all currently visible/filtered items are selected
+      return currentData.every(row => this.selectedRowIds.has(row.id)); 
   }
-
-  areAllSelected(): boolean {
-    return this.selectedRowIds.size === this.tableData.length;
-  }
-
-  isAnySelected(): boolean {
-    return this.selectedRowIds.size > 0 && !this.areAllSelected();
+  
+  isAnySelected(): boolean { 
+      const currentData = this.filteredAndSortedTableData;
+      if (currentData.length === 0) return false;
+      // Check if at least one visible/filtered item is selected, but not all
+      return currentData.some(row => this.selectedRowIds.has(row.id)) && !this.areAllSelected();
   }
 
   // --- Column Visibility Logic ---
   toggleColumnVisibility(columnKey: string): void {
     if (this.visibleColumns.has(columnKey)) {
-      if (this.visibleColumns.size > 1) {
-        this.visibleColumns.delete(columnKey);
+      if (this.visibleColumns.size > 1) { // Prevent hiding last column
+          this.visibleColumns.delete(columnKey);
       }
     } else {
-      this.visibleColumns.add(columnKey);
+        this.visibleColumns.add(columnKey);
     }
   }
-
-  isColumnVisible(columnKey: string): boolean {
-    return this.visibleColumns.has(columnKey);
-  }
-
-  toggleColumnSelector(): void {
-    this.isColumnSelectorOpen = !this.isColumnSelectorOpen;
-  }
+  
+  isColumnVisible(columnKey: string): boolean { return this.visibleColumns.has(columnKey); }
+  toggleColumnSelector(): void { this.isColumnSelectorOpen = !this.isColumnSelectorOpen; }
 
   // --- Sorting Logic ---
   sortTable(columnKey: keyof TableRow): void {
@@ -743,6 +792,252 @@ export class TableComponent implements OnInit {
           <td class="py-3 px-4">{{ row.job }}</td>
           <td class="py-3 px-4">{{ row.color }}</td>
         </tr>
+       }
+    </tbody>
+  </table>
+</div>`;
+
+    // Combine TS comment and table HTML
+    return this.escapeHtml(tsLogicComment + tableHtml.trim());
+  }
+
+  // Getter for ALL FEATURES table example code
+  get allFeaturesTableExampleCode(): string {
+    const borderRadiusClass = this.themeService.getBorderRadiusClass();
+    const shadowStyle = this.themeService.getShadowClassForElements();
+    const primaryBgClass = this.themeService.getPrimaryBgClass();
+    const lightBgClass = this.themeService.getLightBgClass();
+    const hoverXClass = this.themeService.getHoverTranslateXClass();
+    const hoverYClass = this.themeService.getHoverTranslateYClass();
+
+    // Define SVGs for sorting
+    const ascSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>`;
+    const descSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>`;
+
+    // Comprehensive TS logic comment
+    const tsLogicComment = `
+  import { FormsModule } from '@angular/forms'; // Required for filtering
+
+  interface TableRow { id: number; name: string; job: string; color: string; }
+
+  export class YourComponent {
+    tableData: TableRow[] = [ /* your data */ ];
+    
+    // Selection state
+    selectedRowIds = new Set<number>();
+    
+    // Visibility state
+    visibleColumns = new Set<string>(['id', 'name', 'job', 'color']);
+    isColumnSelectorOpen = false;
+    
+    // Filtering state
+    filterId: string = '';
+    filterName: string = '';
+    filterJob: string = '';
+    filterColor: string = '';
+    
+    // Sorting state
+    sortColumnKey: keyof TableRow | null = null;
+    sortDirection: 'asc' | 'desc' | null = null;
+    
+    // Combined Data Getter
+    get filteredAndSortedTableData(): TableRow[] {
+      // 1. Filter logic based on filter properties
+      let filteredData = this.tableData.filter(/* ... */);
+      // 2. Sort logic based on sortColumnKey and sortDirection
+      if (this.sortColumnKey && this.sortDirection) { /* ... sort filteredData ... */ }
+      return filteredData; 
+    }
+    
+    // Colspan Getter
+    get visibleColumnCount(): number {
+      return this.visibleColumns.size + 2; // +1 checkbox, +1 toggle placeholder
+    }
+    
+    // Selection Methods
+    toggleRowSelection(id: number): void { /* ... */ }
+    toggleSelectAll(): void { /* Select/deselect based on filteredAndSortedTableData */ }
+    isRowSelected(id: number): boolean { /* ... */ }
+    areAllSelected(): boolean { /* Check against filteredAndSortedTableData */ }
+    isAnySelected(): boolean { /* Check against filteredAndSortedTableData */ }
+    
+    // Visibility Methods
+    toggleColumnVisibility(columnKey: string): void { /* ... */ }
+    isColumnVisible(columnKey: string): boolean { /* ... */ }
+    toggleColumnSelector(): void { /* ... */ }
+    
+    // Sorting Method
+    sortTable(columnKey: keyof TableRow): void { /* ... */ }
+  }
+    `;
+
+    const tableHtml = `
+<div class="overflow-x-auto border-neo-border border-black ${borderRadiusClass}" style="box-shadow: ${shadowStyle};">
+  <table class="min-w-full bg-white">
+    <thead class="${primaryBgClass} text-white font-medium align-middle">
+      <!-- Header Row 1: Selection, Sortable Titles, Column Toggle -->
+      <tr>
+        <!-- Select All Checkbox -->
+        <th class="py-3 px-4 text-left w-12 align-middle">
+          <input 
+            type="checkbox"
+            (change)="toggleSelectAll()"
+            [checked]="areAllSelected()"
+            [indeterminate]="isAnySelected()"
+            class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
+          >
+        </th>
+        
+        <!-- Sortable ID Header -->
+        @if (isColumnVisible('id')) {
+          <th class="py-3 px-4 text-left align-middle">
+            <button (click)="sortTable('id')" class="flex items-center space-x-1 hover:opacity-80">
+              <span>ID</span>
+              @if (sortColumnKey === 'id') {
+                @if (sortDirection === 'asc') { ${ascSvg} } @else if (sortDirection === 'desc') { ${descSvg} }
+              }
+            </button>
+          </th>
+        }
+        
+        <!-- Sortable Name Header -->
+        @if (isColumnVisible('name')) {
+          <th class="py-3 px-4 text-left align-middle">
+            <button (click)="sortTable('name')" class="flex items-center space-x-1 hover:opacity-80">
+              <span>Nombre</span>
+              @if (sortColumnKey === 'name') {
+                @if (sortDirection === 'asc') { ${ascSvg} } @else if (sortDirection === 'desc') { ${descSvg} }
+              }
+            </button>
+          </th>
+        }
+        
+        <!-- Sortable Job Header -->
+        @if (isColumnVisible('job')) {
+          <th class="py-3 px-4 text-left align-middle">
+            <button (click)="sortTable('job')" class="flex items-center space-x-1 hover:opacity-80">
+              <span>Puesto</span>
+              @if (sortColumnKey === 'job') {
+                @if (sortDirection === 'asc') { ${ascSvg} } @else if (sortDirection === 'desc') { ${descSvg} }
+              }
+            </button>
+          </th>
+        }
+        
+        <!-- Sortable Color Header -->
+        @if (isColumnVisible('color')) {
+          <th class="py-3 px-4 text-left align-middle">
+            <button (click)="sortTable('color')" class="flex items-center space-x-1 hover:opacity-80">
+              <span>Color Favorito</span>
+              @if (sortColumnKey === 'color') {
+                @if (sortDirection === 'asc') { ${ascSvg} } @else if (sortDirection === 'desc') { ${descSvg} }
+              }
+            </button>
+          </th>
+        }
+        
+        <!-- Column Toggle Button Header -->
+        <th class="py-2 px-4 text-right align-middle">
+          <div class="relative inline-block text-left">
+            <!-- Neobrutalist Button Structure -->
+            <div class="relative">
+               <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
+               <button (click)="toggleColumnSelector()" type="button" class="relative inline-flex justify-center items-center border-neo-border border-black px-2 py-1 bg-white text-sm font-medium text-gray-700 transition-transform ${borderRadiusClass} ${hoverXClass} ${hoverYClass}" aria-haspopup="true" [attr.aria-expanded]="isColumnSelectorOpen">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>
+               </button>
+             </div>
+            <!-- Dropdown Panel -->
+            @if (isColumnSelectorOpen) {
+              <div class="origin-top-right absolute right-0 mt-2 w-48 border-neo-border border-black bg-white focus:outline-none z-10 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};" role="menu" aria-orientation="vertical">
+                <div class="py-1" role="none">
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                    <input type="checkbox" (change)="toggleColumnVisibility('id')" [checked]="isColumnVisible('id')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> ID
+                  </label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                    <input type="checkbox" (change)="toggleColumnVisibility('name')" [checked]="isColumnVisible('name')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Nombre
+                  </label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                    <input type="checkbox" (change)="toggleColumnVisibility('job')" [checked]="isColumnVisible('job')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Puesto
+                  </label>
+                  <label class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                    <input type="checkbox" (change)="toggleColumnVisibility('color')" [checked]="isColumnVisible('color')" class="form-checkbox h-4 w-4 mr-2 border-black text-blue-600 focus:ring-blue-500"> Color Favorito
+                  </label>
+                </div>
+              </div>
+            }
+          </div>
+        </th>
+      </tr>
+      
+      <!-- Header Row 2: Filter Inputs -->
+      <tr class="bg-white">
+        <th class="p-2"></th> <!-- Empty cell for checkbox column -->
+        
+        <!-- ID Filter Input -->
+        @if (isColumnVisible('id')) {
+          <th class="p-2">
+            <div class="relative">
+             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
+             <input type="text" [(ngModel)]="filterId" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+           </div>
+          </th>
+        }
+        
+        <!-- Name Filter Input -->
+        @if (isColumnVisible('name')) {
+          <th class="p-2">
+           <div class="relative">
+             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
+             <input type="text" [(ngModel)]="filterName" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+           </div>
+          </th>
+        }
+        
+        <!-- Job Filter Input -->
+        @if (isColumnVisible('job')) {
+          <th class="p-2">
+            <div class="relative">
+             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
+             <input type="text" [(ngModel)]="filterJob" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+           </div>
+          </th>
+        }
+        
+        <!-- Color Filter Input -->
+        @if (isColumnVisible('color')) {
+          <th class="p-2">
+            <div class="relative">
+             <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
+             <input type="text" [(ngModel)]="filterColor" placeholder="Filtrar..." class="relative w-full px-2 py-1 border-neo-border border-black bg-white text-sm text-gray-900 ${borderRadiusClass} focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent">
+           </div>
+          </th>
+        }
+        
+        <th class="p-2"></th> <!-- Empty cell for toggle column -->
+      </tr>
+    </thead>
+    <tbody>
+       @for (row of filteredAndSortedTableData; track row.id; let isEven = $even) {
+        <tr class="border-b border-black" [ngClass]="isEven ? '${lightBgClass}' : ''">
+          <!-- Row Selection Checkbox -->
+          <td class="py-3 px-4 align-middle">
+            <input type="checkbox" (change)="toggleRowSelection(row.id)" [checked]="isRowSelected(row.id)" class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500">
+          </td>
+          
+          <!-- Data Cells (Conditional) -->
+          @if (isColumnVisible('id')) { <td class="py-3 px-4 align-middle">{{ row.id }}</td> }
+          @if (isColumnVisible('name')) { <td class="py-3 px-4 align-middle">{{ row.name }}</td> }
+          @if (isColumnVisible('job')) { <td class="py-3 px-4 align-middle">{{ row.job }}</td> }
+          @if (isColumnVisible('color')) { <td class="py-3 px-4 align-middle">{{ row.color }}</td> }
+          
+          <td class="align-middle"></td> <!-- Empty cell for toggle column -->
+        </tr>
+       }
+       <!-- No Results Row -->
+       @if (filteredAndSortedTableData.length === 0) {
+         <tr>
+           <td [attr.colspan]="visibleColumnCount" class="text-center py-4 text-gray-500">No se encontraron resultados.</td>
+         </tr>
        }
     </tbody>
   </table>
