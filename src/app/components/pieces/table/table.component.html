@@ -293,13 +293,30 @@
                     <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium">
                        <tr>
                         <th class="py-3 px-4 text-left w-12">
-                          <input 
-                            type="checkbox" 
-                            (change)="toggleSelectAll()"
-                            [checked]="areAllSelected()"
-                            [indeterminate]="isAnySelected()"
-                            class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
-                          >
+                          <!-- Simplified Neo Checkbox "Select All" -->
+                          <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
+                            <!-- Shadow Layer -->
+                            <div 
+                              class="absolute inset-0"
+                              [ngClass]="themeService.getBorderRadiusClass()" 
+                              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                            <!-- Input Layer -->
+                            <input 
+                              type="checkbox"
+                              (change)="toggleSelectAll()"
+                              [checked]="areAllSelected()"
+                              [indeterminate]="isAnySelected()"
+                              class="relative h-full w-full border-neo-border border-black transition-transform cursor-pointer"
+                              [ngClass]="[
+                                themeService.getBorderRadiusClass(), 
+                                themeService.getHoverTranslateXClass(), 
+                                themeService.getHoverTranslateYClass(),
+                                (isAnySelected() || areAllSelected() ? themeService.getPrimaryBgClass() + ' text-white focus:ring-offset-0 focus:ring-transparent' : 'bg-white focus:ring-blue-500')
+                              ]"
+                              style="appearance: none; -webkit-appearance: none; -moz-appearance: none;"
+                              title="Select all rows"
+                              >
+                          </div>
                         </th>
                         <th class="py-3 px-4 text-left">ID</th>
                         <th class="py-3 px-4 text-left">Nombre</th>
@@ -311,12 +328,29 @@
                       @for (row of tableData; track row.id; let isEven = $even) {
                         <tr class="border-b border-black" [ngClass]="isEven ? themeService.getLightBgClass() : ''"> 
                           <td class="py-3 px-4">
-                            <input 
-                              type="checkbox" 
-                              (change)="toggleRowSelection(row.id)"
-                              [checked]="isRowSelected(row.id)"
-                              class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
-                            >
+                             <!-- Simplified Neo Checkbox per Row -->
+                            <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
+                              <!-- Shadow Layer -->
+                              <div 
+                                class="absolute inset-0"
+                                [ngClass]="themeService.getBorderRadiusClass()" 
+                                [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                              <!-- Input Layer -->
+                              <input 
+                                type="checkbox"
+                                (change)="toggleRowSelection(row.id)"
+                                [checked]="isRowSelected(row.id)"
+                                class="relative h-full w-full border-neo-border border-black transition-transform cursor-pointer"
+                                [ngClass]="[
+                                  themeService.getBorderRadiusClass(), 
+                                  themeService.getHoverTranslateXClass(), 
+                                  themeService.getHoverTranslateYClass(),
+                                  (isRowSelected(row.id) ? themeService.getPrimaryBgClass() + ' text-white focus:ring-offset-0 focus:ring-transparent' : 'bg-white focus:ring-blue-500')
+                                ]"
+                                style="appearance: none; -webkit-appearance: none; -moz-appearance: none;"
+                                title="Select row {{ row.id }}"
+                                >
+                            </div>
                           </td>
                           <td class="py-3 px-4">{{ row.id }}</td>
                           <td class="py-3 px-4">{{ row.name }}</td>
@@ -835,13 +869,30 @@
                       <tr>
                         <!-- Select All Checkbox -->
                         <th class="py-3 px-4 text-left w-12 align-middle">
-                          <input 
-                            type="checkbox"
-                            (change)="toggleSelectAll()"
-                            [checked]="areAllSelected()"
-                            [indeterminate]="isAnySelected()"
-                            class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
-                          >
+                          <!-- Simplified Neo Checkbox "Select All" -->
+                          <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
+                            <!-- Shadow Layer -->
+                            <div 
+                              class="absolute inset-0"
+                              [ngClass]="themeService.getBorderRadiusClass()" 
+                              [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                            <!-- Input Layer -->
+                            <input 
+                              type="checkbox"
+                              (change)="toggleSelectAll()"
+                              [checked]="areAllSelected()"
+                              [indeterminate]="isAnySelected()"
+                              class="relative h-full w-full border-neo-border border-black transition-transform cursor-pointer"
+                              [ngClass]="[
+                                themeService.getBorderRadiusClass(), 
+                                themeService.getHoverTranslateXClass(), 
+                                themeService.getHoverTranslateYClass(),
+                                (isAnySelected() || areAllSelected() ? themeService.getPrimaryBgClass() + ' text-white focus:ring-offset-0 focus:ring-transparent' : 'bg-white focus:ring-blue-500')
+                              ]"
+                              style="appearance: none; -webkit-appearance: none; -moz-appearance: none;"
+                              title="Select all rows"
+                              >
+                          </div>
                         </th>
                         
                         <!-- Sortable ID Header -->
@@ -996,12 +1047,29 @@
                         <tr class="border-b border-black" [ngClass]="isEven ? themeService.getLightBgClass() : ''">
                           <!-- Row Selection Checkbox -->
                           <td class="py-3 px-4 align-middle">
-                            <input 
-                              type="checkbox" 
-                              (change)="toggleRowSelection(row.id)"
-                              [checked]="isRowSelected(row.id)"
-                              class="form-checkbox h-5 w-5 text-blue-600 border-black focus:ring-blue-500"
-                            >
+                            <!-- Simplified Neo Checkbox per Row -->
+                            <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
+                              <!-- Shadow Layer -->
+                              <div 
+                                class="absolute inset-0"
+                                [ngClass]="themeService.getBorderRadiusClass()" 
+                                [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+                              <!-- Input Layer -->
+                              <input 
+                                type="checkbox"
+                                (change)="toggleRowSelection(row.id)"
+                                [checked]="isRowSelected(row.id)"
+                                class="relative h-full w-full border-neo-border border-black transition-transform cursor-pointer"
+                                [ngClass]="[
+                                  themeService.getBorderRadiusClass(), 
+                                  themeService.getHoverTranslateXClass(), 
+                                  themeService.getHoverTranslateYClass(),
+                                  (isRowSelected(row.id) ? themeService.getPrimaryBgClass() + ' text-white focus:ring-offset-0 focus:ring-transparent' : 'bg-white focus:ring-blue-500')
+                                ]"
+                                style="appearance: none; -webkit-appearance: none; -moz-appearance: none;"
+                                title="Select row {{ row.id }}"
+                                >
+                            </div>
                           </td>
                           
                           <!-- Data Cells (Conditional) -->
