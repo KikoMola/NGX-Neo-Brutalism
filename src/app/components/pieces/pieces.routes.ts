@@ -13,6 +13,7 @@ export const PIECES_ROUTES: Routes = [
       { path: 'alert', loadComponent: () => import('./alert/alert.component').then(m => m.AlertComponent) },
       { path: 'accordion', loadComponent: () => import('./accordion/accordion.component').then(m => m.AccordionComponent) },
       { path: 'alert-dialog', loadComponent: () => import('./alert-dialog/alert-dialog.component').then(m => m.AlertDialogComponent) },
+      { path: 'table', loadComponent: () => import('./table/table.component').then(m => m.TableComponent) },
       { path: '', redirectTo: 'button', pathMatch: 'full' }
     ]
   }
