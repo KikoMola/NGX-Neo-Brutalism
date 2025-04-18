@@ -28,6 +28,8 @@ export class AccordionComponent implements OnInit {
   // Datos con un solo ítem de ejemplo
   accordionItems: AccordionItem[] = [
     { id: 'item-1', title: '¿Cómo funciona esto?', content: 'Este es el contenido del único ítem del acordeón.' },
+    { id: 'item-2', title: 'Acordeon 2', content: 'Este es el contenido del acordeón 2.' },
+    { id: 'item-3', title: 'Acordeon 3', content: 'Este es el contenido del acordeón 3.' },
   ];
 
   // ID del ítem actualmente abierto
@@ -75,9 +77,7 @@ export class AccordionComponent implements OnInit {
           </svg>
         </button>
         <!-- Content -->
-        <div 
-          [ngClass]="openItemId === item.id ? 'max-h-96' : 'max-h-0'" 
-          class="overflow-hidden transition-[max-height] duration-500 ease-in-out">
+        <div *ngIf="openItemId === item.id">
           <div class="p-4 bg-white">
             <p>{{ item.content }}</p>
           </div>

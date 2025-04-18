@@ -23,7 +23,7 @@
                 </div>
 
                 <!-- Contenido de las Pestañas - Restaurar altura fija y overflow -->
-                <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
+                <div class=" overflow-y-auto border-neo-border border-black border-t-0">
                     <!-- Contenido Preview -->
                     <app-component-preview *ngIf="accordionActiveTab === 'preview'">
                         <!-- Contenedor del acordeón con ancho máximo y espaciado -->
@@ -62,9 +62,7 @@
                                 </div>
 
                                 <!-- Panel de Contenido (se muestra si está abierto) -->
-                                <div 
-                                     [ngClass]="openItemId === item.id ? 'max-h-96' : 'max-h-0'" 
-                                     class="overflow-hidden transition-[max-height] duration-500 ease-in-out">
+                                <div *ngIf="openItemId === item.id">
                                      <!-- Inner div for padding -->
                                      <div class="p-4 bg-white">
                                          <p>{{ item.content }}</p>
