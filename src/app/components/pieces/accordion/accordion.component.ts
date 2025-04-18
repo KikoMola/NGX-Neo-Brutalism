@@ -47,20 +47,24 @@ export class AccordionComponent implements OnInit {
     this.openItemId = this.openItemId === itemId ? null : itemId;
   }
 
-  // Getter para generar el código del acordeón (botón sin border-radius)
+  // Getter para generar el código del acordeón (con transiciones Tailwind)
   get accordionExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass(); // Radius del contenedor
+    const borderRadiusClass = this.themeService.getBorderRadiusClass();
     const shadowStyle = this.themeService.getShadowClassForElements();
     const primaryBgClass = this.themeService.getPrimaryBgClass();
 
-    const item = this.accordionItems[0]; 
+    const item = this.accordionItems[0];
     const itemHtml = `
     <!-- Item 1 -->
     <div class="border-neo-border border-black overflow-hidden ${borderRadiusClass}" style="box-shadow: ${shadowStyle};">
-      <!-- Trigger (Botón directo SIN border-radius) -->
+      <!-- Trigger (Botón con border-radius condicional) -->
       <button
         (click)="toggleItem('${item.id}')"
-        class="relative flex justify-between items-center w-full px-4 py-3 font-medium text-left text-white ${primaryBgClass}"> <!-- Eliminado borderRadiusClass -->
+        [ngClass]="[
+          '${primaryBgClass}',
+          openItemId === '${item.id}' ? 'rounded-bl-none rounded-br-none' : '${borderRadiusClass}'
+        ]"
+        class="relative flex justify-between items-center w-full px-4 py-3 font-medium text-left text-white">
         <span>${item.title}</span>
         <svg
           [ngClass]="{'transform rotate-180': openItemId === '${item.id}'}"
@@ -70,18 +74,22 @@ export class AccordionComponent implements OnInit {
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
-      <!-- Content -->
-      <div *ngIf="openItemId === '${item.id}'" class="p-4 bg-white">
+      <!-- Content (con transición de max-height) -->
+      <div 
+        [ngClass]="openItemId === '${item.id}' ? 'max-h-96' : 'max-h-0'" 
+        class="p-4 bg-white overflow-hidden transition-[max-height] duration-300 ease-in-out">
         <p>${item.content}</p>
       </div>
     </div>`;
 
     const tsLogicComment = `
 <!--
-  Lógica TS necesaria:
-  accordionItems: AccordionItem[] = [{ id: 'item-1', title: '...', content: '...' }];
-  openItemId: string | null = null;
-  toggleItem(itemId: string): void { ... }
+  Lógica TS necesaria (incluir en tu componente):
+  export class YourComponent {
+    accordionItems: { id: string, title: string, content: string }[] = [...];
+    openItemId: string | null = null;
+    toggleItem(itemId: string): void { this.openItemId = this.openItemId === itemId ? null : itemId; }
+  }
 -->`;
 
     const rawHtml = `

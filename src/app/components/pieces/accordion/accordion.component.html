@@ -48,7 +48,7 @@
                                         <!-- Icono de flecha -->
                                         <svg 
                                             [ngClass]="{'transform rotate-180': openItemId === accordionItems[0].id}"
-                                            class="w-5 h-5 transition-transform duration-200 shrink-0" 
+                                            class="w-5 h-5 transition-transform duration-500 shrink-0" 
                                             xmlns="http://www.w3.org/2000/svg" 
                                             viewBox="0 0 24 24" 
                                             fill="none" 
@@ -62,9 +62,13 @@
                                 </div>
 
                                 <!-- Panel de Contenido (se muestra si está abierto) -->
-                                <div *ngIf="openItemId === accordionItems[0].id" 
-                                     class="p-4 bg-white">
-                                    <p>{{ accordionItems[0].content }}</p>
+                                <div 
+                                     [ngClass]="openItemId === accordionItems[0].id ? 'max-h-96' : 'max-h-0'" 
+                                     class="overflow-hidden transition-[max-height] duration-500 ease-in-out">
+                                     <!-- Inner div for padding -->
+                                     <div class="p-4 bg-white">
+                                         <p>{{ accordionItems[0].content }}</p>
+                                     </div>
                                 </div>
                             </div>
                         </div>
