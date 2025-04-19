@@ -47,42 +47,7 @@
     <div class="grid grid-cols-1 gap-8 items-start">
 
       <!-- Botón Pequeño (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setSmallButtonTab('preview')"
-            [ngClass]="smallButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setSmallButtonTab('code')"
-            [ngClass]="smallButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (smallButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-2 py-1 text-sm border-neo-border border-black font-medium transition-transform text-white">
-                  Pequeño
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (smallButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="smallButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-small></app-small>
 
       <!-- Botón Ancho Automático (con Pestañas) -->
       <div>

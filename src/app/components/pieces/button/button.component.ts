@@ -9,6 +9,8 @@ import { DisabledComponent } from './primary/disabled/disabled.component';
 import { SecondaryBasicComponent } from './secondary/basic/basic.component';
 import { SecondaryWithIconComponent } from './secondary/with-icon/with-icon.component';
 import { SecondaryDisabledComponent } from './secondary/disabled/disabled.component';
+import { SmallComponent } from './size/small/small.component';
+
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -21,15 +23,15 @@ import { SecondaryDisabledComponent } from './secondary/disabled/disabled.compon
     DisabledComponent,
     SecondaryBasicComponent,
     SecondaryWithIconComponent,
-    SecondaryDisabledComponent
+    SecondaryDisabledComponent,
+    SmallComponent
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
   // Estado para controlar la pestaña activa del primer ejemplo
-  smallButtonActiveTab: 'preview' | 'code' = 'preview';
-  autoWidthButtonActiveTab: 'preview' | 'code' = 'preview'; // Renombrado para claridad
+  autoWidthButtonActiveTab: 'preview' | 'code' = 'preview';
   largeButtonActiveTab: 'preview' | 'code' = 'preview';
   fullWidthButtonActiveTab: 'preview' | 'code' = 'preview';
   fixedWidthButtonActiveTab: 'preview' | 'code' = 'preview';
@@ -45,22 +47,6 @@ export class ButtonComponent {
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
   }  
-
-  get smallButtonExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative flex px-2 py-1 text-sm border-neo-border border-black font-medium transition-transform text-white ${primaryBgClass} ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Pequeño
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
 
   get autoWidthButtonExampleCode(): string {
     // Identical to primaryButtonExampleCode, just change the text
@@ -128,10 +114,6 @@ export class ButtonComponent {
   }
 
   // Método para cambiar la pestaña activa
-
-  setSmallButtonTab(tab: 'preview' | 'code'): void {
-    this.smallButtonActiveTab = tab;
-  }
 
   setAutoWidthButtonTab(tab: 'preview' | 'code'): void {
     this.autoWidthButtonActiveTab = tab;
