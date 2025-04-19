@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, type OnInit, inject } from '@angula
 import { ThemeService } from '../../../services/theme.service';
 import { ComponentPreviewComponent } from '../../component-preview/component-preview.component';
 import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-snippet-preview.component';
+import { BasicComponent } from './template/basic/basic.component';
 
 @Component({
   selector: 'app-input',
@@ -12,7 +13,8 @@ import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-sni
     CommonModule,
     FormsModule, // Import FormsModule
     ComponentPreviewComponent,
-    CodeSnippetPreviewComponent
+    CodeSnippetPreviewComponent,
+    BasicComponent
   ],
   templateUrl: './input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,14 +23,12 @@ export class InputComponent implements OnInit {
   public themeService = inject(ThemeService);
 
   // --- Tab State --- 
-  normalInputActiveTab: 'preview' | 'code' = 'preview';
   iconInputActiveTab: 'preview' | 'code' = 'preview';
   correctInputActiveTab: 'preview' | 'code' = 'preview';
   incorrectInputActiveTab: 'preview' | 'code' = 'preview';
   fullWidthInputActiveTab: 'preview' | 'code' = 'preview';
 
   // --- Input Values for Preview ---
-  normalInputValue: string = '';
   iconInputValue: string = '';
   correctInputValue: string = 'Correcto';
   incorrectInputValue: string = 'Incorrecto';
@@ -38,9 +38,6 @@ export class InputComponent implements OnInit {
   ngOnInit(): void { }
 
   // --- Tab Control Methods ---
-  setNormalInputTab(tab: 'preview' | 'code'): void {
-    this.normalInputActiveTab = tab;
-  }
   setIconInputTab(tab: 'preview' | 'code'): void {
     this.iconInputActiveTab = tab;
   }
@@ -62,36 +59,6 @@ export class InputComponent implements OnInit {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  }
-
-  get normalInputExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-
-    const rawHtml = `
-<div class="relative inline-block">
-  <!-- Shadow Layer -->
-  <div 
-    class="absolute inset-0 ${borderRadiusClass}" 
-    [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-  <!-- Input Layer -->
-  <input 
-    type="text" 
-    [(ngModel)]="inputValue" 
-    placeholder="Escribe algo..."
-    class="relative w-full px-3 py-2 border-neo-border border-black bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-transform ${borderRadiusClass} ${hoverXClass} ${hoverYClass}"
-  >
-</div>`;
-    const tsLogicComment = `
-// Component Logic:
-// import { FormsModule } from '@angular/forms'; // Required for ngModel
-// import { ThemeService } from './path/to/theme.service'; // Import ThemeService
-// constructor(public themeService: ThemeService) {}
-inputValue: string = '';`;
-
-    return this.escapeHtml(`${tsLogicComment}\n${rawHtml.trim()}`);
   }
 
   get iconInputExampleCode(): string {
