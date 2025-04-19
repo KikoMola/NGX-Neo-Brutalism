@@ -16,45 +16,7 @@
       <app-basic></app-basic>
 
       <!-- Botón Primario con Icono (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setPrimaryIconTab('preview')"
-            [ngClass]="primaryIconActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setPrimaryIconTab('code')"
-            [ngClass]="primaryIconActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (primaryIconActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex items-center px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                  </svg>
-                  Con Icono
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (primaryIconActiveTab === 'code') {
-            <app-code-snippet-preview [code]="primaryIconExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-with-icon></app-with-icon>
 
       <!-- Botón Primario Deshabilitado (con Pestañas) -->
       <div>
