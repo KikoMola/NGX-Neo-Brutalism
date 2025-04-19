@@ -5,6 +5,9 @@ import { ThemeService } from '../../../services/theme.service';
 import { ComponentPreviewComponent } from '../../component-preview/component-preview.component';
 import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-snippet-preview.component';
 import { BasicComponent } from './template/basic/basic.component';
+import { CorrectComponent } from './template/correct/correct.component';
+import { IncorrectComponent } from './template/incorrect/incorrect.component';
+import { FullWidthComponent } from '../button/size/full-width/full-width.component';
 
 @Component({
   selector: 'app-input',
@@ -14,7 +17,10 @@ import { BasicComponent } from './template/basic/basic.component';
     FormsModule, // Import FormsModule
     ComponentPreviewComponent,
     CodeSnippetPreviewComponent,
-    BasicComponent
+    BasicComponent,
+    CorrectComponent,
+    IncorrectComponent,
+    FullWidthComponent,
   ],
   templateUrl: './input.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,13 +29,11 @@ export class InputComponent implements OnInit {
   public themeService = inject(ThemeService);
 
   // --- Tab State --- 
-  iconInputActiveTab: 'preview' | 'code' = 'preview';
   correctInputActiveTab: 'preview' | 'code' = 'preview';
   incorrectInputActiveTab: 'preview' | 'code' = 'preview';
   fullWidthInputActiveTab: 'preview' | 'code' = 'preview';
 
   // --- Input Values for Preview ---
-  iconInputValue: string = '';
   correctInputValue: string = 'Correcto';
   incorrectInputValue: string = 'Incorrecto';
   fullWidthInputValue: string = '';
@@ -38,9 +42,6 @@ export class InputComponent implements OnInit {
   ngOnInit(): void { }
 
   // --- Tab Control Methods ---
-  setIconInputTab(tab: 'preview' | 'code'): void {
-    this.iconInputActiveTab = tab;
-  }
   setCorrectInputTab(tab: 'preview' | 'code'): void {
     this.correctInputActiveTab = tab;
   }
@@ -59,40 +60,6 @@ export class InputComponent implements OnInit {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  }
-
-  get iconInputExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500 pointer-events-none"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg>`;
-
-    const rawHtml = `
-<div class="relative inline-block">
-  <!-- Shadow Layer -->
-  <div 
-    class="absolute inset-0 ${borderRadiusClass}" 
-    [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-  <!-- Input Container -->
-  <div class="relative">
-    ${iconSvg}
-    <input 
-      type="text" 
-      [(ngModel)]="inputValue" 
-      placeholder="Buscar..."
-      class="relative w-full pl-10 pr-3 py-2 border-neo-border border-black bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-transform ${borderRadiusClass} ${hoverXClass} ${hoverYClass}"
-    >
-  </div>
-</div>`;
-     const tsLogicComment = `
-// Component Logic:
-// import { FormsModule } from '@angular/forms'; // Required for ngModel
-// import { ThemeService } from './path/to/theme.service'; // Import ThemeService
-// constructor(public themeService: ThemeService) {}
-inputValue: string = '';`;
-
-    return this.escapeHtml(`${tsLogicComment}\n${rawHtml.trim()}`);
   }
 
   get correctInputExampleCode(): string {
