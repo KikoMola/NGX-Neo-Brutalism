@@ -1,0 +1,62 @@
+<section class="space-y-6">
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Tabla Básica con Hover</h3>
+    <div class="grid grid-cols-1 gap-8">
+      <div> 
+        <!-- Tabs -->
+        <div class="flex border-b-2 border-black mb-0">
+          <button 
+            (click)="setNonStripedHoverActiveTab('preview')" 
+            [ngClass]="nonStripedHoverTableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+          >
+            Preview
+          </button>
+          <button 
+            (click)="setNonStripedHoverActiveTab('code')" 
+            [ngClass]="nonStripedHoverTableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+          >
+            Code
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="overflow-y-auto border-neo-border border-black border-t-0">
+          @if (nonStripedHoverTableActiveTab === 'preview') {
+            <app-component-preview>
+              <div class="p-4">
+                <div 
+                  class="overflow-x-auto border-neo-border border-black"
+                  [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+                  <table class="min-w-full bg-white">
+                    <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium">
+                      <tr>
+                        <th class="py-3 px-4 text-left">ID</th>
+                        <th class="py-3 px-4 text-left">Nombre</th>
+                        <th class="py-3 px-4 text-left">Puesto</th>
+                        <th class="py-3 px-4 text-left">Color Favorito</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (row of tableData; track row.id) {
+                        <tr class="border-b border-black hover:bg-gray-100">
+                          <td class="py-3 px-4">{{ row.id }}</td>
+                          <td class="py-3 px-4">{{ row.name }}</td>
+                          <td class="py-3 px-4">{{ row.job }}</td>
+                          <td class="py-3 px-4">{{ row.color }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </app-component-preview>
+          }
+          @if (nonStripedHoverTableActiveTab === 'code') {
+            <app-code-snippet-preview [code]="nonStripedHoverTableExampleCode"></app-code-snippet-preview>
+          }
+        </div>
+      </div>
+    </div>
+  </section>

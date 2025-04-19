@@ -13,126 +13,13 @@
     <div class="grid grid-cols-1 gap-8">
 
       <!-- Botón Primario Normal (con Pestañas Simplificadas y Componentes Reutilizables) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setPrimaryButtonTab('preview')"
-            [ngClass]="primaryButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setPrimaryButtonTab('code')"
-            [ngClass]="primaryButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-
-        <!-- Contenido de las Pestañas usando Componentes Reutilizables -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          <!-- Contenido Preview -->
-          @if (primaryButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  Botón Primario
-                </button>
-              </div>
-            </app-component-preview>
-          }
-
-          <!-- Contenido Code -->
-          @if (primaryButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="primaryButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-basic></app-basic>
 
       <!-- Botón Primario con Icono (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setPrimaryIconTab('preview')"
-            [ngClass]="primaryIconActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setPrimaryIconTab('code')"
-            [ngClass]="primaryIconActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (primaryIconActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex items-center px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                  </svg>
-                  Con Icono
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (primaryIconActiveTab === 'code') {
-            <app-code-snippet-preview [code]="primaryIconExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-with-icon></app-with-icon>
 
       <!-- Botón Primario Deshabilitado (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setPrimaryDisabledTab('preview')"
-            [ngClass]="primaryDisabledActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setPrimaryDisabledTab('code')"
-            [ngClass]="primaryDisabledActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (primaryDisabledActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]"
-                  disabled
-                  class="relative flex px-4 py-2 border-neo-border border-black font-medium text-white opacity-50 cursor-not-allowed">
-                  Deshabilitado
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (primaryDisabledActiveTab === 'code') {
-            <app-code-snippet-preview [code]="primaryDisabledExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-disabled></app-disabled>
 
     </div>
   </section>
@@ -143,122 +30,13 @@
     <div class="grid grid-cols-1 gap-8">
 
       <!-- Botón Secundario Normal (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setSecondaryButtonTab('preview')"
-            [ngClass]="secondaryButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setSecondaryButtonTab('code')"
-            [ngClass]="secondaryButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (secondaryButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
-                  Botón Secundario
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (secondaryButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="secondaryButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-secondary-basic></app-secondary-basic>
 
       <!-- Botón Secundario con Icono (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setSecondaryIconTab('preview')"
-            [ngClass]="secondaryIconActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setSecondaryIconTab('code')"
-            [ngClass]="secondaryIconActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (secondaryIconActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex items-center px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  Cancelar
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (secondaryIconActiveTab === 'code') {
-            <app-code-snippet-preview [code]="secondaryIconExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-secondary-with-icon></app-secondary-with-icon>
 
       <!-- Botón Secundario Deshabilitado (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setSecondaryDisabledTab('preview')"
-            [ngClass]="secondaryDisabledActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setSecondaryDisabledTab('code')"
-            [ngClass]="secondaryDisabledActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (secondaryDisabledActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="themeService.getBorderRadiusClass()"
-                  disabled
-                  class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium opacity-50 cursor-not-allowed">
-                  Deshabilitado
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (secondaryDisabledActiveTab === 'code') {
-            <app-code-snippet-preview [code]="secondaryDisabledExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-secondary-disabled></app-secondary-disabled>
 
     </div>
   </section>
@@ -269,194 +47,19 @@
     <div class="grid grid-cols-1 gap-8 items-start">
 
       <!-- Botón Pequeño (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setSmallButtonTab('preview')"
-            [ngClass]="smallButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setSmallButtonTab('code')"
-            [ngClass]="smallButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (smallButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-2 py-1 text-sm border-neo-border border-black font-medium transition-transform text-white">
-                  Pequeño
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (smallButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="smallButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-small></app-small>
 
       <!-- Botón Ancho Automático (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setAutoWidthButtonTab('preview')"
-            [ngClass]="autoWidthButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setAutoWidthButtonTab('code')"
-            [ngClass]="autoWidthButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (autoWidthButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  Ancho Automático
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (autoWidthButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="autoWidthButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-auto></app-auto>
 
       <!-- Botón Grande (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setLargeButtonTab('preview')"
-            [ngClass]="largeButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setLargeButtonTab('code')"
-            [ngClass]="largeButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (largeButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-6 py-3 text-lg border-neo-border border-black font-medium transition-transform text-white">
-                  Grande
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (largeButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="largeButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-big></app-big>
 
       <!-- Botón Ancho Completo (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setFullWidthButtonTab('preview')"
-            [ngClass]="fullWidthButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setFullWidthButtonTab('code')"
-            [ngClass]="fullWidthButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (fullWidthButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative w-full">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-full justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  Ancho Completo
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (fullWidthButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="fullWidthButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-full-width></app-full-width>
 
       <!-- Botón Ancho Fijo (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setFixedWidthButtonTab('preview')"
-            [ngClass]="fixedWidthButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setFixedWidthButtonTab('code')"
-            [ngClass]="fixedWidthButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (fixedWidthButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative w-48 justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  Ancho Fijo (w-48)
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (fixedWidthButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="fixedWidthButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-fixed-width></app-fixed-width>
 
     </div>
   </section>

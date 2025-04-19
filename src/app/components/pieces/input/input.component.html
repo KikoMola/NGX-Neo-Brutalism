@@ -1,217 +1,24 @@
 <div class="space-y-12 p-6">
 
   <!-- 1. Normal Input -->
-  <section class="space-y-6">
-    <h3 class="text-xl font-semibold border-b border-black pb-2">Input Normal</h3>
-    <div>
-      <!-- Tabs -->
-      <div class="flex border-b-2 border-black mb-0">
-        <button
-          (click)="setNormalInputTab('preview')"
-          [ngClass]="normalInputActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex">
-          Preview
-        </button>
-        <button
-          (click)="setNormalInputTab('code')"
-          [ngClass]="normalInputActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex">
-          Code
-        </button>
-      </div>
-
-      <!-- Tab Content -->
-      <div class="overflow-y-auto border-neo-border border-black border-t-0">
-        <!-- Preview -->
-        @if (normalInputActiveTab === 'preview') {
-          <app-component-preview>
-            <div class="p-4 flex justify-center">
-              <div class="relative inline-block">
-                <!-- Shadow Layer -->
-                <div 
-                  class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()" 
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <!-- Input Layer -->
-                <input 
-                  type="text" 
-                  [(ngModel)]="normalInputValue" 
-                  placeholder="Escribe algo..."
-                  class="relative w-full px-3 py-2 border-neo-border border-black bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-transform"
-                  [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                >
-              </div>
-            </div>
-          </app-component-preview>
-        }
-        <!-- Code -->
-        @if (normalInputActiveTab === 'code') {
-          <app-code-snippet-preview [code]="normalInputExampleCode"></app-code-snippet-preview>
-        }
-      </div>
-    </div>
-  </section>
+  <div class="mt-6">
+    <app-basic></app-basic>
+  </div>
+  
 
   <!-- 3. Correct Input -->
-  <section class="space-y-6">
-    <h3 class="text-xl font-semibold border-b border-black pb-2">Input Correcto</h3>
-    <div>
-      <!-- Tabs -->
-      <div class="flex border-b-2 border-black mb-0">
-        <button
-          (click)="setCorrectInputTab('preview')"
-          [ngClass]="correctInputActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex">
-          Preview
-        </button>
-        <button
-          (click)="setCorrectInputTab('code')"
-          [ngClass]="correctInputActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex">
-          Code
-        </button>
-      </div>
-
-      <!-- Tab Content -->
-      <div class="overflow-y-auto border-neo-border border-black border-t-0">
-        <!-- Preview -->
-        @if (correctInputActiveTab === 'preview') {
-          <app-component-preview>
-            <div class="p-4 flex justify-center">
-              <div class="relative inline-block">
-                <!-- Green Shadow Layer -->
-                <div 
-                  class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()" 
-                  [ngStyle]="{'box-shadow': themeService.getShadowClass().replace('rgba(0,0,0,1)', 'rgba(34, 197, 94, 1)')}"></div>
-                <!-- Input Container -->
-                <div class="relative">
-                   <input 
-                    type="text" 
-                    [(ngModel)]="correctInputValue" 
-                    class="relative w-full px-3 py-2 border-neo-border border-green-500 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-transform"
-                    [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]" 
-                    placeholder="Correcto"
-                  >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-green-500 pointer-events-none"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
-              </div>
-            </div>
-          </app-component-preview>
-        }
-        <!-- Code -->
-        @if (correctInputActiveTab === 'code') {
-          <app-code-snippet-preview [code]="correctInputExampleCode"></app-code-snippet-preview>
-        }
-      </div>
-    </div>
-  </section>
+  <div class="mt-6">
+    <app-correct></app-correct>
+  </div>
 
   <!-- 4. Incorrect Input -->
-  <section class="space-y-6">
-    <h3 class="text-xl font-semibold border-b border-black pb-2">Input Incorrecto</h3>
-    <div>
-      <!-- Tabs -->
-      <div class="flex border-b-2 border-black mb-0">
-        <button
-          (click)="setIncorrectInputTab('preview')"
-          [ngClass]="incorrectInputActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex">
-          Preview
-        </button>
-        <button
-          (click)="setIncorrectInputTab('code')"
-          [ngClass]="incorrectInputActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex">
-          Code
-        </button>
-      </div>
-
-      <!-- Tab Content -->
-      <div class="overflow-y-auto border-neo-border border-black border-t-0">
-        <!-- Preview -->
-        @if (incorrectInputActiveTab === 'preview') {
-          <app-component-preview>
-            <div class="p-4 flex justify-center">
-              <div class="relative inline-block">
-                <!-- Red Shadow Layer -->
-                <div 
-                  class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()" 
-                  [ngStyle]="{'box-shadow': themeService.getShadowClass().replace('rgba(0,0,0,1)', 'rgba(239, 68, 68, 1)')}"></div>
-                <!-- Input Container -->
-                <div class="relative">
-                  <input 
-                    type="text" 
-                    [(ngModel)]="incorrectInputValue" 
-                    class="relative w-full px-3 py-2 border-neo-border border-red-500 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-transform"
-                    [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                    placeholder="Incorrecto"
-                  >
-                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-red-500 pointer-events-none"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>
-                </div>
-              </div>
-            </div>
-          </app-component-preview>
-        }
-        <!-- Code -->
-        @if (incorrectInputActiveTab === 'code') {
-          <app-code-snippet-preview [code]="incorrectInputExampleCode"></app-code-snippet-preview>
-        }
-      </div>
-    </div>
-  </section>
+  <div class="mt-6">
+    <app-incorrect></app-incorrect>
+  </div>
 
   <!-- 5. Full Width Input -->
-  <section class="space-y-6">
-    <h3 class="text-xl font-semibold border-b border-black pb-2">Input Ancho Completo</h3>
-    <div>
-      <!-- Tabs -->
-      <div class="flex border-b-2 border-black mb-0">
-        <button
-          (click)="setFullWidthInputTab('preview')"
-          [ngClass]="fullWidthInputActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex">
-          Preview
-        </button>
-        <button
-          (click)="setFullWidthInputTab('code')"
-          [ngClass]="fullWidthInputActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'"
-          class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex">
-          Code
-        </button>
-      </div>
-
-      <!-- Tab Content -->
-      <div class="overflow-y-auto border-neo-border border-black border-t-0">
-        <!-- Preview -->
-        @if (fullWidthInputActiveTab === 'preview') {
-          <app-component-preview>
-            <div class="p-4 w-full"> <!-- Container needs w-full -->
-              <div class="relative w-full"> 
-                <!-- Shadow Layer -->
-                <div 
-                  class="absolute inset-0" 
-                  [ngClass]="themeService.getBorderRadiusClass()" 
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <!-- Input Layer -->
-                <input 
-                  type="text" 
-                  [(ngModel)]="fullWidthInputValue" 
-                  placeholder="Ancho completo..."
-                  class="relative w-full px-3 py-2 border-neo-border border-black bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-transform"
-                  [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                >
-              </div>
-            </div>
-          </app-component-preview>
-        }
-        <!-- Code -->
-        @if (fullWidthInputActiveTab === 'code') {
-          <app-code-snippet-preview [code]="fullWidthInputExampleCode"></app-code-snippet-preview>
-        }
-      </div>
-    </div>
-  </section>
+  <div class="mt-6">
+    <app-full-size></app-full-size>
+  </div>
 
 </div>
