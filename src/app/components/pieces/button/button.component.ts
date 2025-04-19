@@ -6,6 +6,9 @@ import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-sni
 import { BasicComponent } from './primary/basic/basic.component';
 import { WithIconComponent } from './primary/with-icon/with-icon.component';
 import { DisabledComponent } from './primary/disabled/disabled.component';
+import { SecondaryBasicComponent } from './secondary/basic/basic.component';
+import { SecondaryWithIconComponent } from './secondary/with-icon/with-icon.component';
+import { SecondaryDisabledComponent } from './secondary/disabled/disabled.component';
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -16,14 +19,13 @@ import { DisabledComponent } from './primary/disabled/disabled.component';
     BasicComponent,
     WithIconComponent,
     DisabledComponent,
+    SecondaryBasicComponent
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
   // Estado para controlar la pestaña activa del primer ejemplo
-  primaryDisabledActiveTab: 'preview' | 'code' = 'preview';
-  secondaryButtonActiveTab: 'preview' | 'code' = 'preview';
   secondaryIconActiveTab: 'preview' | 'code' = 'preview';
   secondaryDisabledActiveTab: 'preview' | 'code' = 'preview';
   smallButtonActiveTab: 'preview' | 'code' = 'preview';
@@ -42,21 +44,6 @@ export class ButtonComponent {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  }
-
-  get secondaryButtonExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Botón Secundario
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
   }
 
   get secondaryIconExampleCode(): string {
@@ -174,14 +161,6 @@ export class ButtonComponent {
   }
 
   // Método para cambiar la pestaña activa
-
-  setPrimaryDisabledTab(tab: 'preview' | 'code'): void {
-    this.primaryDisabledActiveTab = tab;
-  }
-
-  setSecondaryButtonTab(tab: 'preview' | 'code'): void {
-    this.secondaryButtonActiveTab = tab;
-  }
 
   setSecondaryIconTab(tab: 'preview' | 'code'): void {
     this.secondaryIconActiveTab = tab;

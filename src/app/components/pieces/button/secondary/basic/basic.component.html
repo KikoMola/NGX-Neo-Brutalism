@@ -1,1 +1,36 @@
-<p>basic works!</p>,
+<div>
+    <!-- Pestañas -->
+    <div class="flex border-b-2 border-black mb-0">
+      <button
+        (click)="setSecondaryButtonTab('preview')"
+        [ngClass]="secondaryButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
+        class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+        >
+        Preview
+      </button>
+      <button
+        (click)="setSecondaryButtonTab('code')"
+        [ngClass]="secondaryButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
+        class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+        >
+        Code
+      </button>
+    </div>
+    <!-- Contenido -->
+    <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
+      @if (secondaryButtonActiveTab === 'preview') {
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+              class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
+              Botón Secundario
+            </button>
+          </div>
+        </app-component-preview>
+      }
+      @if (secondaryButtonActiveTab === 'code') {
+        <app-code-snippet-preview [code]="secondaryButtonExampleCode"></app-code-snippet-preview>
+      }
+    </div>
+  </div>
