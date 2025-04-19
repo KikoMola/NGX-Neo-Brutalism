@@ -1,26 +1,22 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeService } from '../../../services/theme.service';
-import { ComponentPreviewComponent } from '../../component-preview/component-preview.component';
-import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-snippet-preview.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BasicComponent } from './primary/basic/basic.component';
-import { WithIconComponent } from './primary/with-icon/with-icon.component';
 import { DisabledComponent } from './primary/disabled/disabled.component';
+import { WithIconComponent } from './primary/with-icon/with-icon.component';
 import { SecondaryBasicComponent } from './secondary/basic/basic.component';
-import { SecondaryWithIconComponent } from './secondary/with-icon/with-icon.component';
 import { SecondaryDisabledComponent } from './secondary/disabled/disabled.component';
-import { SmallComponent } from './size/small/small.component';
+import { SecondaryWithIconComponent } from './secondary/with-icon/with-icon.component';
 import { AutoComponent } from './size/auto/auto.component';
 import { BigComponent } from './size/big/big.component';
+import { FixedWidthComponent } from './size/fixed-width/fixed-width.component';
 import { FullWidthComponent } from './size/full-width/full-width.component';
+import { SmallComponent } from './size/small/small.component';
 
 @Component({
   selector: 'app-button',
   standalone: true,
   imports: [
     CommonModule,
-    ComponentPreviewComponent,
-    CodeSnippetPreviewComponent,
     BasicComponent,
     WithIconComponent,
     DisabledComponent,
@@ -30,89 +26,10 @@ import { FullWidthComponent } from './size/full-width/full-width.component';
     SmallComponent,
     AutoComponent,
     BigComponent,
-    FullWidthComponent
+    FullWidthComponent,
+    FixedWidthComponent,
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent {
-  // Estado para controlar la pestaña activa del primer ejemplo
-  autoWidthButtonActiveTab: 'preview' | 'code' = 'preview';
-  largeButtonActiveTab: 'preview' | 'code' = 'preview';
-  fixedWidthButtonActiveTab: 'preview' | 'code' = 'preview';
-
-  constructor(public themeService: ThemeService) {}
-
-  // Helper para escapar HTML
-  private escapeHtml(unsafe: string): string {
-    return unsafe
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }  
-
-  get autoWidthButtonExampleCode(): string {
-    // Identical to primaryButtonExampleCode, just change the text
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white ${primaryBgClass} ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Ancho Automático
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
-
-  get largeButtonExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative flex px-6 py-3 text-lg border-neo-border border-black font-medium transition-transform text-white ${primaryBgClass} ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Grande
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
-
-  get fixedWidthButtonExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative w-48 justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white ${primaryBgClass} ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Ancho Fijo (w-48)
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
-
-  // Método para cambiar la pestaña activa
-
-  setAutoWidthButtonTab(tab: 'preview' | 'code'): void {
-    this.autoWidthButtonActiveTab = tab;
-  }
-
-  setLargeButtonTab(tab: 'preview' | 'code'): void {
-    this.largeButtonActiveTab = tab;
-  }
-
-  setFixedWidthButtonTab(tab: 'preview' | 'code'): void {
-    this.fixedWidthButtonActiveTab = tab;
-  }
-}
+export class ButtonComponent {}
