@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../../services/theme.service';
 import { ComponentPreviewComponent } from '../../component-preview/component-preview.component';
 import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-snippet-preview.component';
-
+import { BasicComponent } from './primary/basic/basic.component';
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -11,13 +11,13 @@ import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-sni
     CommonModule,
     ComponentPreviewComponent,
     CodeSnippetPreviewComponent,
+    BasicComponent,
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnInit {
   // Estado para controlar la pestaña activa del primer ejemplo
-  primaryButtonActiveTab: 'preview' | 'code' = 'preview';
   primaryIconActiveTab: 'preview' | 'code' = 'preview';
   primaryDisabledActiveTab: 'preview' | 'code' = 'preview';
   secondaryButtonActiveTab: 'preview' | 'code' = 'preview';
@@ -44,23 +44,6 @@ export class ButtonComponent implements OnInit {
   }
 
   // Getter para generar el código del botón primario dinámicamente
-  get primaryButtonExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white ${primaryBgClass} ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Botón Primario
-  </button>
-</div>`;
-
-    return this.escapeHtml(rawHtml.trim());
-  }
 
   get primaryIconExampleCode(): string {
     const borderRadiusClass = this.themeService.getBorderRadiusClass();
@@ -227,9 +210,6 @@ export class ButtonComponent implements OnInit {
   }
 
   // Método para cambiar la pestaña activa
-  setPrimaryButtonTab(tab: 'preview' | 'code'): void {
-    this.primaryButtonActiveTab = tab;
-  }
 
   setPrimaryIconTab(tab: 'preview' | 'code'): void {
     this.primaryIconActiveTab = tab;
