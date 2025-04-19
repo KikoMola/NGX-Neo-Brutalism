@@ -8,6 +8,8 @@ import { BasicComponent } from './basic/basic.component';
 import { StripedComponent } from './striped/striped.component';
 import { BasicHoverComponent } from './basic-hover/basic-hover.component';
 import { StripedHoverComponent } from './striped-hover/striped-hover.component';
+import { StripedSelectionComponent } from './striped-selection/striped-selection.component';
+
 // Define interface for table data rows
 export interface TableRow {
   id: number;
@@ -28,19 +30,13 @@ export interface TableRow {
     StripedComponent,
     BasicHoverComponent,
     StripedHoverComponent,
+    StripedSelectionComponent,
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnInit {
   public themeService = inject(ThemeService);  
-
-  // Tab state management for STRIPED SELECTABLE example
-  stripedSelectableTableActiveTab: 'preview' | 'code' = 'preview';
-
-  setStripedSelectableActiveTab(tab: 'preview' | 'code'): void {
-    this.stripedSelectableTableActiveTab = tab;
-  }
 
   // Tab state management for TOGGLE COLUMNS example
   toggleColumnsTableActiveTab: 'preview' | 'code' = 'preview';
@@ -278,11 +274,6 @@ export class TableComponent implements OnInit {
   }
 
   // --- Example Code Getters ---
-
-  
-
-  
-
   
 
   // Getter for STRIPED HOVER table example code
@@ -320,92 +311,7 @@ export class TableComponent implements OnInit {
     return this.escapeHtml(tableHtml.trim());
   }
   
-  // Getter for STRIPED SELECTABLE table example code
-  get stripedSelectableTableExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const lightBgClass = this.themeService.getLightBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-
-    // Simplified Neo Checkbox HTML structure (Select All)
-    const checkAllCheckboxHtml = `
-              <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
-                <!-- Shadow Layer -->
-                <div 
-                  class="absolute inset-0 ${borderRadiusClass}" 
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <!-- Input Layer -->
-                <input 
-                  type="checkbox"
-                  (change)="toggleSelectAll()"
-                  [checked]="areAllSelected()"
-                  [indeterminate]="isAnySelected()"
-                  class="relative h-full w-full border-neo-border border-black transition-transform cursor-pointer ${borderRadiusClass} ${hoverXClass} ${hoverYClass}"
-                  [ngClass]="isAnySelected() || areAllSelected() ? '${primaryBgClass} text-white focus:ring-offset-0 focus:ring-transparent' : 'bg-white focus:ring-blue-500'" 
-                  style="appearance: none; -webkit-appearance: none; -moz-appearance: none;"
-                  title="Select all rows"
-                  >
-              </div>
-    `;
-    
-    // Simplified Neo Checkbox HTML structure (Row)
-    const rowCheckboxHtml = `
-              <div class="relative inline-flex items-center justify-center h-5 w-5 align-middle">
-                 <!-- Shadow Layer -->
-                <div 
-                  class="absolute inset-0 ${borderRadiusClass}" 
-                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <!-- Input Layer -->
-                <input 
-                  type="checkbox"
-                  (change)="toggleRowSelection(row.id)"
-                  [checked]="isRowSelected(row.id)"
-                  class="relative h-full w-full border-neo-border border-black transition-transform cursor-pointer ${borderRadiusClass} ${hoverXClass} ${hoverYClass}"
-                  [ngClass]="isRowSelected(row.id) ? '${primaryBgClass} text-white focus:ring-offset-0 focus:ring-transparent' : 'bg-white focus:ring-blue-500'" 
-                  style="appearance: none; -webkit-appearance: none; -moz-appearance: none;"
-                  title="Select row {{ row.id }}"
-                  >
-              </div>
-    `;
-
-    const tsLogicComment = `
-  // Component Logic:\n  import { ThemeService } from './path/to/theme.service\'; // Import ThemeService\n  // ... other imports\n  \n  tableData: TableRow[] = [/* ... your data ... */];\n  selectedRowIds = new Set<number>();\n  \n  constructor(public themeService: ThemeService) {} // Inject ThemeService\n  \n  toggleRowSelection(id: number): void { /* ... logic ... */ }\n  toggleSelectAll(): void { /* ... logic ... */ }\n  isRowSelected(id: number): boolean { return this.selectedRowIds.has(id); }\n  areAllSelected(): boolean { /* ... logic ... */ }\n  isAnySelected(): boolean { /* ... logic ... */ }`;
-
-    const rawHtml = `
-${tsLogicComment}
-<!-- HTML Template -->
-<div class="overflow-x-auto border-neo-border border-black ${borderRadiusClass}" style="box-shadow: ${shadowStyle};">
-  <table class="min-w-full bg-white">
-    <thead class="${primaryBgClass} text-white font-medium">
-      <tr>
-        <th class="py-3 px-4 text-left w-12">
-          ${checkAllCheckboxHtml.trim()}
-        </th>
-        <th class="py-3 px-4 text-left">ID</th>
-        <th class="py-3 px-4 text-left">Nombre</th>
-        <th class="py-3 px-4 text-left">Puesto</th>
-        <th class="py-3 px-4 text-left">Color Favorito</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (row of tableData; track row.id; let isEven = $even) {
-        <tr class="border-b border-black" [ngClass]="isEven ? '${lightBgClass}' : ''">
-          <td class="py-3 px-4">
-             ${rowCheckboxHtml.trim()}
-          </td>
-          <td class="py-3 px-4">{{ row.id }}</td>
-          <td class="py-3 px-4">{{ row.name }}</td>
-          <td class="py-3 px-4">{{ row.job }}</td>
-          <td class="py-3 px-4">{{ row.color }}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
+  
 
   // Getter for TOGGLE COLUMNS table example code
   get toggleColumnsTableExampleCode(): string {
