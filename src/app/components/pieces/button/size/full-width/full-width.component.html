@@ -1,1 +1,38 @@
-<p>full-width works!</p>,
+<!-- Botón Ancho Completo (con Pestañas) -->
+<div>
+  <h4 class="text-lg font-medium mb-2">Botón Ancho Completo</h4>
+  <!-- Pestañas -->
+  <div class="flex border-b-2 border-black mb-0">
+    <button
+      (click)="setFullWidthButtonTab('preview')"
+      [ngClass]="fullWidthButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
+      class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+      >
+      Preview
+    </button>
+    <button
+      (click)="setFullWidthButtonTab('code')"
+      [ngClass]="fullWidthButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
+      class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+      >
+      Code
+    </button>
+  </div>
+  <!-- Contenido -->
+  <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
+    @if (fullWidthButtonActiveTab === 'preview') {
+      <app-component-preview>
+        <div class="relative w-full">
+          <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+          <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+            class="relative w-full justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
+            Ancho Completo
+          </button>
+        </div>
+      </app-component-preview>
+    }
+    @if (fullWidthButtonActiveTab === 'code') {
+      <app-code-snippet-preview [code]="fullWidthButtonExampleCode"></app-code-snippet-preview>
+    }
+  </div>
+</div>

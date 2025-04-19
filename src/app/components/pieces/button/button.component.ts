@@ -12,6 +12,7 @@ import { SecondaryDisabledComponent } from './secondary/disabled/disabled.compon
 import { SmallComponent } from './size/small/small.component';
 import { AutoComponent } from './size/auto/auto.component';
 import { BigComponent } from './size/big/big.component';
+import { FullWidthComponent } from './size/full-width/full-width.component';
 
 @Component({
   selector: 'app-button',
@@ -28,7 +29,8 @@ import { BigComponent } from './size/big/big.component';
     SecondaryDisabledComponent,
     SmallComponent,
     AutoComponent,
-    BigComponent
+    BigComponent,
+    FullWidthComponent
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,7 +39,6 @@ export class ButtonComponent {
   // Estado para controlar la pestaña activa del primer ejemplo
   autoWidthButtonActiveTab: 'preview' | 'code' = 'preview';
   largeButtonActiveTab: 'preview' | 'code' = 'preview';
-  fullWidthButtonActiveTab: 'preview' | 'code' = 'preview';
   fixedWidthButtonActiveTab: 'preview' | 'code' = 'preview';
 
   constructor(public themeService: ThemeService) {}
@@ -85,22 +86,6 @@ export class ButtonComponent {
     return this.escapeHtml(rawHtml.trim());
   }
 
-  get fullWidthButtonExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    const hoverXClass = this.themeService.getHoverTranslateXClass();
-    const hoverYClass = this.themeService.getHoverTranslateYClass();
-    const rawHtml = `
-<div class="relative w-full"> <!-- w-full needed for container -->
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button class="relative w-full justify-center flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white ${primaryBgClass} ${borderRadiusClass} ${hoverXClass} ${hoverYClass}">
-    Ancho Completo
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
-
   get fixedWidthButtonExampleCode(): string {
     const borderRadiusClass = this.themeService.getBorderRadiusClass();
     const shadowStyle = this.themeService.getShadowClassForElements();
@@ -125,10 +110,6 @@ export class ButtonComponent {
 
   setLargeButtonTab(tab: 'preview' | 'code'): void {
     this.largeButtonActiveTab = tab;
-  }
-
-  setFullWidthButtonTab(tab: 'preview' | 'code'): void {
-    this.fullWidthButtonActiveTab = tab;
   }
 
   setFixedWidthButtonTab(tab: 'preview' | 'code'): void {
