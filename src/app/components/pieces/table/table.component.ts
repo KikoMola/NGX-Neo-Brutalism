@@ -33,16 +33,7 @@ export interface TableRow {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnInit {
-  public themeService = inject(ThemeService);
-
-  
-  
-  // Tab state management for STRIPED HOVER example
-  stripedHoverTableActiveTab: 'preview' | 'code' = 'preview';
-
-  setStripedHoverActiveTab(tab: 'preview' | 'code'): void {
-    this.stripedHoverTableActiveTab = tab;
-  }
+  public themeService = inject(ThemeService);  
 
   // Tab state management for STRIPED SELECTABLE example
   stripedSelectableTableActiveTab: 'preview' | 'code' = 'preview';
