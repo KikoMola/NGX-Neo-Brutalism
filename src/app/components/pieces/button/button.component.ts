@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../../services/theme.service';
 import { ComponentPreviewComponent } from '../../component-preview/component-preview.component';
 import { CodeSnippetPreviewComponent } from '../../code-snippet-preview/code-snippet-preview.component';
 import { BasicComponent } from './primary/basic/basic.component';
 import { WithIconComponent } from './primary/with-icon/with-icon.component';
+import { DisabledComponent } from './primary/disabled/disabled.component';
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -14,11 +15,12 @@ import { WithIconComponent } from './primary/with-icon/with-icon.component';
     CodeSnippetPreviewComponent,
     BasicComponent,
     WithIconComponent,
+    DisabledComponent,
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   // Estado para controlar la pestaña activa del primer ejemplo
   primaryDisabledActiveTab: 'preview' | 'code' = 'preview';
   secondaryButtonActiveTab: 'preview' | 'code' = 'preview';
@@ -32,8 +34,6 @@ export class ButtonComponent implements OnInit {
 
   constructor(public themeService: ThemeService) {}
 
-  ngOnInit(): void {}
-
   // Helper para escapar HTML
   private escapeHtml(unsafe: string): string {
     return unsafe
@@ -42,22 +42,6 @@ export class ButtonComponent implements OnInit {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  }
-
-  // Getter para generar el código del botón primario dinámicamente
-  get primaryDisabledExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    const primaryBgClass = this.themeService.getPrimaryBgClass();
-    // No hover classes for disabled
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button disabled class="relative flex px-4 py-2 border-neo-border border-black font-medium text-white opacity-50 cursor-not-allowed ${primaryBgClass} ${borderRadiusClass}">
-    Deshabilitado
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
   }
 
   get secondaryButtonExampleCode(): string {
