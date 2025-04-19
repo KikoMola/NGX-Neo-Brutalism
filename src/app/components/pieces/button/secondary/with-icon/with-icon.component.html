@@ -1,1 +1,39 @@
-<p>with-icon works!</p>,
+<div>
+    <!-- Pestañas -->
+    <div class="flex border-b-2 border-black mb-0">
+      <button
+        (click)="setSecondaryIconTab('preview')"
+        [ngClass]="secondaryIconActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
+        class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+        >
+        Preview
+      </button>
+      <button
+        (click)="setSecondaryIconTab('code')"
+        [ngClass]="secondaryIconActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
+        class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+        >
+        Code
+      </button>
+    </div>
+    <!-- Contenido -->
+    <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
+      @if (secondaryIconActiveTab === 'preview') {
+        <app-component-preview>
+          <div class="relative inline-block">
+            <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
+            <button [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
+              class="relative flex items-center px-4 py-2 bg-white border-neo-border border-black font-medium transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Cancelar
+            </button>
+          </div>
+        </app-component-preview>
+      }
+      @if (secondaryIconActiveTab === 'code') {
+        <app-code-snippet-preview [code]="secondaryIconExampleCode"></app-code-snippet-preview>
+      }
+    </div>
+  </div>
