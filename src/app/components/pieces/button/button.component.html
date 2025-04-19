@@ -50,42 +50,7 @@
       <app-small></app-small>
 
       <!-- Botón Ancho Automático (con Pestañas) -->
-      <div>
-        <!-- Pestañas -->
-        <div class="flex border-b-2 border-black mb-0">
-          <button
-            (click)="setAutoWidthButtonTab('preview')"
-            [ngClass]="autoWidthButtonActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
-            >
-            Preview
-          </button>
-          <button
-            (click)="setAutoWidthButtonTab('code')"
-            [ngClass]="autoWidthButtonActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-px' : 'bg-white text-black'"
-            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
-            >
-            Code
-          </button>
-        </div>
-        <!-- Contenido -->
-        <div class="h-40 md:h-48 overflow-y-auto border-neo-border border-black border-t-0">
-          @if (autoWidthButtonActiveTab === 'preview') {
-            <app-component-preview>
-              <div class="relative inline-block">
-                <div class="absolute inset-0" [ngClass]="themeService.getBorderRadiusClass()" [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}"></div>
-                <button [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]"
-                  class="relative flex px-4 py-2 border-neo-border border-black font-medium transition-transform text-white">
-                  Ancho Automático
-                </button>
-              </div>
-            </app-component-preview>
-          }
-          @if (autoWidthButtonActiveTab === 'code') {
-            <app-code-snippet-preview [code]="autoWidthButtonExampleCode"></app-code-snippet-preview>
-          }
-        </div>
-      </div>
+      <app-auto></app-auto>
 
       <!-- Botón Grande (con Pestañas) -->
       <div>
