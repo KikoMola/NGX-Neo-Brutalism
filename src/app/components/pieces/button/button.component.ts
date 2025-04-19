@@ -11,6 +11,7 @@ import { SecondaryWithIconComponent } from './secondary/with-icon/with-icon.comp
 import { SecondaryDisabledComponent } from './secondary/disabled/disabled.component';
 import { SmallComponent } from './size/small/small.component';
 import { AutoComponent } from './size/auto/auto.component';
+import { BigComponent } from './size/big/big.component';
 
 @Component({
   selector: 'app-button',
@@ -26,7 +27,8 @@ import { AutoComponent } from './size/auto/auto.component';
     SecondaryWithIconComponent,
     SecondaryDisabledComponent,
     SmallComponent,
-    AutoComponent
+    AutoComponent,
+    BigComponent
   ],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
