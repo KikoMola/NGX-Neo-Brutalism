@@ -28,7 +28,6 @@ import { SecondaryDisabledComponent } from './secondary/disabled/disabled.compon
 })
 export class ButtonComponent {
   // Estado para controlar la pestaña activa del primer ejemplo
-  secondaryDisabledActiveTab: 'preview' | 'code' = 'preview';
   smallButtonActiveTab: 'preview' | 'code' = 'preview';
   autoWidthButtonActiveTab: 'preview' | 'code' = 'preview'; // Renombrado para claridad
   largeButtonActiveTab: 'preview' | 'code' = 'preview';
@@ -45,21 +44,7 @@ export class ButtonComponent {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  }
-
-  get secondaryDisabledExampleCode(): string {
-    const borderRadiusClass = this.themeService.getBorderRadiusClass();
-    const shadowStyle = this.themeService.getShadowClassForElements();
-    // No hover classes for disabled
-    const rawHtml = `
-<div class="relative inline-block">
-  <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
-  <button disabled class="relative flex px-4 py-2 bg-white border-neo-border border-black font-medium opacity-50 cursor-not-allowed ${borderRadiusClass}">
-    Deshabilitado
-  </button>
-</div>`;
-    return this.escapeHtml(rawHtml.trim());
-  }
+  }  
 
   get smallButtonExampleCode(): string {
     const borderRadiusClass = this.themeService.getBorderRadiusClass();
@@ -143,9 +128,6 @@ export class ButtonComponent {
   }
 
   // Método para cambiar la pestaña activa
-  setSecondaryDisabledTab(tab: 'preview' | 'code'): void {
-    this.secondaryDisabledActiveTab = tab;
-  }
 
   setSmallButtonTab(tab: 'preview' | 'code'): void {
     this.smallButtonActiveTab = tab;
