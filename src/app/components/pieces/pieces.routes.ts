@@ -15,6 +15,7 @@ export const PIECES_ROUTES: Routes = [
       { path: 'alert-dialog', loadComponent: () => import('./alert-dialog/alert-dialog.component').then(m => m.AlertDialogComponent) },
       { path: 'table', loadComponent: () => import('./table/table.component').then(m => m.TableComponent) },
       { path: 'input', loadComponent: () => import('./input/input.component').then(m => m.InputComponent) },
+      { path: 'card', loadComponent: () => import('./card/card.component').then(m => m.CardComponent) },
       { path: '', redirectTo: 'button', pathMatch: 'full' }
     ]
   }
