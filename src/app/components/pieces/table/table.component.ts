@@ -9,6 +9,7 @@ import { StripedComponent } from './striped/striped.component';
 import { BasicHoverComponent } from './basic-hover/basic-hover.component';
 import { StripedHoverComponent } from './striped-hover/striped-hover.component';
 import { StripedSelectionComponent } from './striped-selection/striped-selection.component';
+import { ColumnSelectionComponent } from './column-selection/column-selection.component';
 
 // Define interface for table data rows
 export interface TableRow {
@@ -31,6 +32,7 @@ export interface TableRow {
     BasicHoverComponent,
     StripedHoverComponent,
     StripedSelectionComponent,
+    ColumnSelectionComponent,
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
