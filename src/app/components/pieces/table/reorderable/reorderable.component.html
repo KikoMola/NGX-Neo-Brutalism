@@ -1,1 +1,109 @@
-<p>reorderable works!</p>,
+<section class="space-y-6 mb-6">
+    <h3 class="text-xl font-semibold border-b border-black pb-2">Tabla Ordenable (Striped)</h3>
+    <div class="grid grid-cols-1 gap-8">
+       <div> 
+        <!-- Tabs -->
+        <div class="flex border-b-2 border-black mb-0">
+          <button 
+            (click)="setSortableTableActiveTab('preview')" 
+            [ngClass]="sortableTableActiveTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+          >
+            Preview
+          </button>
+          <button 
+            (click)="setSortableTableActiveTab('code')" 
+            [ngClass]="sortableTableActiveTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+            class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+          >
+            Code
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="overflow-y-auto border-neo-border border-black border-t-0">
+          @if (sortableTableActiveTab === 'preview') {
+            <app-component-preview>
+              <div class="p-4">
+                 <!-- Sortable Table -->
+                <div 
+                  class="overflow-x-auto border-neo-border border-black"
+                  [ngClass]="themeService.getBorderRadiusClass()"
+                  [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+                  <table class="min-w-full bg-white">
+                    <thead [ngClass]="themeService.getPrimaryBgClass()" class="text-white font-medium">
+                       <tr>
+                        <!-- Sortable Headers with updated SVGs -->
+                        <th class="py-3 px-4 text-left">
+                           <button (click)="sortTable('id')" class="flex items-center space-x-1 hover:opacity-80">
+                             <span>ID</span>
+                             <!-- Conditional SVG based on sort state -->
+                             @if (sortColumnKey === 'id') {
+                               @if (sortDirection === 'asc') {
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-az-icon lucide-arrow-up-a-z"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                               } @else if (sortDirection === 'desc') {
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-az-icon lucide-arrow-down-a-z"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                               }
+                             }
+                           </button>
+                        </th>
+                        <th class="py-3 px-4 text-left">
+                           <button (click)="sortTable('name')" class="flex items-center space-x-1 hover:opacity-80">
+                             <span>Nombre</span>
+                              @if (sortColumnKey === 'name') {
+                                @if (sortDirection === 'asc') {
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-az-icon lucide-arrow-up-a-z"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                                } @else if (sortDirection === 'desc') {
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-az-icon lucide-arrow-down-a-z"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                                }
+                              }
+                           </button>
+                        </th>
+                         <th class="py-3 px-4 text-left">
+                           <button (click)="sortTable('job')" class="flex items-center space-x-1 hover:opacity-80">
+                             <span>Puesto</span>
+                              @if (sortColumnKey === 'job') {
+                                @if (sortDirection === 'asc') {
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-az-icon lucide-arrow-up-a-z"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                                } @else if (sortDirection === 'desc') {
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-az-icon lucide-arrow-down-a-z"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                                }
+                              }
+                           </button>
+                        </th>
+                        <th class="py-3 px-4 text-left">
+                           <button (click)="sortTable('color')" class="flex items-center space-x-1 hover:opacity-80">
+                             <span>Color Favorito</span>
+                              @if (sortColumnKey === 'color') {
+                                @if (sortDirection === 'asc') {
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-az-icon lucide-arrow-up-a-z"><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                                } @else if (sortDirection === 'desc') {
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-az-icon lucide-arrow-down-a-z"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M20 8h-5"/><path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/><path d="M15 14h5l-5 6h5"/></svg>
+                                }
+                              }
+                           </button>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (row of sortedTableData; track row.id; let isEven = $even) {
+                        <tr class="border-b border-black" [ngClass]="isEven ? themeService.getLightBgClass() : ''"> 
+                          <td class="py-3 px-4">{{ row.id }}</td>
+                          <td class="py-3 px-4">{{ row.name }}</td>
+                          <td class="py-3 px-4">{{ row.job }}</td>
+                          <td class="py-3 px-4">{{ row.color }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </app-component-preview>
+          }
+          @if (sortableTableActiveTab === 'code') {
+            <app-code-snippet-preview [code]="sortableTableExampleCode"></app-code-snippet-preview>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
