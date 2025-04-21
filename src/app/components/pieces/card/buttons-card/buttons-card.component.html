@@ -1,0 +1,79 @@
+<!-- Tabs -->
+<div class="flex border-b-2 border-black mb-0">
+  <button 
+    (click)="setActiveTab('preview')" 
+    [ngClass]="activeTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+    class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+  >
+    Preview
+  </button>
+  <button 
+    (click)="setActiveTab('code')" 
+    [ngClass]="activeTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+    class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+  >
+    Code
+  </button>
+</div>
+
+<!-- Tab Content -->
+<div class="overflow-y-auto border-neo-border border-black border-t-0">
+  @if (activeTab === 'preview') {
+    <app-component-preview>
+      <div class="p-4 flex justify-center">
+        <!-- Buttons Card Structure -->
+        <div 
+          class="relative bg-white p-6 border-neo-border border-black max-w-sm"
+          [ngClass]="[themeService.getBorderRadiusClass()]" 
+          [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" >
+          <!-- Shadow Layer -->
+          <div class="absolute inset-0" 
+               [ngClass]="themeService.getBorderRadiusClass()" 
+               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+               <!-- Static shadow -->
+          </div>
+          <!-- Content Layer -->
+          <div class="relative">
+            <h4 
+              class="text-lg font-semibold mb-2" 
+              [ngClass]="themeService.getTextClass()">
+              Tarjeta con Botones
+            </h4>
+            <p class="text-sm text-gray-700 mb-4">
+              Esta tarjeta incluye botones de acción en la parte inferior.
+            </p>
+            <div class="flex justify-end space-x-3">
+              <!-- Secondary Button -->
+              <div class="relative">
+                <div class="absolute inset-0" 
+                     [ngClass]="themeService.getBorderRadiusClass()" 
+                     style="box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);"></div>
+                <button 
+                  class="relative bg-white px-3 py-1 border-neo-border border-black text-sm font-medium hover:translate-x-[1px] hover:translate-y-[1px] transition-transform"
+                  [ngClass]="themeService.getBorderRadiusClass()">
+                  Cancelar
+                </button>
+              </div>
+              <!-- Primary Button -->
+              <div class="relative">
+                <div class="absolute inset-0" 
+                     [ngClass]="themeService.getBorderRadiusClass()" 
+                     style="box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);"></div>
+                <button 
+                  class="relative px-3 py-1 border-neo-border border-black text-sm font-medium text-white hover:translate-x-[1px] hover:translate-y-[1px] transition-transform"
+                  [ngClass]="[themeService.getPrimaryBgClass(), themeService.getBorderRadiusClass()]">
+                  Aceptar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-component-preview>
+  }
+  @if (activeTab === 'code') {
+    <app-code-snippet-preview 
+      [code]="buttonsCardExampleCode">
+    </app-code-snippet-preview>
+  }
+</div>

@@ -1,0 +1,55 @@
+<!-- Tabs -->
+<div class="flex border-b-2 border-black mb-0">
+  <button 
+    (click)="setActiveTab('preview')" 
+    [ngClass]="activeTab === 'preview' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+    class="w-1/2 px-4 py-2 border-neo-border border-black font-medium justify-center flex"
+  >
+    Preview
+  </button>
+  <button 
+    (click)="setActiveTab('code')" 
+    [ngClass]="activeTab === 'code' ? themeService.getPrimaryBgClass() + ' text-white border-b-0 -mb-[2px]' : 'bg-white text-black'" 
+    class="w-1/2 px-4 py-2 border-neo-border border-l-0 border-black font-medium justify-center flex"
+  >
+    Code
+  </button>
+</div>
+
+<!-- Tab Content -->
+<div class="overflow-y-auto border-neo-border border-black border-t-0">
+  @if (activeTab === 'preview') {
+    <app-component-preview>
+      <div class="p-4 flex justify-center">
+        <!-- Simple Card Structure -->
+        <div 
+          class="relative bg-white p-6 border-neo-border border-black max-w-sm"
+          [ngClass]="[themeService.getBorderRadiusClass()]" 
+          [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" >
+          <!-- Shadow Layer -->
+          <div class="absolute inset-0" 
+               [ngClass]="themeService.getBorderRadiusClass()" 
+               [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}">
+               <!-- Static shadow -->
+          </div>
+          <!-- Content Layer -->
+          <div class="relative">
+            <h4 
+              class="text-lg font-semibold mb-2" 
+              [ngClass]="themeService.getTextClass()">
+              Título de la Tarjeta
+            </h4>
+            <p class="text-sm text-gray-700">
+              Este es el contenido de la tarjeta simple. Puedes poner aquí cualquier texto o elemento que necesites.
+            </p>
+          </div>
+        </div>
+      </div>
+    </app-component-preview>
+  }
+  @if (activeTab === 'code') {
+    <app-code-snippet-preview 
+      [code]="simpleCardExampleCode">
+    </app-code-snippet-preview>
+  }
+</div>
