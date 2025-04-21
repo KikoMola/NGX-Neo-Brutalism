@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, type OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  type OnInit,
+} from '@angular/core';
 import { ThemeService } from '../../../../services/theme.service';
 import { ComponentPreviewComponent } from '../../../component-preview/component-preview.component';
 import { CodeSnippetPreviewComponent } from '../../../code-snippet-preview/code-snippet-preview.component';
@@ -10,7 +15,7 @@ import { CodeSnippetPreviewComponent } from '../../../code-snippet-preview/code-
   imports: [
     CommonModule,
     ComponentPreviewComponent,
-    CodeSnippetPreviewComponent
+    CodeSnippetPreviewComponent,
   ],
   templateUrl: './image-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +30,7 @@ export class ImageCardComponent implements OnInit {
     this.activeTab = tab;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   // Getter for the example code
   get imageCardExampleCode(): string {
@@ -35,7 +40,8 @@ export class ImageCardComponent implements OnInit {
     const hoverTranslateX = this.themeService.getHoverTranslateXClass();
     const hoverTranslateY = this.themeService.getHoverTranslateYClass();
     // Example image URL (replace with a real one or placeholder service)
-    const imageUrl = 'https://via.placeholder.com/400x200.png?text=Placeholder+Image';
+    const imageUrl =
+      'https://via.placeholder.com/400x200.png?text=Placeholder+Image';
 
     const html = `
 <!-- image-card.component.html -->
@@ -48,7 +54,7 @@ export class ImageCardComponent implements OnInit {
   <div class="relative">
     <img src="${imageUrl}" alt="Placeholder Image" class="w-full h-48 object-cover border-b-neo-border border-black">
     <div class="p-6">
-      <h4 class="font-neo-heading text-lg font-semibold mb-2 ${textClass}">Tarjeta con Imagen</h4>
+      <h4 class="text-lg font-semibold mb-2 ${textClass}">Tarjeta con Imagen</h4>
       <p class="text-sm text-gray-700">
         Este es el contenido de la tarjeta. La imagen se muestra en la parte superior.
       </p>
@@ -77,7 +83,7 @@ import { ThemeService } from 'path/to/your/theme.service'; // Ajusta la ruta
       <div class="relative">
         <img src="https://via.placeholder.com/400x200.png?text=Placeholder+Image" alt="Placeholder Image" class="w-full h-48 object-cover border-b-neo-border border-black">
         <div class="p-6">
-          <h4 class="font-neo-heading text-lg font-semibold mb-2" [ngClass]="themeService.getTextClass()">Tarjeta con Imagen</h4>
+          <h4 class="text-lg font-semibold mb-2" [ngClass]="themeService.getTextClass()">Tarjeta con Imagen</h4>
           <p class="text-sm text-gray-700">
             Este es el contenido de la tarjeta. La imagen se muestra en la parte superior.
           </p>

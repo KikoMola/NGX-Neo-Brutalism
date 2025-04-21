@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, type OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  type OnInit,
+} from '@angular/core';
 import { ThemeService } from '../../../../services/theme.service';
 import { ComponentPreviewComponent } from '../../../component-preview/component-preview.component';
 import { CodeSnippetPreviewComponent } from '../../../code-snippet-preview/code-snippet-preview.component';
@@ -10,7 +15,7 @@ import { CodeSnippetPreviewComponent } from '../../../code-snippet-preview/code-
   imports: [
     CommonModule,
     ComponentPreviewComponent,
-    CodeSnippetPreviewComponent
+    CodeSnippetPreviewComponent,
   ],
   templateUrl: './buttons-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +30,7 @@ export class ButtonsCardComponent implements OnInit {
     this.activeTab = tab;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   // Getter for the example code
   get buttonsCardExampleCode(): string {
@@ -38,7 +43,8 @@ export class ButtonsCardComponent implements OnInit {
 
     // Button shadow uses fixed small shadow for inner elements
     const buttonShadow = '1px 1px 0px 0px rgba(0,0,0,1)';
-    const buttonHoverTranslate = 'hover:translate-x-[1px] hover:translate-y-[1px]';
+    const buttonHoverTranslate =
+      'hover:translate-x-[1px] hover:translate-y-[1px]';
 
     const html = `
 <!-- buttons-card.component.html -->
@@ -49,7 +55,7 @@ export class ButtonsCardComponent implements OnInit {
   <div class="absolute inset-0 ${borderRadiusClass}" style="box-shadow: ${shadowStyle};"></div>
   <!-- Content Layer -->
   <div class="relative">
-    <h4 class="font-neo-heading text-lg font-semibold mb-2 ${textClass}">Tarjeta con Botones</h4>
+    <h4 class="text-lg font-semibold mb-2 ${textClass}">Tarjeta con Botones</h4>
     <p class="text-sm text-gray-700 mb-4">
       Esta tarjeta incluye botones de acción en la parte inferior.
     </p>
@@ -93,7 +99,7 @@ import { ThemeService } from 'path/to/your/theme.service'; // Ajusta la ruta
       <div class="absolute inset-0 {{ themeService.getBorderRadiusClass() }}" [ngStyle]="'box-shadow': themeService.getShadowClassForElements()"></div>
       <!-- Content Layer -->
       <div class="relative">
-        <h4 class="font-neo-heading text-lg font-semibold mb-2" [ngClass]="themeService.getTextClass()">Tarjeta con Botones</h4>
+        <h4 class="text-lg font-semibold mb-2" [ngClass]="themeService.getTextClass()">Tarjeta con Botones</h4>
         <p class="text-sm text-gray-700 mb-4">
           Esta tarjeta incluye botones de acción en la parte inferior.
         </p>

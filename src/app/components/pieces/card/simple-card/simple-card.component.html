@@ -1,5 +1,3 @@
-<p>simple-card works!</p>,
-
 <!-- Tabs -->
 <div class="flex border-b-2 border-black mb-0">
   <button 
@@ -26,7 +24,7 @@
         <!-- Simple Card Structure -->
         <div 
           class="relative bg-white p-6 border-neo-border border-black max-w-sm"
-          [ngClass]="[themeService.getBorderRadiusClass(), themeService.getHoverTranslateXClass(), themeService.getHoverTranslateYClass()]" 
+          [ngClass]="[themeService.getBorderRadiusClass()]" 
           [ngStyle]="{'box-shadow': themeService.getShadowClassForElements()}" >
           <!-- Shadow Layer -->
           <div class="absolute inset-0" 
@@ -37,7 +35,7 @@
           <!-- Content Layer -->
           <div class="relative">
             <h4 
-              class="font-neo-heading text-lg font-semibold mb-2" 
+              class="text-lg font-semibold mb-2" 
               [ngClass]="themeService.getTextClass()">
               Título de la Tarjeta
             </h4>
