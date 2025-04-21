@@ -13,6 +13,7 @@ import { ColumnSelectionComponent } from './column-selection/column-selection.co
 import { FilteredComponent } from './filtered/filtered.component';
 import { ReorderableComponent } from './reorderable/reorderable.component';
 import { RowOptionsComponent } from './row-options/row-options.component';
+import { FullComponent } from './full/full.component';
 // Define interface for table data rows
 export interface TableRow {
   id: number;
@@ -27,8 +28,6 @@ export interface TableRow {
   imports: [
     CommonModule,
     FormsModule,
-    ComponentPreviewComponent,
-    CodeSnippetPreviewComponent,
     BasicComponent,
     StripedComponent,
     BasicHoverComponent,
@@ -38,6 +37,7 @@ export interface TableRow {
     FilteredComponent,
     ReorderableComponent,
     RowOptionsComponent,
+    FullComponent,
   ],
   templateUrl: './table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
